@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: $this->Form->input
+# --
+$this->Form->input('$0')

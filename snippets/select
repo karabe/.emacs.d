@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: select
+# key: select
+# --
+<select>
+  <option>$1</option>$0
+</select>

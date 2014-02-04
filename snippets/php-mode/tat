@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: $this->assertTrue($condition);
+# --
+$this->assertTrue(${1:$condition});$0

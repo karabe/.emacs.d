@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: iec
+# key: iec
+# --
+@include('elements.$1.close')$0

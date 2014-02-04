@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: $this->data
+# --
+$this->data

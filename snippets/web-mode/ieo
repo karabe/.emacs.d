@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ieo
+# key: ieo
+# --
+@include('elements.$1.open'$2)$0

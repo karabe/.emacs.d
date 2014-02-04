@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: $this->assertEquals($expected, $actual);
+# --
+$this->assertEquals(${1:$expected}, ${2:$actual});$0

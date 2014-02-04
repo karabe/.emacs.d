@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: $this->alias
+# --
+$this->alias
