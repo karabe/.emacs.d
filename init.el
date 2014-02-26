@@ -140,8 +140,8 @@
 (ido-hacks-mode t)
 (global-set-key (kbd "M-x") 'smex)
 ;; flycheck
-;;(global-flycheck-mode)
-;;(delete 'php-phpcs flycheck-checkers)
+(global-flycheck-mode)
+(delete 'php-phpcs flycheck-checkers)
 ;; migemo設定
 (require 'migemo)
 (setq migemo-command "cmigemo")
