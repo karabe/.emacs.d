@@ -132,7 +132,7 @@
 (setq ido-enable-prefix nil
       ido-enable-flex-matching t
       ido-create-new-buffer 'always)
-(global-set-key (kbd "C-z") 'ido-switch-buffer)
+(global-set-key (kbd "C-z") 'helm-mini)
 (global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
 (global-set-key (kbd "C-x f") 'recentf-ido-find-file)
 ;;(ido-ubiquitous-mode t)
