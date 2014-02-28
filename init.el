@@ -259,11 +259,12 @@
 
 ;; other
 (setq comment-style 'extra-line)
-(setq default-tab-width 4)
 
 (add-hook 'php-mode-hook
           (lambda ()
-            (setq c-basic-offset 2)
+            (setq indent-tabs-mode t
+                  c-basic-offset 2
+                  tab-width 2)
             (local-set-key (kbd "C-.") 'other-window)
             ;;(flycheck-mode)
             (setq php-mode-coding-style 'symfony2)
