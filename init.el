@@ -260,6 +260,7 @@
 
 ;; other
 (setq comment-style 'extra-line)
+(setq kill-whole-line t)
 
 (add-hook 'php-mode-hook
           (lambda ()
