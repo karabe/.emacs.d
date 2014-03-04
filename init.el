@@ -256,6 +256,7 @@
 (global-set-key (kbd "C-c f") 'helm-git-files)
 (global-set-key (kbd "C-c g") 'helm-git-grep)
 (global-set-key (kbd "M-r") 'helm-resume)
+(global-set-key (kbd "C-%") 'anzu-query-replace)
 
 ;; other
 (setq comment-style 'extra-line)
@@ -267,7 +268,6 @@
                   tab-width 2)
             (local-set-key (kbd "C-.") 'other-window)
             ;;(flycheck-mode)
-            (setq php-mode-coding-style 'symfony2)
             ))
 
 (custom-set-variables
@@ -275,6 +275,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(anzu-minimum-input-length 2)
+ '(anzu-mode-lighter "")
+ '(anzu-search-threshold 1000)
+ '(anzu-use-migemo t)
+ '(global-anzu-mode t)
+ '(magit-stage-all-confirm nil)
+ '(magit-unstage-all-confirm nil)
  '(truncate-lines t)
  '(truncate-partial-width-windows nil))
 (custom-set-faces
