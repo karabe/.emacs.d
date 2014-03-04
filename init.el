@@ -254,7 +254,7 @@
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-c f") 'helm-git-files)
-(global-set-key (kbd "C-c g") 'helm-git-grep)
+(global-set-key (kbd "C-c g") 'helm-ag)
 (global-set-key (kbd "M-r") 'helm-resume)
 (global-set-key (kbd "C-%") 'anzu-query-replace)
 
