@@ -110,35 +110,10 @@
 (require 'ido)
 (ido-mode t)
 
-(defun recentf-ido-find-file ()
-  "Find a recent file using Ido."
-  (interactive)
-  (let* ((file-assoc-list
-          (mapcar (lambda (x)
-                    (cons (file-name-nondirectory x)
-                          x))
-                  recentf-list))
-         (filename-list
-          (remove-duplicates (mapcar #'car file-assoc-list)
-                             :test #'string=))
-         (filename (ido-completing-read "Choose recent file: "
-                                        filename-list
-                                        nil
-                                        t)))
-    (when filename
-      (find-file (cdr (assoc filename
-                             file-assoc-list))))))
-
 (setq ido-enable-prefix nil
       ido-enable-flex-matching t
       ido-create-new-buffer 'always)
-(global-set-key (kbd "C-z") 'helm-mini)
 (global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
-(global-set-key (kbd "C-x f") 'recentf-ido-find-file)
-;;(ido-ubiquitous-mode t)
-(require 'ido-hacks)
-(ido-hacks-mode t)
-(global-set-key (kbd "M-x") 'smex)
 ;; flycheck
 ;;(global-flycheck-mode)
 ;;(delete 'php-phpcs flycheck-checkers)
@@ -217,6 +192,13 @@
 (global-set-key (kbd "M-C-:") 'helm-gtags-find-symbol)
 (global-set-key (kbd "M-*") 'helm-gtags-pop-stack)
 (global-set-key (kbd "C-c i") 'helm-imenu)
+(global-set-key (kbd "C-z") 'helm-mini)
+(global-set-key (kbd "C-c f") 'helm-git-files)
+(global-set-key (kbd "C-c g") 'helm-ag)
+(global-set-key (kbd "M-r") 'helm-resume)
+(global-set-key (kbd "C-c y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-c s") 'helm-google-suggest)
+(global-set-key (kbd "M-x") 'helm-M-x)
 ;; org-mode
 (setq org-log-done 'time)
 (setq org-todo-keyword-faces '(("TODO" . "red") ("SKIP" . "light sky blue")))
@@ -253,9 +235,6 @@
 (global-set-key (kbd "C-x C-p") 'find-file-at-point)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-c f") 'helm-git-files)
-(global-set-key (kbd "C-c g") 'helm-ag)
-(global-set-key (kbd "M-r") 'helm-resume)
 (global-set-key (kbd "C-%") 'anzu-query-replace)
 
 ;; other
