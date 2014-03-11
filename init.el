@@ -109,7 +109,8 @@
 ;; ido
 (require 'ido)
 (ido-mode t)
-
+(require 'ido-hacks)
+(ido-hacks-mode t)
 (setq ido-enable-prefix nil
       ido-enable-flex-matching t
       ido-create-new-buffer 'always)
@@ -235,7 +236,7 @@
 (global-set-key (kbd "C-x C-p") 'find-file-at-point)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-%") 'anzu-query-replace)
+(global-set-key (kbd "M-%") 'anzu-query-replace)
 
 ;; other
 (setq comment-style 'extra-line)
