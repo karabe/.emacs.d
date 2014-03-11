@@ -1,4 +1,4 @@
-init.el
+.emacs.d
 =======
 
 My Emacs Setting
