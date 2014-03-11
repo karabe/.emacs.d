@@ -1,4 +1,0 @@
-# -*- mode: snippet -*-
-# name: $this->Session->setFlash('...');
-# --
-$this->Session->setFlash('$1');$0
