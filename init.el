@@ -46,8 +46,6 @@
       xterm-mouse-mode t
       save-place-file "~/places")
 
-;; diff設定
-(setq diff-switches "-u")
 ;; diff色設定
 (eval-after-load 'diff-mode
   '(progn
@@ -261,6 +259,7 @@
  '(anzu-mode-lighter "")
  '(anzu-search-threshold 1000)
  '(anzu-use-migemo t)
+ '(diff-switches "-u")
  '(global-anzu-mode t)
  '(magit-stage-all-confirm nil)
  '(magit-unstage-all-confirm nil)
