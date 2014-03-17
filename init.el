@@ -242,7 +242,7 @@
 
 (add-hook 'php-mode-hook
           (lambda ()
-            (setq indent-tabs-mode t
+            (setq indent-tabs-mode nil
                   c-basic-offset 2
                   tab-width 2)
             (local-set-key (kbd "C-.") 'other-window)
