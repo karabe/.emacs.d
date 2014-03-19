@@ -262,6 +262,7 @@
  '(magit-stage-all-confirm nil)
  '(magit-unstage-all-confirm nil)
  '(php-search-url "http://www.php.net/ja/")
+ '(tab-width 4)
  '(truncate-lines t)
  '(truncate-partial-width-windows nil))
 (custom-set-faces
