@@ -197,7 +197,7 @@
 (global-set-key (kbd "M-r") 'helm-resume)
 (global-set-key (kbd "C-c y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-c s") 'helm-google-suggest)
-(global-set-key (kbd "M-x") 'helm-M-x)
+;;(global-set-key (kbd "M-x") 'helm-M-x)
 ;; org-mode
 (setq org-log-done 'time)
 (setq org-todo-keyword-faces '(("TODO" . "red") ("SKIP" . "light sky blue")))
