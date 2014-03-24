@@ -42,7 +42,6 @@
       whitespace-style '(trailing lines space-before-tab
                                   indentation space-after-tab)
       whitespace-line-column 100
-      ;; ediff-window-setup-function 'ediff-setup-windows-plain
       xterm-mouse-mode t
       save-place-file "~/places")
 
@@ -216,6 +215,7 @@
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 ;; ediff
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally)
 ;; smex
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
