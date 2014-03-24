@@ -89,6 +89,9 @@
 (setq default-file-name-coding-system 'sjis)
 ;; 拡張子関連付け
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+;; smartparens
+(require 'smartparens-config)
+(smartparens-global-mode t)
 ;; web-mode
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
@@ -101,8 +104,16 @@
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.blade\\.php?\\'" . web-mode))
-(setq web-mode-disable-auto-pairing t)
-;;(setq web-mode-enable-current-element-highlight t)
+;; web-modeとsmartparensを両方使う場合
+(defun my-web-mode-hook () 
+  (setq web-mode-enable-auto-pairing nil))
+(add-hook 'web-mode-hook 'my-web-mode-hook)
+(defun sp-web-mode-is-code-context (id action context)
+  (when (and (eq action 'insert)
+             (not (or (get-text-property (point) 'part-side)
+                      (get-text-property (point) 'block-side))))
+    t))
+(sp-local-pair 'web-mode "<" nil :when '(sp-web-mode-is-code-context))
 ;; ido
 (require 'ido)
 (ido-mode t)
@@ -135,9 +146,6 @@
 (add-to-list 'ac-modes 'web-mode)
 (add-to-list 'ac-sources 'ac-source-yasnippet)
 (add-to-list 'ac-sources 'ac-source-gtags)
-;; smartparens
-(require 'smartparens-config)
-(smartparens-global-mode t)
 ;; highlights matching pairs
 (show-smartparens-global-mode t)
 ;; keybinding management
@@ -267,7 +275,8 @@
  '(php-search-url "http://www.php.net/ja/")
  '(tab-width 4)
  '(truncate-lines t)
- '(truncate-partial-width-windows nil))
+ '(truncate-partial-width-windows nil)
+ '(web-mode-enable-current-element-highlight t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
