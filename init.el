@@ -216,6 +216,9 @@
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 ;; ediff
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+;; smex
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; auto-save-buffers
 ;; (require 'auto-save-buffers)
 ;; (run-with-idle-timer 0.5 t 'auto-save-buffers) 
