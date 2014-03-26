@@ -57,7 +57,6 @@
      (set-face-foreground 'magit-diff-del "red3")))
 
 
-(recentf-mode 1)
 (set-default 'indent-tabs-mode nil)
 (set-default 'indicate-empty-lines t)
 (set-default 'imenu-auto-rescan t)
@@ -216,8 +215,7 @@
 (yas-global-mode 1)
 (setq yas-prompt-functions '(yas-ido-prompt yas-no-prompt))
 ;; recentf
-(setq recentf-max-saved-items 200)
-(setq recentf-exclude '(".recentf" ".ido.last" ".gitconfig" ".smex-items" ".todo-ido"))
+
 ;; ace-jump-mode
 (setq ace-jump-mode-scope 'window)
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
@@ -273,6 +271,9 @@
  '(magit-stage-all-confirm nil)
  '(magit-unstage-all-confirm nil)
  '(php-search-url "http://www.php.net/ja/")
+ '(recentf-exclude (quote (".recentf" ".ido.last" ".gitconfig" ".smex-items" ".todo-do" ".history" "COMMIT_EDITMSG")))
+ '(recentf-max-saved-items 200)
+ '(recentf-mode t)
  '(tab-width 4)
  '(truncate-lines t)
  '(truncate-partial-width-windows nil)
