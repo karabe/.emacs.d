@@ -239,6 +239,12 @@
   (if (= (frame-parameter nil 'alpha) 85)
       (set-frame-parameter nil 'alpha 0)
     (set-frame-parameter nil 'alpha 85)))
+;; インデントをタブにする関数
+(defun enable-indent-tab ()
+  "インデントをタブにする"
+  (interactive)
+  (setq indent-tabs-mode t)
+  (setq c-basic-offset 4))
 
 (global-set-key (kbd "C-.") 'other-window)
 (global-set-key (kbd "C-x C-p") 'find-file-at-point)
