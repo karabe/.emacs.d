@@ -254,6 +254,8 @@
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-%") 'anzu-query-replace)
+(global-set-key (kbd "C-@") 'er/expand-region)
+(global-set-key (kbd "C-M-@") 'er/contract-region)
 
 ;; other
 (setq comment-style 'extra-line)
