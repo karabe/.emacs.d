@@ -285,6 +285,7 @@
  '(recentf-exclude (quote (".recentf" ".ido.last" ".gitconfig" ".smex-items" ".todo-do" ".history" "COMMIT_EDITMSG" "autoloads.el")))
  '(recentf-max-saved-items 200)
  '(recentf-mode t)
+ '(sp-autoescape-string-quote nil)
  '(tab-width 4)
  '(truncate-lines t)
  '(truncate-partial-width-windows nil)
