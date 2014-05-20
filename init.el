@@ -232,6 +232,7 @@
 ;; key-mapping
 (global-set-key (kbd "<f5>") 'toggle-truncate-lines)
 (global-set-key (kbd "<f6>") 'toggle-alpha)
+
 ;; 透明度を切りかえる関数
 (defun toggle-alpha ()
   "透明度を切り替える."
@@ -239,15 +240,22 @@
   (if (= (frame-parameter nil 'alpha) 85)
       (set-frame-parameter nil 'alpha 0)
     (set-frame-parameter nil 'alpha 85)))
-;; インデントをタブにする関数
-(defun enable-indent-tab ()
-  "インデントをタブにする"
+
+;; インデントをタブかスペースか切り替える関数
+(defun toggle-indent-tab ()
+  "インデントをタブかスペースか切り替える"
   (interactive)
-  (setq indent-tabs-mode t)
-  (setq c-basic-offset 4)
-  (setq web-mode-markup-indent-offset 4)
-  (setq web-mode-css-indent-offset 4)
-  (setq web-mode-code-indent-offset 4))
+  (if indent-tabs-mode
+      (progn
+        (setq offset 2)
+        (setq indent-tabs-mode nil))
+      (progn 
+        (setq offset 4)
+        (setq indent-tabs-mode t)))
+  (setq c-basic-offset offset)
+  (setq web-mode-markup-indent-offset offset)
+  (setq web-mode-css-indent-offset offset)
+  (setq web-mode-code-indent-offset offset))
 
 (global-set-key (kbd "C-.") 'other-window)
 (global-set-key (kbd "C-x C-p") 'find-file-at-point)
