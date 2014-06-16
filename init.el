@@ -274,10 +274,10 @@
 ;; other
 (setq comment-style 'extra-line)
 (setq kill-whole-line t)
+(setq c-basic-offset 2)
 
 (add-hook 'php-mode-hook
           (lambda ()
-            (setq c-basic-offset 2)
             (local-set-key (kbd "C-.") 'other-window)
             ;;(flycheck-mode)
             ))
