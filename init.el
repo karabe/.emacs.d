@@ -109,6 +109,7 @@
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.blade\\.php?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
 ;; web-modeとsmartparensを両方使う場合
 (defun my-web-mode-hook () 
   (setq web-mode-enable-auto-pairing nil))
