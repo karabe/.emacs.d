@@ -20,7 +20,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/")
 
-(dolist (package '(magit))
+(dolist (package '(magit smex))
   (unless (package-installed-p package)
     (package-install package)))
 
