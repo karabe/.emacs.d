@@ -20,7 +20,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/")
 
-(dolist (package '(magit smex))
+(dolist (package '(magit smex zenburn-theme smartparens web-mode ido-hacks flycheck s migemo auto-complete undo-tree git-gutter+ helm yasnippet))
   (unless (package-installed-p package)
     (package-install package)))
 
