@@ -85,7 +85,13 @@
 (set-language-environment "Japanese")
 ;;(set-default-coding-systems 'utf-8)
 (prefer-coding-system 'utf-8) ; エンコーディングの優先順位の一番をutf-8にする
-(setq default-file-name-coding-system 'sjis)
+
+;; windowsのときのみsjis設定
+(if (eq system-type 'windows-nt)
+    (setq default-file-name-coding-system 'sjis)
+  nil
+  )
+
 ;; 拡張子関連付け
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 ;; smartparens
