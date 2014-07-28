@@ -22,7 +22,7 @@
 
 (dolist (package '(magit smex zenburn-theme smartparens web-mode ido-hacks 
                       flycheck s migemo auto-complete undo-tree git-gutter+ 
-                      helm yasnippet))
+                      helm yasnippet editorconfig))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -256,15 +256,10 @@
   (interactive)
   (if indent-tabs-mode
       (progn
-        (setq offset 2)
         (setq indent-tabs-mode nil))
       (progn 
-        (setq offset 4)
         (setq indent-tabs-mode t)))
-  (setq c-basic-offset offset)
-  (setq web-mode-markup-indent-offset offset)
-  (setq web-mode-css-indent-offset offset)
-  (setq web-mode-code-indent-offset offset))
+  )
 
 (global-set-key (kbd "C-.") 'other-window)
 (global-set-key (kbd "C-x C-p") 'find-file-at-point)
@@ -280,7 +275,6 @@
 
 (add-hook 'php-mode-hook
           (lambda ()
-            (setq c-basic-offset 2)
             (local-set-key (kbd "C-.") 'other-window)
             ;;(flycheck-mode)
             ))
