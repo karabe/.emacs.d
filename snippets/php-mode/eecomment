@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: eecomment
+# key: eecomment
+# binding: direct-keybinding
+# --
+/**
+ * @test
+ * @expectedException $1Exception
+ */
+public function $2(){
+$0
+}
