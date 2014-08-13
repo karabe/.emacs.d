@@ -22,7 +22,7 @@
 
 (dolist (package '(magit smex zenburn-theme smartparens web-mode ido-hacks 
                       flycheck s migemo auto-complete undo-tree git-gutter+ 
-                      helm yasnippet editorconfig))
+                      helm yasnippet editorconfig phpunit))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -241,6 +241,7 @@
 ;; key-mapping
 (global-set-key (kbd "<f5>") 'toggle-truncate-lines)
 (global-set-key (kbd "<f6>") 'toggle-alpha)
+(global-set-key (kbd "C-c t") 'phpunit-current-class)
 
 ;; 透明度を切りかえる関数
 (defun toggle-alpha ()
