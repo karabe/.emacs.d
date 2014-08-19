@@ -22,7 +22,7 @@
 
 (dolist (package '(magit smex zenburn-theme smartparens web-mode ido-hacks 
                       flycheck s migemo auto-complete undo-tree git-gutter+ 
-                      helm yasnippet editorconfig phpunit))
+                      helm yasnippet editorconfig phpunit toggle-test))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -212,7 +212,6 @@
 (global-set-key (kbd "C-c g") 'helm-ag)
 (global-set-key (kbd "M-r") 'helm-resume)
 (global-set-key (kbd "C-c y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-c s") 'helm-google-suggest)
 ;;(global-set-key (kbd "M-x") 'helm-M-x)
 ;; org-mode
 (setq org-log-done 'time)
@@ -242,6 +241,7 @@
 (global-set-key (kbd "<f5>") 'toggle-truncate-lines)
 (global-set-key (kbd "<f6>") 'toggle-alpha)
 (global-set-key (kbd "C-c t") 'phpunit-current-class)
+(global-set-key (kbd "C-c s") 'tgt-toggle)
 
 ;; 透明度を切りかえる関数
 (defun toggle-alpha ()
