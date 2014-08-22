@@ -309,6 +309,7 @@
  '(tab-width 4)
  '(truncate-lines t)
  '(truncate-partial-width-windows nil)
+ '(vc-display-status nil)
  '(web-mode-enable-current-element-highlight t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
