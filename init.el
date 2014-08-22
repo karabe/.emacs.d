@@ -22,7 +22,8 @@
 
 (dolist (package '(magit smex zenburn-theme smartparens web-mode ido-hacks 
                       flycheck s migemo auto-complete undo-tree git-gutter+ 
-                      helm yasnippet editorconfig phpunit toggle-test))
+                      helm yasnippet editorconfig helm-gtags
+                      phpunit toggle-test))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -275,10 +276,11 @@
 (setq kill-whole-line t)
 
 (add-hook 'php-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-.") 'other-window)
-            ;;(flycheck-mode)
-            ))
+    (lambda ()
+        (local-set-key (kbd "C-.") 'other-window)
+        ;;(flycheck-mode)
+        (helm-gtags-mode)
+        ))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -296,6 +298,7 @@
  '(global-git-gutter+-mode t)
  '(helm-google-suggest-search-url "http://www.google.co.jp/search?ie=utf-8&oe=utf-8&q=")
  '(helm-google-suggest-url "http://google.com/complete/search?output=toolbar&q=")
+ '(helm-gtags-auto-update t)
  '(magit-stage-all-confirm nil)
  '(magit-unstage-all-confirm nil)
  '(php-search-url "http://www.php.net/ja/")
