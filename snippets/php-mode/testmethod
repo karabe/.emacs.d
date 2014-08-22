@@ -1,6 +1,6 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: testmethod
-# key: testmethod
+# key: tm
 # binding: direct-keybinding
 # --
 /**

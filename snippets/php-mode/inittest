@@ -1,0 +1,15 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: inittest
+# key: inittest
+# binding: direct-keybinding
+# --
+<?php
+use Mockery as m;
+
+class $1Test extends TestCase {
+    public function setUp(){
+        parent::setUp();
+
+        $this->self = m::mock('$2')$0;
+    }
+}
