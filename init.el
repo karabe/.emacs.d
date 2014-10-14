@@ -13,8 +13,9 @@
       '(
         ;;("gnu"         . "http://elpa.gnu.org/packages/")
         ;;("original"    . "http://tromey.com/elpa/")
-        ;; ("org"         . "http://orgmode.org/elpa/")
-        ("marmalade"   . "http://marmalade-repo.org/packages/")
+        ;;("org"         . "http://orgmode.org/elpa/")
+        ;;("marmalade"   . "http://marmalade-repo.org/packages/")
+        ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
         ("melpa"       . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 
