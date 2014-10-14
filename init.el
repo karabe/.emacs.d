@@ -112,6 +112,7 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.php?\\'" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.blade\\.php?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
 ;; web-modeとsmartparensを両方使う場合
@@ -141,7 +142,10 @@
 (require 'migemo)
 (setq migemo-command "cmigemo")
 (setq migemo-options '("-q" "--emacs" "-i" "\g"))
-(setq migemo-dictionary "c:/emacs-24.3/bin/dict/utf-8/migemo-dict")
+(if (eq system-type 'windows-nt)
+    (setq migemo-dictionary "c:/emacs-24.3/bin/dict/utf-8/migemo-dict")
+    nil
+)
 (setq migemo-user-dictionary nil)
 (setq migemo-regex-dictionary nil)
 (setq migemo-coding-system 'utf-8)
@@ -151,12 +155,20 @@
 (setq migemo-pattern-alist-length 1024)
 (load-library "migemo")
 (migemo-init)
+
 ;; auto-complete
 (require 'auto-complete-config)
 (ac-config-default)
 (add-to-list 'ac-modes 'web-mode)
 (add-to-list 'ac-sources 'ac-source-yasnippet)
 (add-to-list 'ac-sources 'ac-source-gtags)
+
+;; company-mode
+;;(add-hook 'after-init-hook 'global-company-mode)
+
+;; projectile
+(projectile-global-mode)
+
 ;; highlights matching pairs
 (show-smartparens-global-mode t)
 ;; keybinding management
@@ -203,14 +215,15 @@
 ;; helm
 (require 'helm-config)
 (require 'helm-utils)
+(require 'helm-gtags)
 (global-set-key (kbd "C-c h") 'helm-mini)
-(global-set-key (kbd "M-.") 'helm-gtags-find-tag)
+(global-set-key (kbd "M-.") 'helm-gtags-dwim)
 (global-set-key (kbd "M-C-.") 'helm-gtags-find-rtag)
 (global-set-key (kbd "M-C-:") 'helm-gtags-find-symbol)
 (global-set-key (kbd "M-*") 'helm-gtags-pop-stack)
 (global-set-key (kbd "C-c i") 'helm-imenu)
 (global-set-key (kbd "C-z") 'helm-mini)
-(global-set-key (kbd "C-c f") 'helm-git-files)
+(global-set-key (kbd "C-c f") 'helm-projectile)
 (global-set-key (kbd "C-c g") 'helm-ag)
 (global-set-key (kbd "M-r") 'helm-resume)
 (global-set-key (kbd "C-c y") 'helm-show-kill-ring)
@@ -244,6 +257,7 @@
 (global-set-key (kbd "<f6>") 'toggle-alpha)
 (global-set-key (kbd "C-c t") 'phpunit-current-class)
 (global-set-key (kbd "C-c s") 'tgt-toggle)
+(global-set-key (kbd "<f12>") 'remember)
 
 ;; 透明度を切りかえる関数
 (defun toggle-alpha ()
@@ -311,7 +325,9 @@
  '(truncate-lines t)
  '(truncate-partial-width-windows nil)
  '(vc-display-status nil)
- '(web-mode-enable-current-element-highlight t))
+ '(web-mode-code-indent-offset 4)
+ '(web-mode-enable-current-element-highlight t)
+ '(web-mode-markup-indent-offset 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
