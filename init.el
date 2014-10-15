@@ -23,8 +23,8 @@
 
 (dolist (package '(magit smex zenburn-theme smartparens web-mode ido-hacks 
                       flycheck s migemo auto-complete undo-tree git-gutter+ 
-                      helm yasnippet editorconfig helm-gtags
-                      phpunit toggle-test))
+                      helm yasnippet editorconfig helm-gtags projectile
+                      phpunit toggle-test expand-region))
   (unless (package-installed-p package)
     (package-install package)))
 
