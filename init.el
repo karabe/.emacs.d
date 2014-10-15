@@ -77,9 +77,10 @@
 (setq make-backup-files nil)
 
 ;; フォントと背景色
-(set-face-attribute 'default nil
-                    :family "Ricty" ;; font
-                    :height 130)    ;; font size
+(if (eq system-type 'windows-nt)
+    (set-face-attribute 'default nil :family "Ricty" :height 130)
+    (set-face-attribute 'default nil :family "Ricty")
+    )
 ;; (set-background-color "#98bc98")
 ;; (set-foreground-color "black")
 (load-theme 'zenburn t)
