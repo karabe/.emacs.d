@@ -305,6 +305,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ac-ignore-case nil)
+ '(ange-ftp-try-passive-mode t)
  '(anzu-minimum-input-length 2)
  '(anzu-mode-lighter "")
  '(anzu-search-threshold 1000)
