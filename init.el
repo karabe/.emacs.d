@@ -24,7 +24,8 @@
 (dolist (package '(magit smex zenburn-theme smartparens web-mode ido-hacks 
                       flycheck s migemo auto-complete undo-tree git-gutter+ 
                       helm yasnippet editorconfig helm-gtags projectile
-                      phpunit toggle-test expand-region))
+                      phpunit toggle-test expand-region php-mode js2-mode
+                      helm-projectile))
   (unless (package-installed-p package)
     (package-install package)))
 
