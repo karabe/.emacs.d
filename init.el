@@ -25,7 +25,7 @@
                       flycheck s migemo auto-complete undo-tree git-gutter+ 
                       helm yasnippet editorconfig helm-gtags projectile
                       phpunit toggle-test expand-region php-mode js2-mode
-                      helm-projectile))
+                      helm-projectile volatile-highlights))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -252,6 +252,9 @@
 ;; smex
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; volatile-highlights
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
 ;; auto-save-buffers
 ;; (require 'auto-save-buffers)
 ;; (run-with-idle-timer 0.5 t 'auto-save-buffers) 
