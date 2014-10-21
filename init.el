@@ -137,9 +137,10 @@
       ido-create-new-buffer 'always)
 (global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
 ;; flycheck
-;;(global-flycheck-mode)
-(require 'flycheck)
-(delete 'php-phpcs flycheck-checkers)
+(if (eq system-type 'windows-nt)
+    nil
+    (progn (global-flycheck-mode)
+           (delete 'php-phpcs flycheck-checkers)))
 ;; migemo設定
 (require 'migemo)
 (setq migemo-command "cmigemo")
