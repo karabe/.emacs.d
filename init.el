@@ -25,7 +25,7 @@
                       flycheck s migemo auto-complete undo-tree git-gutter+ 
                       helm yasnippet editorconfig helm-gtags projectile
                       phpunit toggle-test expand-region php-mode js2-mode
-                      helm-projectile volatile-highlights))
+                      helm-projectile volatile-highlights move-text))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -255,6 +255,9 @@
 ;; volatile-highlights
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
+;; move-text
+(require 'move-text)
+(move-text-default-bindings)
 ;; auto-save-buffers
 ;; (require 'auto-save-buffers)
 ;; (run-with-idle-timer 0.5 t 'auto-save-buffers) 
