@@ -220,7 +220,7 @@
 (require 'helm-utils)
 (require 'helm-gtags)
 (global-set-key (kbd "C-c h") 'helm-mini)
-(global-set-key (kbd "M-.") 'helm-gtags-dwim)
+(global-set-key (kbd "M-.") 'helm-gtags-find-tag)
 (global-set-key (kbd "M-C-.") 'helm-gtags-find-rtag)
 (global-set-key (kbd "M-C-:") 'helm-gtags-find-symbol)
 (global-set-key (kbd "M-*") 'helm-gtags-pop-stack)
