@@ -50,18 +50,6 @@
       xterm-mouse-mode t
       save-place-file "~/places")
 
-;; diff色設定
-(eval-after-load 'diff-mode
-  '(progn
-     (set-face-foreground 'diff-added "green4")
-     (set-face-foreground 'diff-removed "red3")))
-
-(eval-after-load 'magit
-  '(progn
-     (set-face-foreground 'magit-diff-add "green3")
-     (set-face-foreground 'magit-diff-del "red3")))
-
-
 (set-default 'indent-tabs-mode nil)
 (set-default 'indicate-empty-lines t)
 (set-default 'imenu-auto-rescan t)
@@ -84,7 +72,7 @@
     )
 ;; (set-background-color "#98bc98")
 ;; (set-foreground-color "black")
-(load-theme 'zenburn t)
+(load-theme 'hc-zenburn t)
 (global-hl-line-mode) ; 現在行をハイライト
 (add-to-list 'default-frame-alist '(alpha . 85)) ;透明度
 ;; 日本語
