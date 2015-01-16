@@ -11,7 +11,7 @@
 ;; パッケージ設定
 (setq package-archives
       '(
-        ;;("gnu"         . "http://elpa.gnu.org/packages/")
+        ("gnu"         . "http://elpa.gnu.org/packages/")
         ;;("original"    . "http://tromey.com/elpa/")
         ;;("org"         . "http://orgmode.org/elpa/")
         ;;("marmalade"   . "http://marmalade-repo.org/packages/")
