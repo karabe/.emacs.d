@@ -25,7 +25,8 @@
                       flycheck s migemo auto-complete undo-tree git-gutter+ 
                       helm yasnippet editorconfig helm-gtags projectile
                       phpunit toggle-test expand-region php-mode js2-mode
-                      helm-projectile volatile-highlights move-text))
+                      helm-projectile volatile-highlights move-text
+                      comment-dwim-2))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -282,6 +283,7 @@
 (global-set-key (kbd "M-%") 'anzu-query-replace)
 (global-set-key (kbd "C-@") 'er/expand-region)
 (global-set-key (kbd "C-M-@") 'er/contract-region)
+(global-set-key (kbd "M-;") 'comment-dwim-2)
 
 ;; other
 (setq comment-style 'extra-line)
