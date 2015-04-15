@@ -22,7 +22,7 @@
 (add-to-list 'load-path "~/.emacs.d/")
 
 (dolist (package '(magit smex zenburn-theme smartparens web-mode ido-hacks 
-                      flycheck s migemo auto-complete undo-tree git-gutter+ 
+                      flycheck s auto-complete undo-tree git-gutter+ 
                       helm yasnippet editorconfig helm-gtags projectile
                       phpunit toggle-test expand-region php-mode js2-mode
                       helm-projectile volatile-highlights move-text
@@ -130,23 +130,6 @@
     nil
     (progn (global-flycheck-mode)
            (delete 'php-phpcs flycheck-checkers)))
-;; migemo設定
-(require 'migemo)
-(setq migemo-command "cmigemo")
-(setq migemo-options '("-q" "--emacs" "-i" "\g"))
-(if (eq system-type 'windows-nt)
-    (setq migemo-dictionary "c:/emacs-24.3/bin/dict/utf-8/migemo-dict")
-    (setq migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict")
-)
-(setq migemo-user-dictionary nil)
-(setq migemo-regex-dictionary nil)
-(setq migemo-coding-system 'utf-8)
-(setq migemo-accept-process-output-timeout-msec 80)
-(setq migemo-use-pattern-alist t)
-(setq migemo-use-frequent-pattern-alist t)
-(setq migemo-pattern-alist-length 1024)
-(load-library "migemo")
-(migemo-init)
 
 ;; auto-complete
 (require 'auto-complete-config)
@@ -247,6 +230,19 @@
 ;; move-text
 (require 'move-text)
 (move-text-default-bindings)
+;; toggle-test
+(add-to-list 'tgt-projects '(
+                             (:root-dir "/home/user/Files/new-king/app")
+                             (:src-dirs "./")
+                             (:test-dirs "tests")
+                             (:test-suffixes "Test")
+                             ))
+(add-to-list 'tgt-projects '(
+                             (:root-dir "/home/user/Files/itec-system/app")
+                             (:src-dirs "./")
+                             (:test-dirs "tests")
+                             (:test-suffixes "Test")
+                             ))
 ;; auto-save-buffers
 ;; (require 'auto-save-buffers)
 ;; (run-with-idle-timer 0.5 t 'auto-save-buffers) 
@@ -306,7 +302,6 @@
  '(anzu-minimum-input-length 2)
  '(anzu-mode-lighter "")
  '(anzu-search-threshold 1000)
- '(anzu-use-migemo t)
  '(diff-switches "-u")
  '(flycheck-phpmd-rulesets (quote ("codesize" "design" "naming" "unusedcode")))
  '(git-gutter+-lighter "")
