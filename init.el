@@ -19,7 +19,7 @@
         ("melpa"       . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 (dolist (package '(magit smex zenburn-theme smartparens web-mode ido-hacks 
                       flycheck s auto-complete undo-tree git-gutter+ 
@@ -314,9 +314,14 @@
  '(js2-strict-missing-semi-warning nil)
  '(magit-stage-all-confirm nil)
  '(magit-unstage-all-confirm nil)
+ '(package-selected-packages
+   (quote
+    (zenburn-theme yasnippet web-mode volatile-highlights undo-tree toggle-test smex smartparens pt phpunit php-refactor-mode php-mode move-text markdown-mode magit less-css-mode js2-mode ido-hacks helm-pt helm-projectile helm-gtags hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region editorconfig comment-dwim-2 color-theme coffee-mode auto-complete anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
- '(recentf-exclude (quote (".recentf" ".ido.last" ".gitconfig" ".smex-items" ".todo-do" ".history" "COMMIT_EDITMSG" "autoloads.el")))
+ '(recentf-exclude
+   (quote
+    (".recentf" ".ido.last" ".gitconfig" ".smex-items" ".todo-do" ".history" "COMMIT_EDITMSG" "autoloads.el")))
  '(recentf-max-saved-items 200)
  '(recentf-mode t)
  '(sp-autoescape-string-quote nil)
@@ -327,6 +332,7 @@
  '(web-mode-code-indent-offset 4)
  '(web-mode-enable-current-element-highlight t)
  '(web-mode-markup-indent-offset 4))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
