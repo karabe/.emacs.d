@@ -312,6 +312,7 @@
  '(helm-google-suggest-url "http://google.com/complete/search?output=toolbar&q=")
  '(helm-gtags-auto-update t)
  '(js2-strict-missing-semi-warning nil)
+ '(magit-bury-buffer-function (quote magit-mode-quit-window))
  '(magit-stage-all-confirm nil)
  '(magit-unstage-all-confirm nil)
  '(package-selected-packages
