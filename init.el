@@ -303,7 +303,9 @@
  '(anzu-mode-lighter "")
  '(anzu-search-threshold 1000)
  '(diff-switches "-u")
+ '(editorconfig-mode t)
  '(flycheck-phpmd-rulesets (quote ("codesize" "design" "naming" "unusedcode")))
+ '(git-commit-fill-column 80)
  '(git-gutter+-lighter "")
  '(global-anzu-mode t)
  '(global-flycheck-mode t nil (flycheck))
@@ -313,11 +315,17 @@
  '(helm-gtags-auto-update t)
  '(js2-strict-missing-semi-warning nil)
  '(magit-bury-buffer-function (quote magit-mode-quit-window))
+ '(magit-revision-headers-format
+   "Author:     %aN <%aE>
+AuthorDate: %ai
+Commit:     %cN <%cE>
+CommitDate: %ci
+")
  '(magit-stage-all-confirm nil)
  '(magit-unstage-all-confirm nil)
  '(package-selected-packages
    (quote
-    (zenburn-theme yasnippet web-mode volatile-highlights undo-tree toggle-test smex smartparens pt phpunit php-refactor-mode php-mode move-text markdown-mode magit less-css-mode js2-mode ido-hacks helm-pt helm-projectile helm-gtags hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region editorconfig comment-dwim-2 color-theme coffee-mode auto-complete anzu)))
+    (japanese-holidays zenburn-theme yasnippet web-mode volatile-highlights undo-tree toggle-test smex smartparens pt phpunit php-refactor-mode php-mode move-text markdown-mode magit less-css-mode js2-mode ido-hacks helm-pt helm-projectile helm-gtags hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region editorconfig comment-dwim-2 color-theme coffee-mode auto-complete anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
