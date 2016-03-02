@@ -125,12 +125,6 @@
       ido-enable-flex-matching t
       ido-create-new-buffer 'always)
 (global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
-;; flycheck
-(if (eq system-type 'windows-nt)
-    nil
-    (progn (global-flycheck-mode)
-           (delete 'php-phpcs flycheck-checkers)))
-
 ;; auto-complete
 ;; (require 'auto-complete-config)
 ;; (ac-config-default)
@@ -290,7 +284,6 @@
 (add-hook 'php-mode-hook
     (lambda ()
         (local-set-key (kbd "C-.") 'other-window)
-        ;;(flycheck-mode)
         (helm-gtags-mode)
         ))
 
@@ -307,7 +300,6 @@
  '(diff-switches "-u")
  '(editorconfig-mode t)
  '(electric-pair-mode t)
- '(flycheck-phpmd-rulesets (quote ("codesize" "design" "naming" "unusedcode")))
  '(git-commit-fill-column 80)
  '(git-gutter+-lighter "")
  '(global-anzu-mode t)
