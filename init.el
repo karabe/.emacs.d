@@ -23,10 +23,11 @@
 
 (dolist (package '(magit smex zenburn-theme smartparens web-mode ido-hacks 
                       flycheck s auto-complete undo-tree git-gutter+ 
+                      flycheck s undo-tree git-gutter+
                       helm yasnippet editorconfig helm-gtags projectile
                       phpunit toggle-test expand-region php-mode js2-mode
                       helm-projectile volatile-highlights move-text
-                      comment-dwim-2))
+                      comment-dwim-2 company company-web))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -132,14 +133,16 @@
            (delete 'php-phpcs flycheck-checkers)))
 
 ;; auto-complete
-(require 'auto-complete-config)
-(ac-config-default)
-(add-to-list 'ac-modes 'web-mode)
-(add-to-list 'ac-sources 'ac-source-yasnippet)
-(add-to-list 'ac-sources 'ac-source-gtags)
+;; (require 'auto-complete-config)
+;; (ac-config-default)
+;; (add-to-list 'ac-modes 'web-mode)
+;; (add-to-list 'ac-sources 'ac-source-yasnippet)
+;; (add-to-list 'ac-sources 'ac-source-gtags)
 
 ;; company-mode
-;;(add-hook 'after-init-hook 'global-company-mode)
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+(add-to-list 'company-backends 'company-web-html)
 
 ;; projectile
 (projectile-global-mode)
