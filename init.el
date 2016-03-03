@@ -299,6 +299,7 @@
  '(anzu-minimum-input-length 2)
  '(anzu-mode-lighter "")
  '(anzu-search-threshold 1000)
+ '(company-idle-delay 0)
  '(diff-switches "-u")
  '(editorconfig-mode t)
  '(electric-pair-mode t)
