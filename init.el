@@ -26,7 +26,7 @@
                       helm yasnippet editorconfig helm-gtags projectile
                       phpunit toggle-test expand-region php-mode js2-mode
                       helm-projectile volatile-highlights move-text
-                      comment-dwim-2 company company-web))
+                      comment-dwim-2 company company-web ac-php))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -285,7 +285,9 @@
     (lambda ()
         (local-set-key (kbd "C-.") 'other-window)
         (helm-gtags-mode)
-        ))
+        (require 'ac-php-company)
+        (company-mode t)
+        (add-to-list 'company-backends 'company-ac-php-backend)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
