@@ -137,6 +137,10 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (add-to-list 'company-backends 'company-web-html)
 
+;; company-statistics
+(require 'company-statistics)
+(company-statistics-mode)
+
 ;; projectile
 (projectile-global-mode)
 
@@ -323,7 +327,7 @@ CommitDate: %ci
  '(magit-unstage-all-confirm nil)
  '(package-selected-packages
    (quote
-    (company-web company japanese-holidays zenburn-theme yasnippet web-mode volatile-highlights undo-tree toggle-test smex pt phpunit php-refactor-mode php-mode move-text markdown-mode magit less-css-mode js2-mode ido-hacks helm-pt helm-projectile helm-gtags hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region editorconfig comment-dwim-2 color-theme coffee-mode anzu)))
+    (company-statistics ac-php company-web company japanese-holidays zenburn-theme yasnippet web-mode volatile-highlights undo-tree toggle-test smex pt phpunit php-refactor-mode php-mode move-text markdown-mode magit less-css-mode js2-mode ido-hacks helm-pt helm-projectile helm-gtags hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region editorconfig comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
