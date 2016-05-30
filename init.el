@@ -21,12 +21,12 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
-(dolist (package '(magit smex zenburn-theme web-mode ido-hacks
+(dolist (package '(magit smex hc-zenburn-theme web-mode ido-hacks
                       flycheck s undo-tree git-gutter+
                       helm yasnippet editorconfig helm-gtags projectile
                       phpunit toggle-test expand-region php-mode js2-mode
                       helm-projectile volatile-highlights move-text
-                      comment-dwim-2 company company-web))
+                      comment-dwim-2 company company-web smartparens company-statistics))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -90,8 +90,8 @@
 ;; 拡張子関連付け
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 ;; smartparens
-;; (require 'smartparens-config)
-;; (smartparens-global-mode t)
+(require 'smartparens-config)
+(smartparens-global-mode t)
 ;; web-mode
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
@@ -107,15 +107,15 @@
 (add-to-list 'auto-mode-alist '("\\.blade\\.php?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
 ;; web-modeとsmartparensを両方使う場合
-;; (defun my-web-mode-hook () 
-;;   (setq web-mode-enable-auto-pairing nil))
-;; (add-hook 'web-mode-hook 'my-web-mode-hook)
-;; (defun sp-web-mode-is-code-context (id action context)
-;;   (when (and (eq action 'insert)
-;;              (not (or (get-text-property (point) 'part-side)
-;;                       (get-text-property (point) 'block-side))))
-;;     t))
-;; (sp-local-pair 'web-mode "<" nil :when '(sp-web-mode-is-code-context))
+(defun my-web-mode-hook ()
+  (setq web-mode-enable-auto-pairing nil))
+(add-hook 'web-mode-hook 'my-web-mode-hook)
+(defun sp-web-mode-is-code-context (id action context)
+  (when (and (eq action 'insert)
+             (not (or (get-text-property (point) 'part-side)
+                      (get-text-property (point) 'block-side))))
+    t))
+(sp-local-pair 'web-mode "<" nil :when '(sp-web-mode-is-code-context))
 ;; ido
 (require 'ido)
 (ido-mode t)
@@ -134,7 +134,10 @@
 
 ;; company-mode
 (require 'company)
-(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'php-mode-hook 'company-mode)
+(add-hook 'web-mode-hook 'company-mode)
+(add-hook 'css-mode-hook 'company-mode)
+(add-hook 'js2-mode-hook 'company-mode)
 (add-to-list 'company-backends 'company-web-html)
 
 ;; company-statistics
@@ -318,8 +321,7 @@
  '(git-commit-fill-column 80)
  '(git-gutter+-lighter "")
  '(global-anzu-mode t)
- '(global-company-mode t)
- '(global-flycheck-mode t nil (flycheck))
+ '(global-flycheck-mode t)
  '(global-git-gutter+-mode t)
  '(helm-google-suggest-search-url "http://www.google.co.jp/search?ie=utf-8&oe=utf-8&q=")
  '(helm-google-suggest-url "http://google.com/complete/search?output=toolbar&q=")
@@ -336,7 +338,7 @@ CommitDate: %ci
  '(magit-unstage-all-confirm nil)
  '(package-selected-packages
    (quote
-    (company-statistics ac-php company-web company japanese-holidays zenburn-theme yasnippet web-mode volatile-highlights undo-tree toggle-test smex pt phpunit php-refactor-mode php-mode move-text markdown-mode magit less-css-mode js2-mode ido-hacks helm-pt helm-projectile helm-gtags hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region editorconfig comment-dwim-2 color-theme coffee-mode anzu)))
+    (zenburn-theme web-mode vue-mode volatile-highlights undo-tree toggle-test sudo-edit smex smartparens pt phpunit php-refactor-mode move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks helm-pt helm-projectile helm-gtags hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu ac-php)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
