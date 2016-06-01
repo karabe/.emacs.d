@@ -22,7 +22,7 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
 (dolist (package '(magit smex hc-zenburn-theme web-mode ido-hacks
-                      flycheck s undo-tree git-gutter+
+                      flycheck s undo-tree git-gutter+ anzu
                       helm yasnippet editorconfig helm-gtags projectile
                       phpunit toggle-test expand-region php-mode js2-mode
                       helm-projectile volatile-highlights move-text
@@ -290,8 +290,7 @@
 
 (add-hook 'php-mode-hook
     (lambda ()
-        (local-set-key (kbd "C-.") 'other-window)
-        (helm-gtags-mode)))
+        (local-set-key (kbd "C-.") 'other-window)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -317,7 +316,6 @@
  '(company-transformers (quote (company-sort-by-statistics)))
  '(diff-switches "-u")
  '(editorconfig-mode t)
- '(electric-pair-mode t)
  '(git-commit-fill-column 80)
  '(git-gutter+-lighter "")
  '(global-anzu-mode t)
@@ -338,7 +336,7 @@ CommitDate: %ci
  '(magit-unstage-all-confirm nil)
  '(package-selected-packages
    (quote
-    (zenburn-theme web-mode vue-mode volatile-highlights undo-tree toggle-test sudo-edit smex smartparens pt phpunit php-refactor-mode move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks helm-pt helm-projectile helm-gtags hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu ac-php)))
+    (php-mode flycheck yasnippet editorconfig zenburn-theme web-mode vue-mode volatile-highlights undo-tree toggle-test sudo-edit smex smartparens pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks helm-pt helm-projectile helm-gtags hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu ac-php)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
