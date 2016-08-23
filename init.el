@@ -26,7 +26,7 @@
                       helm yasnippet editorconfig helm-gtags projectile
                       phpunit toggle-test expand-region php-mode js2-mode
                       helm-projectile volatile-highlights move-text
-                      comment-dwim-2 company company-web smartparens company-statistics))
+                      comment-dwim-2 company company-web company-statistics))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -90,8 +90,8 @@
 ;; 拡張子関連付け
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 ;; smartparens
-(require 'smartparens-config)
-(smartparens-global-mode t)
+;; (require 'smartparens-config)
+;; (smartparens-global-mode t)
 ;; web-mode
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
@@ -107,15 +107,15 @@
 (add-to-list 'auto-mode-alist '("\\.blade\\.php?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
 ;; web-modeとsmartparensを両方使う場合
-(defun my-web-mode-hook ()
-  (setq web-mode-enable-auto-pairing nil))
-(add-hook 'web-mode-hook 'my-web-mode-hook)
-(defun sp-web-mode-is-code-context (id action context)
-  (when (and (eq action 'insert)
-             (not (or (get-text-property (point) 'part-side)
-                      (get-text-property (point) 'block-side))))
-    t))
-(sp-local-pair 'web-mode "<" nil :when '(sp-web-mode-is-code-context))
+;; (defun my-web-mode-hook ()
+;;   (setq web-mode-enable-auto-pairing nil))
+;; (add-hook 'web-mode-hook 'my-web-mode-hook)
+;; (defun sp-web-mode-is-code-context (id action context)
+;;   (when (and (eq action 'insert)
+;;              (not (or (get-text-property (point) 'part-side)
+;;                       (get-text-property (point) 'block-side))))
+;;     t))
+;; (sp-local-pair 'web-mode "<" nil :when '(sp-web-mode-is-code-context))
 ;; ido
 (require 'ido)
 (ido-mode t)
@@ -316,6 +316,10 @@
  '(company-transformers (quote (company-sort-by-statistics)))
  '(diff-switches "-u")
  '(editorconfig-mode t)
+ '(electric-pair-inhibit-predicate (quote ignore))
+ '(electric-pair-mode t)
+ '(electric-pair-pairs (quote ((39 . 39) (34 . 34))))
+ '(electric-pair-text-pairs (quote ((39 . 39) (34 . 34))))
  '(git-commit-fill-column 80)
  '(git-gutter+-lighter "")
  '(global-anzu-mode t)
