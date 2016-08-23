@@ -15,11 +15,10 @@
         ;;("original"    . "http://tromey.com/elpa/")
         ;;("org"         . "http://orgmode.org/elpa/")
         ;; ("marmalade"   . "https://marmalade-repo.org/packages/")
-        ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
-        ("melpa"       . "http://melpa.milkbox.net/packages/")))
+        ("melpa-stable" . "https://stable.melpa.org/packages/")
+        ;; ("melpa"       . "https://melpa.org/packages/")
+	))
 (package-initialize)
-
-(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 (dolist (package '(magit smex hc-zenburn-theme web-mode ido-hacks
                       flycheck s undo-tree git-gutter+ anzu
@@ -304,8 +303,9 @@
  '(anzu-search-threshold 1000)
  '(company-backends
    (quote
-    ((company-dabbrev-code :with company-gtags company-keywords company-yasnippet)
-     company-web-html company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
+    (company-css
+     (company-dabbrev-code :with company-gtags company-keywords company-yasnippet)
+     company-web-html company-bbdb company-nxml company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
      (company-dabbrev-code company-gtags company-etags company-keywords)
      company-oddmuse company-dabbrev)))
  '(company-dabbrev-downcase nil)
@@ -340,7 +340,7 @@ CommitDate: %ci
  '(magit-unstage-all-confirm nil)
  '(package-selected-packages
    (quote
-    (php-mode flycheck yasnippet editorconfig zenburn-theme web-mode vue-mode volatile-highlights undo-tree toggle-test sudo-edit smex smartparens pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks helm-pt helm-projectile helm-gtags hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu ac-php)))
+    (php-mode flycheck yasnippet editorconfig zenburn-theme web-mode vue-mode volatile-highlights undo-tree toggle-test sudo-edit smex pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks helm-pt helm-projectile helm-gtags hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu ac-php)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
