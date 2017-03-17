@@ -321,6 +321,7 @@
  '(electric-pair-pairs (quote ((39 . 39) (34 . 34))))
  '(electric-pair-text-pairs (quote ((39 . 39) (34 . 34))))
  '(git-commit-fill-column 80)
+ '(git-gutter+-diff-options (quote ("-b")))
  '(git-gutter+-lighter "")
  '(global-anzu-mode t)
  '(global-flycheck-mode t)
@@ -330,6 +331,7 @@
  '(helm-gtags-auto-update t)
  '(js2-strict-missing-semi-warning nil)
  '(magit-bury-buffer-function (quote magit-mode-quit-window))
+ '(magit-diff-section-arguments (quote ("--no-ext-diff" "-b")))
  '(magit-revision-headers-format
    "Author:     %aN <%aE>
 AuthorDate: %ai
