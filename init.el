@@ -289,7 +289,14 @@
 
 (add-hook 'php-mode-hook
     (lambda ()
-        (local-set-key (kbd "C-.") 'other-window)))
+      (local-set-key (kbd "C-.") 'other-window)))
+
+(add-hook
+ 'web-mode-hook
+ (lambda ()
+   (setq-local electric-pair-inhibit-predicate
+               `(lambda (c)
+                  (if (char-equal c ?{) t (,electric-pair-inhibit-predicate c))))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
