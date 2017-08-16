@@ -15,8 +15,8 @@
         ;;("original"    . "http://tromey.com/elpa/")
         ;;("org"         . "http://orgmode.org/elpa/")
         ;; ("marmalade"   . "https://marmalade-repo.org/packages/")
-        ("melpa-stable" . "https://stable.melpa.org/packages/")
-        ;; ("melpa"       . "https://melpa.org/packages/")
+        ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
+        ("melpa-latest"       . "https://melpa.org/packages/")
 	))
 (package-initialize)
 
@@ -72,6 +72,11 @@
     )
 ;; (set-background-color "#98bc98")
 ;; (set-foreground-color "black")
+
+(set-face-attribute 'default nil :family "Ricty")
+(set-fontset-font nil 'ascii (font-spec :family "Ricty"))
+(set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))
+
 (load-theme 'hc-zenburn t)
 (global-hl-line-mode) ; 現在行をハイライト
 (add-to-list 'default-frame-alist '(alpha . 85)) ;透明度
@@ -338,7 +343,7 @@
  '(helm-gtags-auto-update t)
  '(js2-strict-missing-semi-warning nil)
  '(magit-bury-buffer-function (quote magit-mode-quit-window))
- '(magit-diff-section-arguments (quote ("--no-ext-diff" "-b")))
+ '(magit-diff-section-arguments (quote ("--no-ext-diff")))
  '(magit-revision-headers-format
    "Author:     %aN <%aE>
 AuthorDate: %ai
@@ -364,13 +369,6 @@ CommitDate: %ci
  '(truncate-partial-width-windows nil)
  '(vc-display-status nil)
  '(web-mode-code-indent-offset 4)
+ '(web-mode-enable-auto-indentation nil)
  '(web-mode-enable-current-element-highlight t)
  '(web-mode-markup-indent-offset 4))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(put 'dired-find-alternate-file 'disabled nil)
