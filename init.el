@@ -144,6 +144,17 @@
 (add-hook 'js2-mode-hook 'company-mode)
 (add-to-list 'company-backends 'company-web-html)
 
+;; ac-php
+(add-hook 'php-mode-hook
+          '(lambda ()
+             (require 'company-php)
+             (company-mode t)
+             (ac-php-core-eldoc-setup) ;; enable eldoc
+             (make-local-variable 'company-backends)
+             (add-to-list 'company-backends 'company-ac-php-backend)))
+(global-set-key (kbd "M-,") 'ac-php-find-symbol-at-point)
+(global-set-key (kbd "C-<") 'ac-php-location-stack-back)
+
 ;; company-statistics
 (require 'company-statistics)
 (company-statistics-mode)
@@ -200,16 +211,15 @@
 (require 'helm-gtags)
 (global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "M-.") 'helm-gtags-find-tag)
-(global-set-key (kbd "M-C-.") 'helm-gtags-find-rtag)
-(global-set-key (kbd "M-C-:") 'helm-gtags-find-symbol)
-(global-set-key (kbd "M-*") 'helm-gtags-pop-stack)
+(global-set-key (kbd "C-M-.") 'helm-gtags-find-rtag)
+(global-set-key (kbd "C-*") 'helm-gtags-pop-stack)
 (global-set-key (kbd "C-c i") 'helm-imenu)
 (global-set-key (kbd "C-z") 'helm-mini)
 (global-set-key (kbd "C-c f") 'helm-projectile)
-(global-set-key (kbd "C-c g") 'helm-ag)
 (global-set-key (kbd "M-r") 'helm-resume)
 (global-set-key (kbd "C-c y") 'helm-show-kill-ring)
 ;;(global-set-key (kbd "M-x") 'helm-M-x)
+(add-hook 'php-mode-hook 'helm-gtags-mode)
 ;; org-mode
 (setq org-log-done 'time)
 (setq org-todo-keyword-faces '(("TODO" . "red") ("SKIP" . "light sky blue")))
