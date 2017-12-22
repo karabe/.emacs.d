@@ -245,29 +245,8 @@
 ;; (run-with-idle-timer 0.5 t 'auto-save-buffers) 
 ;; key-mapping
 (global-set-key (kbd "<f5>") 'toggle-truncate-lines)
-(global-set-key (kbd "<f6>") 'toggle-alpha)
 (global-set-key (kbd "C-c t") 'phpunit-current-class)
 (global-set-key (kbd "<f12>") 'remember)
-
-;; 透明度を切りかえる関数
-(defun toggle-alpha ()
-  "透明度を切り替える."
-  (interactive)
-  (if (= (frame-parameter nil 'alpha) 85)
-      (set-frame-parameter nil 'alpha 0)
-    (set-frame-parameter nil 'alpha 85)))
-
-;; インデントをタブかスペースか切り替える関数
-(defun toggle-indent-tab ()
-  "インデントをタブかスペースか切り替える"
-  (interactive)
-  (if indent-tabs-mode
-      (progn
-        (setq indent-tabs-mode nil))
-      (progn 
-        (setq indent-tabs-mode t)))
-  )
-
 (global-set-key (kbd "C-.") 'other-window)
 (global-set-key (kbd "C-x C-p") 'find-file-at-point)
 (global-set-key (kbd "C-c r") 'revert-buffer)
