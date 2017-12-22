@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: predump
+# key: pd
+# --
+echo '<pre>';var_dump($1);exit;$0

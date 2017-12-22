@@ -1,6 +1,0 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: tai
-# key: tai
-# binding: direct-keybinding
-# --
-$this->assertInstanceOf($1, $2);$0

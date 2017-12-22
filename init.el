@@ -23,7 +23,7 @@
 (dolist (package '(magit smex hc-zenburn-theme web-mode ido-hacks
                       flycheck s undo-tree git-gutter+ anzu
                       helm yasnippet editorconfig helm-gtags projectile
-                      phpunit toggle-test expand-region php-mode js2-mode
+                      phpunit expand-region php-mode js2-mode
                       helm-projectile volatile-highlights move-text
                       comment-dwim-2 company company-web company-statistics))
   (unless (package-installed-p package)
@@ -142,25 +142,18 @@
 (add-hook 'web-mode-hook 'company-mode)
 (add-hook 'css-mode-hook 'company-mode)
 (add-hook 'js2-mode-hook 'company-mode)
-(add-to-list 'company-backends 'company-web-html)
-
-;; ac-php
-(add-hook 'php-mode-hook
-          '(lambda ()
-             (require 'company-php)
-             (company-mode t)
-             (ac-php-core-eldoc-setup) ;; enable eldoc
-             (make-local-variable 'company-backends)
-             (add-to-list 'company-backends 'company-ac-php-backend)))
-(global-set-key (kbd "M-,") 'ac-php-find-symbol-at-point)
-(global-set-key (kbd "C-<") 'ac-php-location-stack-back)
 
 ;; company-statistics
 (require 'company-statistics)
 (company-statistics-mode)
 
 ;; projectile
-(projectile-global-mode)
+(projectile-mode)
+(projectile-register-project-type 'laravel
+                                  '("composer.json" "app" "bootstrap" "config" "database" "public" "resources" "storage" "tests" "vendor")
+                                  :test "phpunit"
+                                  :test-suffix "Test"
+                                  )
 
 ;; highlights matching pairs
 ;; (show-smartparens-global-mode t)
@@ -247,19 +240,6 @@
 ;; move-text
 (require 'move-text)
 (move-text-default-bindings)
-;; toggle-test
-(add-to-list 'tgt-projects '(
-                             (:root-dir "/home/user/Files/new-king/app")
-                             (:src-dirs "./")
-                             (:test-dirs "tests")
-                             (:test-suffixes "Test")
-                             ))
-(add-to-list 'tgt-projects '(
-                             (:root-dir "/home/user/Files/itec-system/app")
-                             (:src-dirs "./")
-                             (:test-dirs "tests")
-                             (:test-suffixes "Test")
-                             ))
 ;; auto-save-buffers
 ;; (require 'auto-save-buffers)
 ;; (run-with-idle-timer 0.5 t 'auto-save-buffers) 
@@ -267,7 +247,6 @@
 (global-set-key (kbd "<f5>") 'toggle-truncate-lines)
 (global-set-key (kbd "<f6>") 'toggle-alpha)
 (global-set-key (kbd "C-c t") 'phpunit-current-class)
-(global-set-key (kbd "C-c s") 'tgt-toggle)
 (global-set-key (kbd "<f12>") 'remember)
 
 ;; 透明度を切りかえる関数
@@ -304,7 +283,8 @@
 
 (add-hook 'php-mode-hook
     (lambda ()
-      (local-set-key (kbd "C-.") 'other-window)))
+      (local-set-key (kbd "C-.") 'other-window)
+      (local-set-key (kbd "C-c w") 'web-mode)))
 
 (add-hook
  'web-mode-hook
@@ -325,18 +305,19 @@
  '(anzu-search-threshold 1000)
  '(company-backends
    (quote
-    (company-css
-     (company-dabbrev-code :with company-gtags company-keywords company-yasnippet)
-     company-web-html company-bbdb company-nxml company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
-     (company-dabbrev-code company-gtags company-etags company-keywords)
-     company-oddmuse company-dabbrev)))
+    ((company-css company-web-html)
+     (company-dabbrev-code company-gtags company-keywords company-yasnippet company-files))))
+ '(company-dabbrev-code-everywhere t)
+ '(company-dabbrev-code-modes
+   (quote
+    (prog-mode batch-file-mode csharp-mode css-mode erlang-mode haskell-mode jde-mode lua-mode python-mode php-mode)))
  '(company-dabbrev-downcase nil)
- '(company-dabbrev-ignore-case nil)
  '(company-idle-delay 0)
  '(company-minimum-prefix-length 2)
  '(company-statistics-mode t)
  '(company-transformers (quote (company-sort-by-statistics)))
  '(diff-switches "-u")
+ '(dired-dwim-target t)
  '(dired-listing-switches "-Ahl")
  '(dired-recursive-copies (quote always))
  '(dired-use-ls-dired t)
@@ -367,7 +348,7 @@ CommitDate: %ci
  '(magit-unstage-all-confirm nil)
  '(package-selected-packages
    (quote
-    (php-mode flycheck yasnippet editorconfig zenburn-theme web-mode vue-mode volatile-highlights undo-tree toggle-test sudo-edit smex pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks helm-pt helm-projectile helm-gtags hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu ac-php)))
+    (php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode ripgrep kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode volatile-highlights undo-tree sudo-edit smex pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks helm-pt helm-projectile helm-gtags hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
@@ -375,6 +356,7 @@ CommitDate: %ci
     (".recentf" ".ido.last" ".gitconfig" ".smex-items" ".todo-do" ".history" "COMMIT_EDITMSG" "autoloads.el")))
  '(recentf-max-saved-items 200)
  '(recentf-mode t)
+ '(ripgrep-arguments (quote ("-s")))
  '(show-paren-mode t)
  '(sp-autoescape-string-quote nil)
  '(tab-width 4)
@@ -385,3 +367,9 @@ CommitDate: %ci
  '(web-mode-enable-auto-indentation nil)
  '(web-mode-enable-current-element-highlight t)
  '(web-mode-markup-indent-offset 4))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
