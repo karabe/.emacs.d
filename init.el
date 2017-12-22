@@ -245,7 +245,6 @@
 ;; (run-with-idle-timer 0.5 t 'auto-save-buffers) 
 ;; key-mapping
 (global-set-key (kbd "<f5>") 'toggle-truncate-lines)
-(global-set-key (kbd "C-c t") 'phpunit-current-class)
 (global-set-key (kbd "<f12>") 'remember)
 (global-set-key (kbd "C-.") 'other-window)
 (global-set-key (kbd "C-x C-p") 'find-file-at-point)
@@ -264,6 +263,7 @@
 (add-hook 'php-mode-hook
     (lambda ()
       (local-set-key (kbd "C-.") 'other-window)
+      (local-set-key (kbd "C-c t") 'phpunit-current-class)
       (local-set-key (kbd "C-c w") 'web-mode)))
 
 (add-hook
