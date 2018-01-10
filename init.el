@@ -227,7 +227,7 @@
 ;; recentf
 
 ;; rg
-(require 'rg)
+(rg-enable-default-bindings "\M-s")
 (add-hook 'rg-mode-hook 'wgrep-ag-setup)
 
 ;; ace-jump-mode
@@ -259,7 +259,6 @@
 (global-set-key (kbd "C-@") 'er/expand-region)
 (global-set-key (kbd "C-M-@") 'er/contract-region)
 (global-set-key (kbd "M-;") 'comment-dwim-2)
-(global-set-key (kbd "C-c s") 'rg)
 
 ;; other
 (setq comment-style 'extra-line)
