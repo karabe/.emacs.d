@@ -21,11 +21,11 @@
 (package-initialize)
 
 (dolist (package '(magit hc-zenburn-theme web-mode ido-hacks
-                      flycheck s undo-tree git-gutter+ anzu
-                      counsel yasnippet editorconfig counsel-gtags projectile
-                      phpunit expand-region php-mode js2-mode rg wgrep-ag
-                      counsel-projectile volatile-highlights move-text
-                      comment-dwim-2 company company-web company-statistics))
+                   flycheck s undo-tree git-gutter+ anzu smart-mode-line
+                   counsel yasnippet editorconfig counsel-gtags projectile
+                   phpunit expand-region php-mode js2-mode rg wgrep-ag
+                   counsel-projectile volatile-highlights move-text
+                   comment-dwim-2 company company-web company-statistics))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -201,7 +201,7 @@
 (global-git-gutter+-mode)
 ;; counsel
 (ivy-mode 1)
-(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c s") 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "<f6>") 'ivy-resume)
 (global-set-key (kbd "M-x") 'counsel-M-x)
@@ -209,7 +209,6 @@
 (global-set-key (kbd "C-c i") 'counsel-imenu)
 (global-set-key (kbd "C-c y") 'counsel-yank-pop)
 (global-set-key (kbd "C-z") 'ivy-switch-buffer)
-(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 ;; counsel-gtags
 (global-set-key (kbd "M-.") 'counsel-gtags-find-definition)
 (global-set-key (kbd "C-M-.") 'counsel-gtags-find-reference)
@@ -258,7 +257,8 @@
 (global-set-key (kbd "C-@") 'er/expand-region)
 (global-set-key (kbd "C-M-@") 'er/contract-region)
 (global-set-key (kbd "M-;") 'comment-dwim-2)
-
+;; smart-mode-line
+(sml/setup)
 ;; other
 (setq comment-style 'extra-line)
 (setq kill-whole-line t)
@@ -267,6 +267,7 @@
     (lambda ()
       (local-set-key (kbd "C-.") 'other-window)
       (local-set-key (kbd "C-c t") 'phpunit-current-class)
+      (local-set-key (kbd "C-c C-r") 'ivy-resume)
       (local-set-key (kbd "C-c w") 'web-mode)))
 
 (add-hook
@@ -330,7 +331,7 @@ CommitDate: %ci
  '(magit-unstage-all-confirm nil)
  '(package-selected-packages
    (quote
-    (counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode volatile-highlights undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
+    (smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode volatile-highlights undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
