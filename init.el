@@ -20,11 +20,11 @@
 	))
 (package-initialize)
 
-(dolist (package '(magit smex hc-zenburn-theme web-mode ido-hacks
+(dolist (package '(magit hc-zenburn-theme web-mode ido-hacks
                       flycheck s undo-tree git-gutter+ anzu
-                      helm yasnippet editorconfig helm-gtags projectile
+                      counsel yasnippet editorconfig counsel-gtags projectile
                       phpunit expand-region php-mode js2-mode rg wgrep-ag
-                      helm-projectile volatile-highlights move-text
+                      counsel-projectile volatile-highlights move-text
                       comment-dwim-2 company company-web company-statistics))
   (unless (package-installed-p package)
     (package-install package)))
@@ -199,21 +199,25 @@
 (global-set-key (kbd "C-c m") 'magit-status)
 ;; git-gutter
 (global-git-gutter+-mode)
-;; helm
-(require 'helm-config)
-(require 'helm-utils)
-(require 'helm-gtags)
-(global-set-key (kbd "C-c h") 'helm-mini)
-(global-set-key (kbd "M-.") 'helm-gtags-find-tag)
-(global-set-key (kbd "C-M-.") 'helm-gtags-find-rtag)
-(global-set-key (kbd "C-*") 'helm-gtags-pop-stack)
-(global-set-key (kbd "C-c i") 'helm-imenu)
-(global-set-key (kbd "C-z") 'helm-mini)
-(global-set-key (kbd "C-c f") 'helm-projectile)
-(global-set-key (kbd "M-r") 'helm-resume)
-(global-set-key (kbd "C-c y") 'helm-show-kill-ring)
-;;(global-set-key (kbd "M-x") 'helm-M-x)
-(add-hook 'php-mode-hook 'helm-gtags-mode)
+;; counsel
+(ivy-mode 1)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "<f6>") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "C-c i") 'counsel-imenu)
+(global-set-key (kbd "C-c y") 'counsel-yank-pop)
+(global-set-key (kbd "C-z") 'ivy-switch-buffer)
+(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+;; counsel-gtags
+(global-set-key (kbd "M-.") 'counsel-gtags-find-definition)
+(global-set-key (kbd "C-M-.") 'counsel-gtags-find-reference)
+(global-set-key (kbd "C-<") 'counsel-gtags-go-backward)
+(global-set-key (kbd "C->") 'counsel-gtags-go-forward)
+(add-hook 'php-mode-hook 'counsel-gtags-mode)
+;; counsel-projectile
+(global-set-key (kbd "C-c f") 'counsel-projectile)
 ;; org-mode
 (setq org-log-done 'time)
 (setq org-todo-keyword-faces '(("TODO" . "red") ("SKIP" . "light sky blue")))
@@ -224,8 +228,6 @@
 ;; yasnippet
 (yas-global-mode 1)
 (setq yas-prompt-functions '(yas-ido-prompt yas-no-prompt))
-;; recentf
-
 ;; rg
 (rg-enable-default-bindings "\M-s")
 (add-hook 'rg-mode-hook 'wgrep-ag-setup)
@@ -236,9 +238,6 @@
 ;; ediff
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
-;; smex
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; volatile-highlights
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
@@ -300,6 +299,7 @@
  '(company-minimum-prefix-length 2)
  '(company-statistics-mode t)
  '(company-transformers (quote (company-sort-by-statistics)))
+ '(counsel-gtags-auto-update t)
  '(diff-switches "-u")
  '(dired-dwim-target t)
  '(dired-listing-switches "-Ahl")
@@ -316,9 +316,7 @@
  '(global-anzu-mode t)
  '(global-flycheck-mode t)
  '(global-git-gutter+-mode t)
- '(helm-google-suggest-search-url "http://www.google.co.jp/search?ie=utf-8&oe=utf-8&q=")
- '(helm-google-suggest-url "http://google.com/complete/search?output=toolbar&q=")
- '(helm-gtags-auto-update t)
+ '(ivy-use-virtual-buffers t)
  '(js2-strict-missing-semi-warning nil)
  '(magit-bury-buffer-function (quote magit-mode-quit-window))
  '(magit-diff-section-arguments (quote ("--no-ext-diff")))
@@ -332,7 +330,7 @@ CommitDate: %ci
  '(magit-unstage-all-confirm nil)
  '(package-selected-packages
    (quote
-    (wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode volatile-highlights undo-tree sudo-edit smex pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks helm-pt helm-projectile helm-gtags hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
+    (counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode volatile-highlights undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
