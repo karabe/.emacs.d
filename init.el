@@ -24,7 +24,7 @@
                    flycheck s undo-tree git-gutter+ anzu smart-mode-line
                    counsel yasnippet editorconfig counsel-gtags projectile
                    phpunit expand-region php-mode js2-mode rg wgrep-ag
-                   counsel-projectile volatile-highlights move-text
+                   counsel-projectile volatile-highlights move-text delight
                    comment-dwim-2 company company-web company-statistics))
   (unless (package-installed-p package)
     (package-install package)))
@@ -259,6 +259,8 @@
 (global-set-key (kbd "M-;") 'comment-dwim-2)
 ;; smart-mode-line
 (sml/setup)
+;; delight
+(delight 'editorconfig-mode nil "EditorConfig")
 ;; other
 (setq comment-style 'extra-line)
 (setq kill-whole-line t)
@@ -331,7 +333,7 @@ CommitDate: %ci
  '(magit-unstage-all-confirm nil)
  '(package-selected-packages
    (quote
-    (smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode volatile-highlights undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
+    (delight diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode volatile-highlights undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
