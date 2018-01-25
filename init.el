@@ -258,6 +258,7 @@
 (global-set-key (kbd "C-M-@") 'er/contract-region)
 (global-set-key (kbd "M-;") 'comment-dwim-2)
 ;; smart-mode-line
+(setq sml/no-confirm-load-theme t)
 (sml/setup)
 ;; delight
 (delight 'editorconfig-mode nil "EditorConfig")
