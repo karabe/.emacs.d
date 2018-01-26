@@ -294,6 +294,10 @@
  '(company-statistics-mode t)
  '(company-transformers (quote (company-sort-by-statistics)))
  '(counsel-gtags-auto-update t)
+ '(counsel-yank-pop-separator
+   "
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+")
  '(diff-switches "-u")
  '(dired-dwim-target t)
  '(dired-listing-switches "-Ahl")
