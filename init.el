@@ -24,7 +24,7 @@
                    flycheck s undo-tree git-gutter+ anzu smart-mode-line
                    counsel yasnippet editorconfig counsel-gtags projectile
                    phpunit expand-region php-mode js2-mode rg wgrep-ag
-                   counsel-projectile volatile-highlights move-text
+                   counsel-projectile move-text
                    comment-dwim-2 company company-web company-statistics))
   (unless (package-installed-p package)
     (package-install package)))
@@ -230,16 +230,9 @@
 ;; rg
 (rg-enable-default-bindings "\M-s")
 (add-hook 'rg-mode-hook 'wgrep-ag-setup)
-
-;; ace-jump-mode
-(setq ace-jump-mode-scope 'window)
-(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 ;; ediff
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
-;; volatile-highlights
-(require 'volatile-highlights)
-(volatile-highlights-mode t)
 ;; move-text
 (require 'move-text)
 (move-text-default-bindings)
@@ -332,7 +325,7 @@ CommitDate: %ci
  '(magit-unstage-all-confirm nil)
  '(package-selected-packages
    (quote
-    (diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode volatile-highlights undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
+    (diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
