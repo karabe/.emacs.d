@@ -24,7 +24,7 @@
                    flycheck s undo-tree git-gutter+ anzu smart-mode-line
                    counsel yasnippet editorconfig counsel-gtags projectile
                    phpunit expand-region php-mode js2-mode rg wgrep-ag
-                   counsel-projectile move-text
+                   counsel-projectile move-text volatile-highlights
                    comment-dwim-2 company company-web company-statistics))
   (unless (package-installed-p package)
     (package-install package)))
@@ -325,7 +325,7 @@ CommitDate: %ci
  '(magit-unstage-all-confirm nil)
  '(package-selected-packages
    (quote
-    (diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
+    (volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
@@ -342,6 +342,7 @@ CommitDate: %ci
  '(truncate-lines t)
  '(truncate-partial-width-windows nil)
  '(vc-display-status nil)
+ '(volatile-highlights-mode t)
  '(web-mode-code-indent-offset 4)
  '(web-mode-enable-auto-indentation nil)
  '(web-mode-enable-current-element-highlight t)
