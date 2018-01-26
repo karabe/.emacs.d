@@ -52,7 +52,6 @@
 
 (set-default 'indent-tabs-mode nil)
 (set-default 'indicate-empty-lines t)
-(set-default 'imenu-auto-rescan t)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -311,6 +310,7 @@
  '(global-anzu-mode t)
  '(global-flycheck-mode t)
  '(global-git-gutter+-mode t)
+ '(imenu-auto-rescan t)
  '(ivy-use-virtual-buffers t)
  '(js2-strict-missing-semi-warning nil)
  '(magit-bury-buffer-function (quote magit-mode-quit-window))
@@ -326,6 +326,7 @@ CommitDate: %ci
  '(package-selected-packages
    (quote
     (volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
+ '(php-do-not-use-semantic-imenu t)
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
