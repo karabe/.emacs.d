@@ -20,7 +20,7 @@
 	))
 (package-initialize)
 
-(dolist (package '(magit hc-zenburn-theme web-mode ido-hacks
+(dolist (package '(magit zenburn-theme web-mode ido-hacks
                    flycheck s undo-tree git-gutter+ anzu smart-mode-line
                    counsel yasnippet editorconfig counsel-gtags projectile
                    phpunit expand-region php-mode js2-mode rg wgrep-ag
@@ -77,7 +77,7 @@
 (set-fontset-font nil 'ascii (font-spec :family "Ricty"))
 (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))
 
-(load-theme 'hc-zenburn t)
+(load-theme 'zenburn t)
 (global-hl-line-mode) ; 現在行をハイライト
 (add-to-list 'default-frame-alist '(alpha . 85)) ;透明度
 ;; 日本語
