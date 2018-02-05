@@ -340,7 +340,7 @@ CommitDate: %ci
  '(recentf-mode t)
  '(rg-show-columns t)
  '(ripgrep-arguments (quote ("-s")))
- '(rm-blacklist (quote (" EditorConfig")))
+ '(rm-blacklist (quote (" EditorConfig" " ARev" " CounselGtags" " Undo-Tree")))
  '(show-paren-mode t)
  '(sp-autoescape-string-quote nil)
  '(tab-width 4)
