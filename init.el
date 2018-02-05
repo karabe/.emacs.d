@@ -263,9 +263,9 @@
       (local-set-key (kbd "C-c C-r") 'ivy-resume)
       (local-set-key (kbd "C-c w") 'web-mode)))
 
-(add-hook
- 'web-mode-hook
+(add-hook 'web-mode-hook
  (lambda ()
+   (local-set-key (kbd "C-c C-r") 'ivy-resume)
    (setq-local electric-pair-inhibit-predicate
                `(lambda (c)
                   (if (char-equal c ?{) t (,electric-pair-inhibit-predicate c))))))
