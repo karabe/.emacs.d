@@ -18,7 +18,7 @@
 	))
 (package-initialize)
 
-(dolist (package '(magit zenburn-theme web-mode ido-hacks mozc
+(dolist (package '(magit zenburn-theme web-mode ido-hacks mozc mozc-popup
                    flycheck s undo-tree git-gutter+ anzu smart-mode-line
                    counsel yasnippet editorconfig counsel-gtags projectile
                    phpunit expand-region php-mode js2-mode rg wgrep-ag
@@ -81,6 +81,8 @@
 ;;(set-default-coding-systems 'utf-8)
 (prefer-coding-system 'utf-8) ; エンコーディングの優先順位の一番をutf-8にする
 (global-set-key (kbd "<zenkaku-hankaku>") 'toggle-input-method)
+(require 'mozc-popup)
+(setq mozc-candidate-style 'popup)
 
 ;; windowsのときのみsjis設定
 (if (eq system-type 'windows-nt)
@@ -335,7 +337,7 @@ CommitDate: %ci
  '(network-security-level (quote high))
  '(package-selected-packages
    (quote
-    (mozc volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
+    (mozc-popup mozc volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
