@@ -11,10 +11,8 @@
 ;; パッケージ設定
 (setq package-archives
       '(
-        ("gnu"         . "http://elpa.gnu.org/packages/")
-        ;;("original"    . "http://tromey.com/elpa/")
-        ;;("org"         . "http://orgmode.org/elpa/")
-        ;; ("marmalade"   . "https://marmalade-repo.org/packages/")
+        ("gnu"         . "https://elpa.gnu.org/packages/")
+        ("org"         . "https://orgmode.org/elpa/")
         ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
         ("melpa-latest"       . "https://melpa.org/packages/")
 	))
@@ -196,6 +194,7 @@
 (global-undo-tree-mode)
 ;; magit
 (global-set-key (kbd "C-c m") 'magit-status)
+(global-set-key (kbd "C-c b") 'magit-blame)
 ;; git-gutter
 (global-git-gutter+-mode)
 ;; counsel
@@ -252,6 +251,12 @@
 ;; smart-mode-line
 (setq sml/no-confirm-load-theme t)
 (sml/setup)
+;; lsp-mode
+;; (add-to-list 'load-path "~/.emacs.d/lsp-php")
+;; (require 'lsp-mode)
+;; (require 'lsp-php)
+;; (add-hook 'php-mode-hook #'lsp-mode)
+;; (add-hook 'php-mode-hook #'lsp-php-enable)
 ;; other
 (setq comment-style 'extra-line)
 (setq kill-whole-line t)
@@ -282,12 +287,9 @@
  '(anzu-search-threshold 1000)
  '(company-backends
    (quote
-    ((company-css company-web-html)
-     (company-dabbrev-code company-gtags company-keywords company-yasnippet company-files))))
+    (company-css company-web-html
+                 (company-dabbrev-code company-gtags company-keywords company-files company-yasnippet))))
  '(company-dabbrev-code-everywhere t)
- '(company-dabbrev-code-modes
-   (quote
-    (prog-mode batch-file-mode csharp-mode css-mode erlang-mode haskell-mode jde-mode lua-mode python-mode php-mode)))
  '(company-dabbrev-downcase nil)
  '(company-idle-delay 0)
  '(company-minimum-prefix-length 2)
@@ -317,6 +319,9 @@
  '(imenu-auto-rescan t)
  '(ivy-use-virtual-buffers t)
  '(js2-strict-missing-semi-warning nil)
+ '(lsp-php-language-server-command
+   (quote
+    ("php7.1" "/home/user/.emacs.d/php-language-server/vendor/bin/php-language-server.php")))
  '(magit-bury-buffer-function (quote magit-mode-quit-window))
  '(magit-diff-section-arguments (quote ("--no-ext-diff")))
  '(magit-revision-headers-format
@@ -327,6 +332,7 @@ CommitDate: %ci
 ")
  '(magit-stage-all-confirm nil)
  '(magit-unstage-all-confirm nil)
+ '(network-security-level (quote high))
  '(package-selected-packages
    (quote
     (volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
@@ -340,7 +346,9 @@ CommitDate: %ci
  '(recentf-mode t)
  '(rg-show-columns t)
  '(ripgrep-arguments (quote ("-s")))
- '(rm-blacklist (quote (" EditorConfig" " ARev" " CounselGtags" " Undo-Tree")))
+ '(rm-blacklist
+   (quote
+    (" EditorConfig" " ARev" " CounselGtags" " Undo-Tree")))
  '(show-paren-mode t)
  '(sp-autoescape-string-quote nil)
  '(tab-width 4)
