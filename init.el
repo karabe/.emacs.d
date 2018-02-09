@@ -18,7 +18,7 @@
 	))
 (package-initialize)
 
-(dolist (package '(magit zenburn-theme web-mode ido-hacks
+(dolist (package '(magit zenburn-theme web-mode ido-hacks mozc
                    flycheck s undo-tree git-gutter+ anzu smart-mode-line
                    counsel yasnippet editorconfig counsel-gtags projectile
                    phpunit expand-region php-mode js2-mode rg wgrep-ag
@@ -40,7 +40,6 @@
       ;; color-theme-is-global t
       delete-by-moving-to-trash t
       shift-select-mode nil
-      truncate-partial-width-windows nil
       uniquify-buffer-name-style 'forward
       whitespace-style '(trailing lines space-before-tab
                                   indentation space-after-tab)
@@ -81,6 +80,7 @@
 (set-language-environment "Japanese")
 ;;(set-default-coding-systems 'utf-8)
 (prefer-coding-system 'utf-8) ; エンコーディングの優先順位の一番をutf-8にする
+(global-set-key (kbd "<zenkaku-hankaku>") 'toggle-input-method)
 
 ;; windowsのときのみsjis設定
 (if (eq system-type 'windows-nt)
@@ -238,7 +238,6 @@
 ;; (require 'auto-save-buffers)
 ;; (run-with-idle-timer 0.5 t 'auto-save-buffers) 
 ;; key-mapping
-(global-set-key (kbd "<f5>") 'toggle-truncate-lines)
 (global-set-key (kbd "<f12>") 'remember)
 (global-set-key (kbd "C-.") 'other-window)
 (global-set-key (kbd "C-x C-p") 'find-file-at-point)
@@ -300,6 +299,7 @@
    "
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ")
+ '(default-input-method "japanese-mozc")
  '(diff-switches "-u")
  '(dired-dwim-target t)
  '(dired-listing-switches "-Ahl")
@@ -335,8 +335,7 @@ CommitDate: %ci
  '(network-security-level (quote high))
  '(package-selected-packages
    (quote
-    (volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
- '(php-do-not-use-semantic-imenu t)
+    (mozc volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
@@ -352,7 +351,6 @@ CommitDate: %ci
  '(show-paren-mode t)
  '(sp-autoescape-string-quote nil)
  '(tab-width 4)
- '(truncate-lines t)
  '(truncate-partial-width-windows nil)
  '(vc-display-status nil)
  '(volatile-highlights-mode t)
