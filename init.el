@@ -320,6 +320,7 @@
  '(global-git-gutter+-mode t)
  '(imenu-auto-rescan t)
  '(ivy-use-virtual-buffers t)
+ '(ivy-virtual-abbreviate (quote full))
  '(js2-strict-missing-semi-warning nil)
  '(lsp-php-language-server-command
    (quote
