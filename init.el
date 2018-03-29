@@ -57,6 +57,7 @@
   (tool-bar-mode -1))
 
 (menu-bar-mode -1)
+(scroll-bar-mode -1)
 
 (setq auto-save-default nil)
 (setq make-backup-files nil)
