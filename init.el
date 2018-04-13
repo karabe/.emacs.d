@@ -353,7 +353,7 @@ CommitDate: %ci
  '(ripgrep-arguments (quote ("-s")))
  '(rm-blacklist
    (quote
-    (" EditorConfig" " ARev" " CounselGtags" " Undo-Tree")))
+    (" EditorConfig" " ARev" " CounselGtags" " Undo-Tree" " VHl" " yas" " ivy" " Abbrev")))
  '(show-paren-mode t)
  '(sp-autoescape-string-quote nil)
  '(tab-width 4)
