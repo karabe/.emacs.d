@@ -23,7 +23,8 @@
                    counsel yasnippet editorconfig counsel-gtags projectile
                    phpunit expand-region php-mode js2-mode rg wgrep-ag
                    counsel-projectile move-text volatile-highlights
-                   comment-dwim-2 company company-web company-statistics))
+                   comment-dwim-2 company company-web company-statistics
+                   lsp-mode apache-mode))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -254,11 +255,11 @@
 (setq sml/no-confirm-load-theme t)
 (sml/setup)
 ;; lsp-mode
-;; (add-to-list 'load-path "~/.emacs.d/lsp-php")
-;; (require 'lsp-mode)
-;; (require 'lsp-php)
-;; (add-hook 'php-mode-hook #'lsp-mode)
-;; (add-hook 'php-mode-hook #'lsp-php-enable)
+(add-to-list 'load-path "~/.emacs.d/lsp-php")
+(require 'lsp-mode)
+(require 'lsp-php)
+(add-hook 'php-mode-hook #'lsp-mode)
+(add-hook 'php-mode-hook #'lsp-php-enable)
 ;; other
 (setq comment-style 'extra-line)
 (setq kill-whole-line t)
@@ -326,7 +327,7 @@
  '(js2-strict-missing-semi-warning nil)
  '(lsp-php-language-server-command
    (quote
-    ("php7.1" "/home/user/.emacs.d/php-language-server/vendor/bin/php-language-server.php")))
+    ("php7.2" "/home/lubuntu/.emacs.d/php-language-server/vendor/bin/php-language-server.php")))
  '(magit-bury-buffer-function (quote magit-mode-quit-window))
  '(magit-diff-section-arguments (quote ("--no-ext-diff")))
  '(magit-revision-headers-format
@@ -340,7 +341,7 @@ CommitDate: %ci
  '(network-security-level (quote high))
  '(package-selected-packages
    (quote
-    (mozc-popup mozc volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
+    (lsp-mode mozc-popup mozc volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
