@@ -313,6 +313,7 @@
  '(electric-pair-mode t)
  '(electric-pair-pairs (quote ((39 . 39) (34 . 34))))
  '(electric-pair-text-pairs (quote ((39 . 39) (34 . 34))))
+ '(enable-recursive-minibuffers t)
  '(git-commit-fill-column 80)
  '(git-gutter+-diff-options (quote ("-b")))
  '(git-gutter+-lighter "")
