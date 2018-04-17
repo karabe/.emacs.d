@@ -24,7 +24,7 @@
                    phpunit expand-region php-mode js2-mode rg wgrep-ag
                    counsel-projectile move-text volatile-highlights
                    comment-dwim-2 company company-web company-statistics
-                   lsp-mode apache-mode))
+                   lsp-mode apache-mode gitignore-mode))
   (unless (package-installed-p package)
     (package-install package)))
 
