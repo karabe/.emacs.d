@@ -328,6 +328,7 @@
  '(lsp-php-language-server-command
    (quote
     ("php7.2" "/home/lubuntu/.emacs.d/php-language-server/vendor/bin/php-language-server.php")))
+ '(lsp-php-show-file-parse-notifications nil)
  '(magit-bury-buffer-function (quote magit-mode-quit-window))
  '(magit-diff-section-arguments (quote ("--no-ext-diff")))
  '(magit-revision-headers-format
