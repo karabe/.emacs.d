@@ -18,7 +18,7 @@
 	))
 (package-initialize)
 
-(dolist (package '(magit zenburn-theme web-mode ido-hacks mozc mozc-popup
+(dolist (package '(magit zenburn-theme web-mode mozc mozc-popup
                    flycheck s undo-tree git-gutter+ anzu smart-mode-line
                    counsel yasnippet editorconfig counsel-gtags projectile
                    phpunit expand-region php-mode js2-mode rg wgrep-ag
@@ -122,15 +122,6 @@
 ;;                       (get-text-property (point) 'block-side))))
 ;;     t))
 ;; (sp-local-pair 'web-mode "<" nil :when '(sp-web-mode-is-code-context))
-;; ido
-(require 'ido)
-(ido-mode t)
-(require 'ido-hacks)
-(ido-hacks-mode t)
-(setq ido-enable-prefix nil
-      ido-enable-flex-matching t
-      ido-create-new-buffer 'always)
-(global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
 ;; auto-complete
 ;; (require 'auto-complete-config)
 ;; (ac-config-default)
@@ -228,7 +219,6 @@
 (global-set-key (kbd "C-c l") 'org-store-link)
 ;; yasnippet
 (yas-global-mode 1)
-(setq yas-prompt-functions '(yas-ido-prompt yas-no-prompt))
 ;; rg
 (rg-enable-default-bindings "\M-s")
 (add-hook 'rg-mode-hook 'wgrep-ag-setup)
@@ -342,7 +332,7 @@ CommitDate: %ci
  '(network-security-level (quote high))
  '(package-selected-packages
    (quote
-    (lsp-mode mozc-popup mozc volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays ido-hacks hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
+    (lsp-mode mozc-popup mozc volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
