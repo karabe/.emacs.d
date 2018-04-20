@@ -24,7 +24,7 @@
                    phpunit expand-region php-mode js2-mode rg wgrep-ag
                    counsel-projectile move-text volatile-highlights
                    comment-dwim-2 company company-web company-statistics
-                   lsp-mode apache-mode gitignore-mode))
+                   lsp-mode apache-mode gitignore-mode ivy-historian))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -312,6 +312,7 @@
  '(global-flycheck-mode t)
  '(global-git-gutter+-mode t)
  '(imenu-auto-rescan t)
+ '(ivy-historian-mode t)
  '(ivy-use-virtual-buffers t)
  '(ivy-virtual-abbreviate (quote full))
  '(js2-strict-missing-semi-warning nil)
@@ -332,7 +333,7 @@ CommitDate: %ci
  '(network-security-level (quote high))
  '(package-selected-packages
    (quote
-    (lsp-mode mozc-popup mozc volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
+    (ivy-historian lsp-mode mozc-popup mozc volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(recentf-exclude
