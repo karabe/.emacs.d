@@ -211,10 +211,6 @@
 ;; counsel-projectile
 (global-set-key (kbd "C-c f") 'counsel-projectile)
 ;; org-mode
-(setq org-log-done 'time)
-(setq org-todo-keyword-faces '(("TODO" . "red") ("SKIP" . "light sky blue")))
-(setq org-todo-keywords '((sequence "TODO" "SKIP" "WIP" "DONE")))
-(setq org-agenda-files (file-expand-wildcards "~/org/*.org"))
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c l") 'org-store-link)
 ;; yasnippet
@@ -331,6 +327,16 @@ CommitDate: %ci
  '(magit-stage-all-confirm nil)
  '(magit-unstage-all-confirm nil)
  '(network-security-level (quote high))
+ '(org-agenda-files (quote ("~/org/memo.org")))
+ '(org-log-done (quote time))
+ '(org-todo-keyword-faces
+   (quote
+    (("TODO" . "red")
+     ("SKIP" . "light sky blue")
+     ("FIXED" . "lime green"))))
+ '(org-todo-keywords
+   (quote
+    ((sequence "TODO(t)" "SKIP(s)" "WIP(w)" "FIXED(f!)" "DONE"))))
  '(package-selected-packages
    (quote
     (ivy-historian lsp-mode mozc-popup mozc volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
