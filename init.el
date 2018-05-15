@@ -209,7 +209,7 @@
 (global-set-key (kbd "C->") 'counsel-gtags-go-forward)
 (add-hook 'php-mode-hook 'counsel-gtags-mode)
 ;; counsel-projectile
-(global-set-key (kbd "C-c f") 'counsel-projectile)
+(global-set-key (kbd "C-c f") 'counsel-projectile-find-file)
 ;; org-mode
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c l") 'org-store-link)
@@ -334,14 +334,13 @@ CommitDate: %ci
     (("TODO" . "red")
      ("SKIP" . "light sky blue")
      ("FIXED" . "lime green"))))
- '(org-todo-keywords
-   (quote
-    ((sequence "TODO(t)" "SKIP(s)" "WIP(w)" "FIXED(f!)" "DONE"))))
+ '(org-todo-keywords (quote ((sequence "TODO(t)" "WIP(w)" "FIXED(f!)" "DONE"))))
  '(package-selected-packages
    (quote
     (ivy-historian lsp-mode mozc-popup mozc volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text markdown-mode magit less-css-mode js2-mode japanese-holidays hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
+ '(projectile-completion-system (quote ivy))
  '(recentf-exclude
    (quote
     (".recentf" ".ido.last" ".gitconfig" ".smex-items" ".todo-do" ".history" "COMMIT_EDITMSG" "autoloads.el")))
