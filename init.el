@@ -25,7 +25,7 @@
                    counsel-projectile move-text volatile-highlights
                    comment-dwim-2 company company-web company-statistics
                    lsp-mode apache-mode gitignore-mode ivy-historian
-                   japanese-holidays
+                   japanese-holidays org
                    ))
   (unless (package-installed-p package)
     (package-install package)))
