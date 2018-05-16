@@ -24,7 +24,9 @@
                    phpunit expand-region php-mode js2-mode rg wgrep-ag
                    counsel-projectile move-text volatile-highlights
                    comment-dwim-2 company company-web company-statistics
-                   lsp-mode apache-mode gitignore-mode ivy-historian))
+                   lsp-mode apache-mode gitignore-mode ivy-historian
+                   japanese-holidays
+                   ))
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -246,6 +248,15 @@
 (require 'lsp-php)
 ;; (add-hook 'php-mode-hook #'lsp-mode)
 ;; (add-hook 'php-mode-hook #'lsp-php-enable)
+;; japanese-holiday
+(eval-after-load "holidays"
+  '(progn
+     (require 'japanese-holidays)
+     (setq calendar-holidays (append japanese-holidays))
+     (add-hook 'calendar-today-visible-hook 'japanese-holiday-mark-weekend)
+     (add-hook 'calendar-today-invisible-hook 'japanese-holiday-mark-weekend)
+   )
+)
 ;; other
 (setq comment-style 'extra-line)
 (setq kill-whole-line t)
@@ -274,6 +285,7 @@
  '(anzu-minimum-input-length 2)
  '(anzu-mode-lighter "")
  '(anzu-search-threshold 1000)
+ '(calendar-mark-holidays-flag t)
  '(company-backends
    (quote
     (company-css company-web-html
@@ -311,6 +323,7 @@
  '(ivy-historian-mode t)
  '(ivy-use-virtual-buffers t)
  '(ivy-virtual-abbreviate (quote full))
+ '(japanese-holiday-weekend-marker (quote (holiday nil nil nil nil nil holiday)))
  '(js2-strict-missing-semi-warning nil)
  '(lsp-php-language-server-command
    (quote
