@@ -215,6 +215,7 @@
 ;; org-mode
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c c") 'org-capture)
 ;; yasnippet
 (yas-global-mode 1)
 ;; rg
@@ -340,7 +341,16 @@ CommitDate: %ci
  '(magit-stage-all-confirm nil)
  '(magit-unstage-all-confirm nil)
  '(network-security-level (quote high))
- '(org-agenda-files (quote ("~/org/memo.org")))
+ '(org-agenda-files (quote ("~/org/memo.org" "~/org/todo.org")))
+ '(org-capture-templates
+   (quote
+    (("t" "Todo" entry
+      (file "~/org/todo.org")
+      "* TODO %?")
+     ("d" "Tel" entry
+      (file "~/org/tel.org")
+      "* %T
+%?"))))
  '(org-log-done (quote time))
  '(org-todo-keyword-faces
    (quote
