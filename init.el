@@ -3,8 +3,6 @@
 ;;; init.el --- Where all the magic begins
 ;;; Code:
 
-(require 'saveplace)
-;;(require 'ffap)
 (require 'uniquify)
 ;;(require 'ansi-color)
 (require 'recentf)
