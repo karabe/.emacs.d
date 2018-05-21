@@ -242,9 +242,9 @@
 (setq sml/no-confirm-load-theme t)
 (sml/setup)
 ;; lsp-mode
-(add-to-list 'load-path "~/.emacs.d/lsp-php")
-(require 'lsp-mode)
-(require 'lsp-php)
+;; (add-to-list 'load-path "~/.emacs.d/lsp-php")
+;; (require 'lsp-mode)
+;; (require 'lsp-php)
 ;; (add-hook 'php-mode-hook #'lsp-mode)
 ;; (add-hook 'php-mode-hook #'lsp-php-enable)
 ;; japanese-holiday
