@@ -15,6 +15,7 @@
         ("melpa-latest"       . "https://melpa.org/packages/")
 	))
 (package-initialize)
+(unless package-archive-contents (package-refresh-contents))
 
 (dolist (package '(magit zenburn-theme web-mode mozc mozc-popup
                    flycheck s undo-tree git-gutter+ anzu smart-mode-line
