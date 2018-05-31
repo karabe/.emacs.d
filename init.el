@@ -148,6 +148,15 @@
                                   :test "phpunit"
                                   :test-suffix "Test"
                                   )
+(projectile-register-project-type 'webextention
+                                  '("addon" "src" "test" "package.json")
+                                  :compile "yarn run prod"
+                                  :run "yarn start"
+                                  :src-dir "src"
+                                  :test-dir "test"
+                                  :test "yarn run jest"
+                                  :test-suffix ".test"
+                                  )
 
 ;; highlights matching pairs
 ;; (show-smartparens-global-mode t)
