@@ -257,6 +257,20 @@
 ;; (require 'lsp-php)
 ;; (add-hook 'php-mode-hook #'lsp-mode)
 ;; (add-hook 'php-mode-hook #'lsp-php-enable)
+;; eglot
+(defvar eglot-server-programs '((rust-mode . (eglot-rls "rls"))
+                                (python-mode . ("pyls"))
+                                ((js-mode
+                                  js2-mode
+                                  rjsx-mode) . ("javascript-typescript-stdio"))
+                                (sh-mode . ("bash-language-server" "start"))
+                                ((c++-mode
+                                  c-mode) . (eglot-cquery "cquery"))
+                                (ruby-mode
+                                 . ("solargraph" "socket" "--port"
+                                    :autoport))
+                                (php-mode . ("php" "/home/lubuntu/.config/composer/vendor/bin/php-language-server.php"))
+                                (haskell-mode . ("hie-wrapper"))))
 ;; japanese-holiday
 (eval-after-load "holidays"
   '(progn
@@ -370,7 +384,7 @@ CommitDate: %ci
  '(org-todo-keywords (quote ((sequence "TODO(t)" "WIP(w)" "FIXED(f!)" "DONE"))))
  '(package-selected-packages
    (quote
-    (dockerfile-mode magit add-node-modules-path yaml-mode ivy-historian lsp-mode mozc-popup mozc volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text less-css-mode js2-mode japanese-holidays hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
+    (eglot dockerfile-mode magit add-node-modules-path yaml-mode ivy-historian lsp-mode mozc-popup mozc volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text less-css-mode js2-mode japanese-holidays hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(projectile-completion-system (quote ivy))
