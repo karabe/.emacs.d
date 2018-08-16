@@ -393,6 +393,7 @@ CommitDate: %ci
     (".recentf" ".ido.last" ".gitconfig" ".smex-items" ".todo-do" ".history" "COMMIT_EDITMSG" "autoloads.el")))
  '(recentf-max-saved-items 200)
  '(recentf-mode t)
+ '(rg-custom-type-aliases (quote (("ctp" . "*.ctp"))))
  '(rg-show-columns t)
  '(ripgrep-arguments (quote ("-s")))
  '(rm-blacklist
