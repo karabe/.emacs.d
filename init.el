@@ -20,7 +20,7 @@
 (dolist (package '(magit zenburn-theme web-mode mozc mozc-popup
                    flycheck s undo-tree git-gutter+ anzu smart-mode-line
                    counsel yasnippet editorconfig counsel-gtags projectile
-                   phpunit expand-region php-mode js2-mode rg wgrep-ag
+                   phpunit expand-region php-mode js2-mode rg
                    counsel-projectile move-text volatile-highlights
                    comment-dwim-2 company company-web company-statistics
                    lsp-mode apache-mode gitignore-mode ivy-historian
@@ -228,7 +228,6 @@
 (yas-global-mode 1)
 ;; rg
 (rg-enable-default-bindings "\M-s")
-(add-hook 'rg-mode-hook 'wgrep-ag-setup)
 ;; ediff
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
