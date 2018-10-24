@@ -143,6 +143,7 @@
 
 ;; projectile
 (projectile-mode)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (projectile-register-project-type 'laravel
                                   '("composer.json" "app" "bootstrap" "config" "database" "public" "resources" "storage" "tests" "vendor")
                                   :test "phpunit"
