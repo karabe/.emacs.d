@@ -200,7 +200,7 @@
 (global-undo-tree-mode)
 ;; magit
 (global-set-key (kbd "C-c m") 'magit-status)
-(global-set-key (kbd "C-c b") 'magit-blame)
+(global-set-key (kbd "C-c b") 'magit-blame-addition)
 ;; git-gutter
 (global-git-gutter+-mode)
 ;; counsel
