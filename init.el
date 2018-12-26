@@ -23,7 +23,7 @@
                    phpunit expand-region php-mode js2-mode rg
                    counsel-projectile move-text volatile-highlights
                    comment-dwim-2 company company-web company-statistics
-                   lsp-mode apache-mode gitignore-mode ivy-historian
+                   lsp-mode lsp-ui company-lsp apache-mode gitignore-mode ivy-historian
                    japanese-holidays org add-node-modules-path dockerfile-mode
                    ))
   (unless (package-installed-p package)
@@ -251,12 +251,6 @@
 ;; smart-mode-line
 (setq sml/no-confirm-load-theme t)
 (sml/setup)
-;; lsp-mode
-;; (add-to-list 'load-path "~/.emacs.d/lsp-php")
-;; (require 'lsp-mode)
-;; (require 'lsp-php)
-;; (add-hook 'php-mode-hook #'lsp-mode)
-;; (add-hook 'php-mode-hook #'lsp-php-enable)
 ;; eglot
 (defvar eglot-server-programs '((rust-mode . (eglot-rls "rls"))
                                 (python-mode . ("pyls"))
@@ -354,6 +348,8 @@
    (quote
     ("php7.2" "/home/lubuntu/.emacs.d/php-language-server/vendor/bin/php-language-server.php")))
  '(lsp-php-show-file-parse-notifications nil)
+ '(lsp-prefer-flymake nil)
+ '(lsp-ui-sideline-enable nil)
  '(magit-bury-buffer-function (quote magit-mode-quit-window))
  '(magit-diff-section-arguments (quote ("--no-ext-diff")))
  '(magit-revision-headers-format
