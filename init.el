@@ -19,12 +19,13 @@
 
 (dolist (package '(magit zenburn-theme web-mode mozc mozc-popup
                    flycheck s undo-tree git-gutter+ anzu smart-mode-line
-                   counsel yasnippet editorconfig counsel-gtags projectile
+                   counsel yasnippet editorconfig projectile
                    phpunit expand-region php-mode js2-mode rg
                    counsel-projectile move-text volatile-highlights
                    comment-dwim-2 company company-web company-statistics
-                   lsp-mode lsp-ui company-lsp apache-mode gitignore-mode ivy-historian
+                   lsp-mode company-lsp apache-mode gitignore-mode ivy-historian
                    japanese-holidays org add-node-modules-path dockerfile-mode
+                   ivy-xref
                    ))
   (unless (package-installed-p package)
     (package-install package)))
@@ -213,14 +214,12 @@
 (global-set-key (kbd "C-c i") 'counsel-imenu)
 (global-set-key (kbd "C-c y") 'counsel-yank-pop)
 (global-set-key (kbd "C-z") 'ivy-switch-buffer)
-;; counsel-gtags
-(global-set-key (kbd "M-.") 'counsel-gtags-find-definition)
-(global-set-key (kbd "C-M-.") 'counsel-gtags-find-reference)
-(global-set-key (kbd "C-<") 'counsel-gtags-go-backward)
-(global-set-key (kbd "C->") 'counsel-gtags-go-forward)
-(add-hook 'php-mode-hook 'counsel-gtags-mode)
 ;; counsel-projectile
 (global-set-key (kbd "C-c f") 'counsel-projectile-find-file)
+;; lsp-mode
+(add-hook 'php-mode-hook #'lsp)
+;; ivy-xref
+(setq xref-show-xrefs-function #'ivy-xref-show-xrefs)
 ;; org-mode
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c l") 'org-store-link)
@@ -344,12 +343,13 @@
  '(ivy-virtual-abbreviate (quote full))
  '(japanese-holiday-weekend-marker (quote (holiday nil nil nil nil nil holiday)))
  '(js2-strict-missing-semi-warning nil)
+ '(lsp-hover-enabled nil)
  '(lsp-php-language-server-command
    (quote
     ("php7.2" "/home/lubuntu/.emacs.d/php-language-server/vendor/bin/php-language-server.php")))
  '(lsp-php-show-file-parse-notifications nil)
  '(lsp-prefer-flymake nil)
- '(lsp-ui-sideline-enable nil)
+ '(lsp-signature-enabled nil)
  '(magit-bury-buffer-function (quote magit-mode-quit-window))
  '(magit-diff-section-arguments (quote ("--no-ext-diff")))
  '(magit-revision-headers-format
