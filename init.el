@@ -217,6 +217,7 @@
 ;; counsel-projectile
 (global-set-key (kbd "C-c f") 'counsel-projectile-find-file)
 ;; lsp-mode
+(require 'lsp-clients)
 (add-hook 'php-mode-hook #'lsp)
 ;; ivy-xref
 (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)
@@ -280,15 +281,17 @@
 (setq kill-whole-line t)
 
 (add-hook 'php-mode-hook
-    (lambda ()
-      (local-set-key (kbd "C-.") 'other-window)
-      (local-set-key (kbd "C-c t") 'phpunit-current-class)
-      (local-set-key (kbd "C-c C-r") 'ivy-resume)
-      (local-set-key (kbd "C-c w") 'web-mode)))
+  (lambda ()
+    (setq-local company-backends '((company-capf company-files company-yasnippet :with company-dabbrev-code)))
+    (local-set-key (kbd "C-.") 'other-window)
+    (local-set-key (kbd "C-c t") 'phpunit-current-class)
+    (local-set-key (kbd "C-c C-r") 'ivy-resume)
+    (local-set-key (kbd "C-c w") 'web-mode)))
 
 (add-hook 'web-mode-hook
  (lambda ()
    (local-set-key (kbd "C-c C-r") 'ivy-resume)
+   (setq-local company-backends '(company-css comapny-web-html company-dabbrev-code))
    (setq-local electric-pair-inhibit-predicate
                `(lambda (c)
                   (if (char-equal c ?{) t (,electric-pair-inhibit-predicate c))))))
@@ -304,16 +307,14 @@
  '(anzu-mode-lighter "")
  '(anzu-search-threshold 1000)
  '(calendar-mark-holidays-flag t)
- '(company-backends
-   (quote
-    (company-css company-web-html
-                 (company-dabbrev-code company-gtags company-keywords company-files company-yasnippet))))
  '(company-dabbrev-code-everywhere t)
  '(company-dabbrev-downcase nil)
  '(company-idle-delay 0)
  '(company-minimum-prefix-length 2)
  '(company-statistics-mode t)
- '(company-transformers (quote (company-sort-by-statistics)))
+ '(company-transformers
+   (quote
+    (company-sort-by-statistics company-sort-by-backend-importance)))
  '(counsel-gtags-auto-update t)
  '(counsel-yank-pop-separator
    "
@@ -343,6 +344,7 @@
  '(ivy-virtual-abbreviate (quote full))
  '(japanese-holiday-weekend-marker (quote (holiday nil nil nil nil nil holiday)))
  '(js2-strict-missing-semi-warning nil)
+ '(lsp-auto-configure nil)
  '(lsp-prefer-flymake nil)
  '(magit-bury-buffer-function (quote magit-mode-quit-window))
  '(magit-diff-section-arguments (quote ("--no-ext-diff")))
