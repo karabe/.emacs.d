@@ -343,13 +343,7 @@
  '(ivy-virtual-abbreviate (quote full))
  '(japanese-holiday-weekend-marker (quote (holiday nil nil nil nil nil holiday)))
  '(js2-strict-missing-semi-warning nil)
- '(lsp-hover-enabled nil)
- '(lsp-php-language-server-command
-   (quote
-    ("php7.2" "/home/lubuntu/.emacs.d/php-language-server/vendor/bin/php-language-server.php")))
- '(lsp-php-show-file-parse-notifications nil)
  '(lsp-prefer-flymake nil)
- '(lsp-signature-enabled nil)
  '(magit-bury-buffer-function (quote magit-mode-quit-window))
  '(magit-diff-section-arguments (quote ("--no-ext-diff")))
  '(magit-revision-headers-format
