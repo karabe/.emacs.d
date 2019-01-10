@@ -22,7 +22,7 @@
                    counsel yasnippet editorconfig projectile
                    phpunit expand-region php-mode js2-mode rg
                    counsel-projectile move-text volatile-highlights
-                   comment-dwim-2 company company-web company-statistics
+                   comment-dwim-2 company company-statistics
                    lsp-mode company-lsp apache-mode gitignore-mode ivy-historian
                    japanese-holidays org add-node-modules-path dockerfile-mode
                    ivy-xref
@@ -291,7 +291,7 @@
 (add-hook 'web-mode-hook
  (lambda ()
    (local-set-key (kbd "C-c C-r") 'ivy-resume)
-   (setq-local company-backends '(company-css comapny-web-html company-dabbrev-code))
+   (setq-local company-backends '(company-css company-dabbrev-code))
    (setq-local electric-pair-inhibit-predicate
                `(lambda (c)
                   (if (char-equal c ?{) t (,electric-pair-inhibit-predicate c))))))
