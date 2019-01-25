@@ -25,7 +25,7 @@
                    comment-dwim-2 company company-statistics
                    lsp-mode company-lsp apache-mode gitignore-mode ivy-historian
                    japanese-holidays org add-node-modules-path dockerfile-mode
-                   ivy-xref
+                   ivy-xref lsp-ui yasnippet-snippets docker-compose-mode
                    ))
   (unless (package-installed-p package)
     (package-install package)))
@@ -218,7 +218,11 @@
 (global-set-key (kbd "C-c f") 'counsel-projectile-find-file)
 ;; lsp-mode
 (require 'lsp-clients)
-(add-hook 'php-mode-hook #'lsp)
+(add-hook 'php-mode-hook 'lsp)
+(add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
+;; lsp-ui
+(require 'lsp-ui)
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
 ;; ivy-xref
 (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)
 ;; org-mode
@@ -282,7 +286,7 @@
 
 (add-hook 'php-mode-hook
   (lambda ()
-    (setq-local company-backends '((company-capf company-files company-yasnippet :with company-dabbrev-code)))
+    (setq-local company-backends '((company-lsp company-files company-yasnippet :with company-dabbrev-code)))
     (local-set-key (kbd "C-.") 'other-window)
     (local-set-key (kbd "C-c t") 'phpunit-current-class)
     (local-set-key (kbd "C-c C-r") 'ivy-resume)
@@ -345,7 +349,9 @@
  '(japanese-holiday-weekend-marker (quote (holiday nil nil nil nil nil holiday)))
  '(js2-strict-missing-semi-warning nil)
  '(lsp-auto-configure nil)
+ '(lsp-eldoc-enable-hover nil)
  '(lsp-prefer-flymake nil)
+ '(lsp-ui-sideline-show-hover nil)
  '(magit-bury-buffer-function (quote magit-mode-quit-window))
  '(magit-diff-section-arguments (quote ("--no-ext-diff")))
  '(magit-revision-headers-format
@@ -376,7 +382,7 @@ CommitDate: %ci
  '(org-todo-keywords (quote ((sequence "TODO(t)" "WIP(w)" "FIXED(f!)" "DONE"))))
  '(package-selected-packages
    (quote
-    (eglot dockerfile-mode magit add-node-modules-path yaml-mode ivy-historian lsp-mode mozc-popup mozc volatile-highlights diminish smart-mode-line counsel counsel-gtags counsel-projectile wgrep-ag rg php-mode dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets org apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig zenburn-theme web-mode undo-tree sudo-edit pt phpunit move-text less-css-mode js2-mode japanese-holidays hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-web company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
+    (lsp-ui eglot docker-compose-mode markdown-mode volatile-highlights zenburn-theme projectile rg php-mode magit lsp-mode company web-mode ivy-xref helm-xref company-lsp dired-toggle-sudo edbi-sqlite edbi dockerfile-mode add-node-modules-path ivy-historian mozc-popup mozc diminish smart-mode-line counsel counsel-projectile dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig undo-tree sudo-edit pt phpunit move-text less-css-mode js2-mode japanese-holidays hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(projectile-completion-system (quote ivy))
