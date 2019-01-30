@@ -336,6 +336,7 @@ CommitDate: %ci
  '(rm-blacklist
    (quote
     (" EditorConfig" " ARev" " CounselGtags" " Undo-Tree" " VHl" " yas" " ivy" " Abbrev")))
+ '(show-paren-mode t)
  '(tab-width 4)
  '(truncate-partial-width-windows nil)
  '(vc-display-status nil)
