@@ -219,7 +219,12 @@
 ;; lsp-mode
 (require 'lsp-clients)
 (add-hook 'php-mode-hook 'lsp)
+(add-hook 'js2-mode-hook 'lsp)
 (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
+(add-hook 'lsp-mode-hook
+          (lambda ()
+            (setq-local company-backends '((company-lsp company-files company-yasnippet :with company-dabbrev-code)))
+            ))
 ;; lsp-ui
 (require 'lsp-ui)
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
@@ -286,7 +291,6 @@
 
 (add-hook 'php-mode-hook
   (lambda ()
-    (setq-local company-backends '((company-lsp company-files company-yasnippet :with company-dabbrev-code)))
     (local-set-key (kbd "C-.") 'other-window)
     (local-set-key (kbd "C-c t") 'phpunit-current-class)
     (local-set-key (kbd "C-c C-r") 'ivy-resume)
