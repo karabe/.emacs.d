@@ -260,9 +260,7 @@
     (company-sort-by-statistics company-sort-by-backend-importance)))
  '(counsel-gtags-auto-update t)
  '(counsel-yank-pop-separator
-   "
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-")
+   "\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
  '(default-input-method "japanese-mozc")
  '(diff-switches "-u")
  '(dired-dwim-target t)
@@ -294,11 +292,7 @@
  '(magit-bury-buffer-function (quote magit-mode-quit-window))
  '(magit-diff-section-arguments (quote ("--no-ext-diff")))
  '(magit-revision-headers-format
-   "Author:     %aN <%aE>
-AuthorDate: %ai
-Commit:     %cN <%cE>
-CommitDate: %ci
-")
+   "Author:     %aN <%aE>\nAuthorDate: %ai\nCommit:     %cN <%cE>\nCommitDate: %ci\n")
  '(magit-stage-all-confirm nil)
  '(magit-unstage-all-confirm nil)
  '(network-security-level (quote high))
@@ -310,8 +304,7 @@ CommitDate: %ci
       "* TODO %?")
      ("d" "Tel" entry
       (file "~/org/tel.org")
-      "* %T
-%?"))))
+      "* %T\n%?"))))
  '(org-log-done (quote time))
  '(org-todo-keyword-faces
    (quote
