@@ -26,6 +26,7 @@
                    lsp-mode company-lsp apache-mode gitignore-mode ivy-historian
                    japanese-holidays org add-node-modules-path dockerfile-mode
                    ivy-xref lsp-ui yasnippet-snippets docker-compose-mode
+                   emmet-mode
                    ))
   (unless (package-installed-p package)
     (package-install package)))
@@ -220,6 +221,8 @@
   )
 ;; add-node-modules-path
 (add-hook 'js2-mode-hook #'add-node-modules-path)
+;; emmet-mode
+(add-hook 'web-mode-hook 'emmet-mode)
 ;; other
 (setq comment-style 'extra-line)
 (setq kill-whole-line t)
@@ -314,7 +317,7 @@
  '(org-todo-keywords (quote ((sequence "TODO(t)" "WIP(w)" "FIXED(f!)" "DONE"))))
  '(package-selected-packages
    (quote
-    (lsp-ui eglot docker-compose-mode markdown-mode volatile-highlights zenburn-theme projectile rg php-mode magit lsp-mode company web-mode ivy-xref helm-xref company-lsp dired-toggle-sudo edbi-sqlite edbi dockerfile-mode add-node-modules-path ivy-historian mozc-popup mozc diminish smart-mode-line counsel counsel-projectile dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig undo-tree sudo-edit pt phpunit move-text less-css-mode js2-mode japanese-holidays hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
+    (emmet-mode web-mode lsp-ui eglot docker-compose-mode markdown-mode volatile-highlights zenburn-theme projectile rg php-mode magit lsp-mode company ivy-xref helm-xref company-lsp dired-toggle-sudo edbi-sqlite edbi dockerfile-mode add-node-modules-path ivy-historian mozc-popup mozc diminish smart-mode-line counsel counsel-projectile dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig undo-tree sudo-edit pt phpunit move-text less-css-mode js2-mode japanese-holidays hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(projectile-completion-system (quote ivy))
