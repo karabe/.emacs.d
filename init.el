@@ -260,20 +260,6 @@
 ;; smart-mode-line
 (setq sml/no-confirm-load-theme t)
 (sml/setup)
-;; eglot
-(defvar eglot-server-programs '((rust-mode . (eglot-rls "rls"))
-                                (python-mode . ("pyls"))
-                                ((js-mode
-                                  js2-mode
-                                  rjsx-mode) . ("javascript-typescript-stdio"))
-                                (sh-mode . ("bash-language-server" "start"))
-                                ((c++-mode
-                                  c-mode) . (eglot-cquery "cquery"))
-                                (ruby-mode
-                                 . ("solargraph" "socket" "--port"
-                                    :autoport))
-                                (php-mode . ("php" "/home/lubuntu/.config/composer/vendor/bin/php-language-server.php"))
-                                (haskell-mode . ("hie-wrapper"))))
 ;; japanese-holiday
 (eval-after-load "holidays"
   '(progn
