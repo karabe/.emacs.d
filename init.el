@@ -18,15 +18,15 @@
 (unless package-archive-contents (package-refresh-contents))
 
 (dolist (package '(magit zenburn-theme web-mode mozc mozc-popup
-                   flycheck s undo-tree git-gutter+ anzu smart-mode-line
+                   s undo-tree git-gutter+ anzu smart-mode-line
                    counsel yasnippet editorconfig projectile
                    phpunit expand-region php-mode js2-mode rg
                    counsel-projectile move-text volatile-highlights
                    comment-dwim-2 company company-statistics
-                   lsp-mode company-lsp apache-mode gitignore-mode ivy-historian
+                   apache-mode gitignore-mode ivy-historian
                    japanese-holidays org add-node-modules-path dockerfile-mode
-                   ivy-xref lsp-ui yasnippet-snippets docker-compose-mode
-                   emmet-mode
+                   ivy-xref yasnippet-snippets docker-compose-mode
+                   emmet-mode eglot
                    ))
   (unless (package-installed-p package)
     (package-install package)))
@@ -166,18 +166,39 @@
 (global-set-key (kbd "C-z") 'ivy-switch-buffer)
 ;; counsel-projectile
 (global-set-key (kbd "C-c f") 'counsel-projectile-find-file)
-;; lsp-mode
-(require 'lsp-clients)
-(add-hook 'php-mode-hook 'lsp)
-(add-hook 'js2-mode-hook 'lsp)
-(add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
-(add-hook 'lsp-mode-hook
+;; eglot
+(require 'eglot)
+(setq eglot-server-programs '((rust-mode . (eglot-rls "rls"))
+                              (python-mode . ("pyls"))
+                              ((js-mode
+                                js2-mode
+                                typescript-mode)
+                               . ("typescript-language-server" "--stdio"))
+                              (sh-mode . ("bash-language-server" "start"))
+                              (php-mode . ("php" "/home/lubuntu/.composer/vendor/bin/php-language-server.php"))
+                              ((c++-mode c-mode) . ("clangd"))
+                              ((caml-mode tuareg-mode reason-mode)
+                               . ("ocaml-language-server" "--stdio"))
+                              (ruby-mode
+                               . ("solargraph" "socket" "--port"
+                                  :autoport))
+                              (haskell-mode . ("hie-wrapper"))
+                              (kotlin-mode . ("kotlin-language-server"))
+                              (go-mode . ("go-langserver" "-mode=stdio"
+                                          "-gocodecompletion"))
+                              ((R-mode ess-r-mode) . ("R" "--slave" "-e"
+                                                      "languageserver::run()"))
+                              (java-mode . eglot--eclipse-jdt-contact)
+                              (dart-mode . ("dart_language_server"))))
+(add-hook 'php-mode-hook 'eglot-ensure)
+(add-hook 'js2-mode-hook 'eglot-ensure)
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'eglot-mode-hook
           (lambda ()
-            (setq-local company-backends '((company-lsp company-files company-yasnippet :with company-dabbrev-code)))
+            (setq-local company-backends '((company-capf company-files company-yasnippet :with company-dabbrev-code)))
             ))
-;; lsp-ui
-(require 'lsp-ui)
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+(require 'flymake-diagnostic-at-point)
+(add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode)
 ;; ivy-xref
 (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)
 ;; org-mode
@@ -237,10 +258,7 @@
 (add-hook 'web-mode-hook
  (lambda ()
    (local-set-key (kbd "C-c C-r") 'ivy-resume)
-   (setq-local company-backends '(company-css company-dabbrev-code))
-   (setq-local electric-pair-inhibit-predicate
-               `(lambda (c)
-                  (if (char-equal c ?{) t (,electric-pair-inhibit-predicate c))))))
+   (setq-local company-backends '(company-css company-dabbrev-code))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -288,10 +306,6 @@
  '(ivy-virtual-abbreviate (quote full))
  '(japanese-holiday-weekend-marker (quote (holiday nil nil nil nil nil holiday)))
  '(js2-strict-missing-semi-warning nil)
- '(lsp-auto-configure nil)
- '(lsp-eldoc-enable-hover nil)
- '(lsp-prefer-flymake nil)
- '(lsp-ui-sideline-show-hover nil)
  '(magit-bury-buffer-function (quote magit-mode-quit-window))
  '(magit-diff-section-arguments (quote ("--no-ext-diff")))
  '(magit-revision-headers-format
@@ -317,8 +331,9 @@
  '(org-todo-keywords (quote ((sequence "TODO(t)" "WIP(w)" "FIXED(f!)" "DONE"))))
  '(package-selected-packages
    (quote
-    (emmet-mode web-mode lsp-ui eglot docker-compose-mode markdown-mode volatile-highlights zenburn-theme projectile rg php-mode magit lsp-mode company ivy-xref helm-xref company-lsp dired-toggle-sudo edbi-sqlite edbi dockerfile-mode add-node-modules-path ivy-historian mozc-popup mozc diminish smart-mode-line counsel counsel-projectile dotenv-mode apache-mode csv-mode rainbow-mode yasnippet-snippets apib-mode elixir-mode pug-mode kotlin-mode flycheck yasnippet editorconfig undo-tree sudo-edit pt phpunit move-text less-css-mode js2-mode japanese-holidays hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
+    (flymake-diagnostic-at-point yasnippet-snippets emmet-mode web-mode eglot docker-compose-mode markdown-mode volatile-highlights zenburn-theme projectile rg php-mode magit company ivy-xref helm-xref dired-toggle-sudo edbi-sqlite edbi dockerfile-mode add-node-modules-path ivy-historian mozc-popup mozc diminish smart-mode-line counsel counsel-projectile dotenv-mode apache-mode csv-mode rainbow-mode apib-mode elixir-mode pug-mode kotlin-mode yasnippet editorconfig undo-tree sudo-edit pt phpunit move-text less-css-mode js2-mode japanese-holidays hc-zenburn-theme gitignore-mode gitconfig-mode gitattributes-mode git-gutter+ flycheck-tip expand-region company-statistics comment-dwim-2 color-theme coffee-mode anzu)))
  '(php-lineup-cascaded-calls t)
+ '(php-mode-lineup-cascaded-calls t)
  '(php-search-url "http://www.php.net/ja/")
  '(projectile-completion-system (quote ivy))
  '(recentf-exclude
