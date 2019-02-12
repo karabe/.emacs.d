@@ -79,8 +79,7 @@
   (company-transformers '(company-sort-by-statistics company-sort-by-backend-importance)))
 
 (use-package company-statistics
-  :custom
-  (company-statistics-mode t))
+  :hook (company-mode . company-statistics-mode))
 
 (use-package projectile
   :init
@@ -150,8 +149,7 @@
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 (use-package ivy-historian
-  :custom
-  (ivy-historian-mode t))
+  :hook (ivy-mode . ivy-historian-mode))
 
 (use-package counsel-projectile
   :bind ("C-c f" . counsel-projectile-find-file))
