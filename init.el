@@ -330,6 +330,7 @@
  '(tool-bar-mode nil)
  '(truncate-partial-width-windows nil)
  '(use-package-always-defer t)
+ '(use-package-enable-imenu-support t)
  '(vc-display-status nil)
  '(visible-bell t))
 (custom-set-faces
