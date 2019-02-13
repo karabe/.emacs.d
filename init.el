@@ -6,10 +6,10 @@
 ;; パッケージ設定
 (setq package-archives
       '(
-        ("gnu"         . "https://elpa.gnu.org/packages/")
-        ("org"         . "https://orgmode.org/elpa/")
+        ("gnu"          . "https://elpa.gnu.org/packages/")
+        ;; ("org"          . "https://orgmode.org/elpa/")
         ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
-        ("melpa-latest"       . "https://melpa.org/packages/")
+        ("melpa"        . "https://melpa.org/packages/")
 	))
 (package-initialize)
 (unless package-archive-contents (package-refresh-contents))
@@ -18,6 +18,7 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+(require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
