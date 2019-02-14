@@ -71,9 +71,7 @@
 (use-package company
   :hook (((php-mode web-mode css-mode js2-mode) . company-mode)
          (web-mode . (lambda ()
-                       (setq-local company-backends '(company-css company-dabbrev-code))))
-         ((php-mode js2-mode) . (lambda ()
-                                  (setq-local company-backends '((company-capf company-files company-yasnippet :with company-dabbrev-code))))))
+                       (setq-local company-backends '(company-css company-dabbrev-code)))))
   :custom
   (company-dabbrev-code-everywhere t)
   (company-dabbrev-downcase nil)
@@ -158,7 +156,10 @@
   :bind ("C-c f" . counsel-projectile-find-file))
 
 (use-package eglot
-  :hook ((php-mode js2-mode c-mode) . eglot-ensure)
+  :hook (((php-mode js2-mode c-mode)
+          . (lambda ()
+              (eglot-ensure)
+              (setq-local company-backends '((company-capf company-files company-yasnippet :with company-dabbrev-code))))))
   :config
   (setq eglot-server-programs '((rust-mode . (eglot-rls "rls"))
                                 (python-mode . ("pyls"))
