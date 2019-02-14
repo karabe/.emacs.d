@@ -269,7 +269,13 @@
   :init
   (sml/setup)
   :custom
-  (sml/no-confirm-load-theme t))
+  (sml/no-confirm-load-theme t)
+  (rm-blacklist
+   (format "^ \\(%s\\)$"
+           (mapconcat #'identity
+                      '("EditorConfig" "ARev" "Undo-Tree" "VHl" "yas" "ivy"
+                        "Abbrev" "ElDoc" "Emmet" "company" "Projectile.*")
+                      "\\|"))))
 
 (use-package japanese-holidays
   :hook ((calendar-today-visible . japanese-holiday-mark-weekend)
@@ -341,9 +347,6 @@
     (".recentf" ".ido.last" ".gitconfig" ".smex-items" ".todo-do" ".history" "COMMIT_EDITMSG" "autoloads.el")))
  '(recentf-max-saved-items 200)
  '(recentf-mode t)
- '(rm-blacklist
-   (quote
-    (" EditorConfig" " ARev" " Undo-Tree" " VHl" " yas" " ivy" " Abbrev" " ElDoc")))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(show-paren-mode t)
