@@ -191,13 +191,16 @@
                                         (lsp)))
   :custom
   (lsp-auto-configure nil)
-  (lsp-eldoc-enable-hover nil))
+  (lsp-eldoc-render-all t)
+  (lsp-enable-completion-at-point nil))
 
 (use-package lsp-ui
   :hook ((lsp-mode . lsp-ui-mode)
          (lsp-after-open . lsp-enable-imenu))
   :custom
-  (lsp-ui-sideline-show-hover nil))
+  (lsp-ui-doc-enable nil)
+  (lsp-ui-sideline-enable nil)
+  (lsp-ui-imenu-enable nil))
 
 (use-package company-lsp
   :hook (lsp-mode . (lambda ()
