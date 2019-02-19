@@ -336,7 +336,7 @@
  '(inhibit-startup-screen t)
  '(kill-whole-line t)
  '(make-backup-files nil)
- '(max-mini-window-height 1)
+ '(max-mini-window-height 3)
  '(menu-bar-mode nil)
  '(network-security-level (quote high))
  '(package-selected-packages
