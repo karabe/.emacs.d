@@ -288,7 +288,7 @@
    (format "^ \\(%s\\)$"
            (mapconcat #'identity
                       '("EditorConfig" "ARev" "Undo-Tree" "VHl" "yas" "ivy"
-                        "Abbrev" "ElDoc" "Emmet" "company" "Projectile.*")
+                        "Abbrev" "ElDoc" "company" "Projectile.*" "Flymake.*")
                       "\\|"))))
 
 (use-package japanese-holidays
