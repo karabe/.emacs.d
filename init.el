@@ -156,6 +156,7 @@
   :bind ("C-c f" . counsel-projectile-find-file))
 
 (use-package eglot
+  :disabled
   :hook (((php-mode js2-mode c-mode)
           . (lambda ()
               (eglot-ensure)
@@ -208,6 +209,16 @@
 
 (use-package flymake-diagnostic-at-point
   :hook (flymake-mode . flymake-diagnostic-at-point-mode))
+
+(use-package counsel-gtags
+  :hook (php-mode . (lambda ()
+                      (setq-local company-backends '((company-gtags company-files company-yasnippet :with company-dabbrev-code)))
+                      (counsel-gtags-mode)))
+  :bind (:map counsel-gtags-mode-map
+              ("M-." . counsel-gtags-dwim)
+              ("M-," . counsel-gtags-go-backward))
+  :custom
+  (counsel-gtags-auto-update t))
 
 (use-package org
   :bind (("C-c a" . org-agenda)
