@@ -324,6 +324,12 @@
 
 (use-package phpunit)
 
+(use-package migemo
+  :custom
+  (migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict")
+  (migemo-user-dictionary nil)
+  (migemo-regex-dictionary nil))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
