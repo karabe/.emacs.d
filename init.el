@@ -340,6 +340,7 @@
  ;; If there is more than one, they won't work right.
  '(ange-ftp-try-passive-mode t)
  '(auto-save-default nil)
+ '(auto-save-list-file-prefix nil)
  '(diff-switches "-u")
  '(dired-dwim-target t)
  '(dired-listing-switches "-Ahl")
