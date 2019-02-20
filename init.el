@@ -42,11 +42,6 @@
   :custom
   (mozc-candidate-style 'popup))
 
-(use-package js2-mode
-  :mode "\\.js$"
-  :custom
-  (js2-strict-missing-semi-warning nil))
-
 (use-package web-mode
   :mode ("\\.tpl\\'" "\\.html?\\'" "\\.blade\\.php?\\'" "\\.vue\\'")
   :bind (:map web-mode-map
@@ -69,9 +64,7 @@
   (php-search-url "http://www.php.net/ja/"))
 
 (use-package company
-  :hook (((php-mode web-mode css-mode js2-mode) . company-mode)
-         (web-mode . (lambda ()
-                       (setq-local company-backends '(company-css company-dabbrev-code)))))
+  :hook ((php-mode web-mode css-mode js-mode) . company-mode)
   :custom
   (company-dabbrev-code-everywhere t)
   (company-dabbrev-downcase nil)
@@ -157,7 +150,7 @@
 
 (use-package eglot
   :disabled
-  :hook (((php-mode js2-mode c-mode)
+  :hook (((php-mode js-mode c-mode)
           . (lambda ()
               (eglot-ensure)
               (setq-local company-backends '((company-capf company-files company-yasnippet :with company-dabbrev-code))))))
@@ -187,7 +180,7 @@
 
 (use-package lsp-mode
   :disabled
-  :hook ((php-mode js2-mode c-mode) . (lambda ()
+  :hook ((php-mode js-mode c-mode) . (lambda ()
                                         (require 'lsp-clients)
                                         (lsp)))
   :custom
@@ -211,11 +204,12 @@
   :hook (flymake-mode . flymake-diagnostic-at-point-mode))
 
 (use-package counsel-gtags
-  :hook (php-mode . (lambda ()
-                      (setq-local company-backends '((company-gtags company-files company-yasnippet :with company-dabbrev-code)))
+  :hook ((php-mode web-mode js-mode) . (lambda ()
+                      (setq-local company-backends '((company-gtags company-files company-yasnippet company-css :with company-dabbrev-code)))
                       (counsel-gtags-mode)))
   :bind (:map counsel-gtags-mode-map
               ("M-." . counsel-gtags-dwim)
+              ("M-?" . counsel-gtags-find-reference)
               ("M-," . counsel-gtags-go-backward))
   :custom
   (counsel-gtags-auto-update t))
@@ -304,7 +298,7 @@
   (japanese-holiday-weekend-marker '(holiday nil nil nil nil nil holiday)))
 
 (use-package add-node-modules-path
-  :hook js2-mode)
+  :hook js-mode)
 
 (use-package emmet-mode
   :hook web-mode)
@@ -365,7 +359,7 @@
  '(network-security-level (quote high))
  '(package-selected-packages
    (quote
-    (flycheck counsel-gtags company-lsp lsp-ui magit js2-mode zenburn-theme yasnippet-snippets web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ flymake-diagnostic-at-point expand-region emmet-mode eglot editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
+    (flycheck counsel-gtags company-lsp lsp-ui magit zenburn-theme yasnippet-snippets web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ flymake-diagnostic-at-point expand-region emmet-mode eglot editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
  '(recentf-exclude
    (quote
     (".recentf" ".ido.last" ".gitconfig" ".smex-items" ".todo-do" ".history" "COMMIT_EDITMSG" "autoloads.el")))
