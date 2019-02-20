@@ -83,8 +83,7 @@
   (projectile-register-project-type 'laravel
                                     '("composer.json" "app" "bootstrap" "config" "database" "public" "resources" "storage" "tests" "vendor")
                                     :test "phpunit"
-                                    :test-suffix "Test"
-                                    )
+                                    :test-suffix "Test")
   (projectile-register-project-type 'webextention
                                     '("addon" "src" "test" "package.json")
                                     :compile "yarn run prod"
@@ -92,8 +91,9 @@
                                     :src-dir "src"
                                     :test-dir "test"
                                     :test "yarn run jest"
-                                    :test-suffix ".test"
-                                    )
+                                    :test-suffix ".test")
+  (projectile-register-project-type 'eccube
+                                    '("data" "html"))
   :custom
   (projectile-completion-system 'ivy))
 
