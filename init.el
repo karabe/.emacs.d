@@ -69,7 +69,6 @@
   (company-dabbrev-code-everywhere t)
   (company-dabbrev-downcase nil)
   (company-idle-delay 0)
-  (company-minimum-prefix-length 2)
   (company-transformers '(company-sort-by-statistics company-sort-by-backend-importance)))
 
 (use-package company-statistics
