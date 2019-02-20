@@ -220,6 +220,9 @@
   :custom
   (counsel-gtags-auto-update t))
 
+(use-package flycheck
+  :hook (counsel-gtags-mode . flycheck-mode))
+
 (use-package org
   :bind (("C-c a" . org-agenda)
          ("C-c l" . org-store-link)
@@ -288,7 +291,7 @@
    (format "^ \\(%s\\)$"
            (mapconcat #'identity
                       '("EditorConfig" "ARev" "Undo-Tree" "VHl" "yas" "ivy"
-                        "Abbrev" "ElDoc" "company" "Projectile.*" "Flymake.*")
+                        "Abbrev" "ElDoc" "company" "Projectile.*" "CounselGtags")
                       "\\|"))))
 
 (use-package japanese-holidays
