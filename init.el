@@ -148,11 +148,9 @@
   :bind ("C-c f" . counsel-projectile-find-file))
 
 (use-package eglot
-  :disabled
-  :hook (((php-mode js-mode c-mode)
-          . (lambda ()
-              (eglot-ensure)
-              (setq-local company-backends '((company-capf company-files company-yasnippet :with company-dabbrev-code))))))
+  :hook (((js-mode c-mode) . (lambda ()
+                               (eglot-ensure)
+                               (setq-local company-backends '((company-capf company-files company-yasnippet :with company-dabbrev-code))))))
   :config
   (setq eglot-server-programs '((rust-mode . (eglot-rls "rls"))
                                 (python-mode . ("pyls"))
@@ -178,17 +176,10 @@
                                 (dart-mode . ("dart_language_server")))))
 
 (use-package lsp-mode
-  :hook (((js-mode c-mode) . (lambda ()
+  :disabled
+  :hook ((js-mode c-mode) . (lambda ()
                                (require 'lsp-clients)
                                (lsp)))
-         (php-mode . (lambda ()
-                       (if (eq (projectile-project-type) 'eccube)
-                           (progn
-                             (setq-local company-backends '((company-gtags company-files company-yasnippet company-css :with company-dabbrev-code)))
-                             (counsel-gtags-mode))
-                         (progn
-                           (require 'lsp-clients)
-                           (lsp))))))
   :custom
   (lsp-auto-configure nil)
   (lsp-eldoc-render-all t)
@@ -210,6 +201,10 @@
   :hook (flymake-mode . flymake-diagnostic-at-point-mode))
 
 (use-package counsel-gtags
+  :hook (php-mode . (lambda ()
+                      (when (eq (projectile-project-type) 'eccube)
+                        (setq-local company-backends '((company-gtags company-files company-yasnippet company-css :with company-dabbrev-code)))
+                        (counsel-gtags-mode))))
   :bind (:map counsel-gtags-mode-map
               ("M-." . counsel-gtags-dwim)
               ("M-?" . counsel-gtags-find-reference)
@@ -219,6 +214,17 @@
 
 (use-package flycheck
   :hook (counsel-gtags-mode . flycheck-mode))
+
+(use-package phpactor
+  :hook (php-mode . (lambda ()
+                      (unless (eq (projectile-project-type) 'eccube)
+                        (define-key php-mode-map (kbd "M-.") 'phpactor-goto-definition)
+                        (define-key php-mode-map (kbd "M-?") 'phpactor-find-references)))))
+
+(use-package company-phpactor
+  :hook (php-mode . (lambda ()
+                      (unless (eq (projectile-project-type) 'eccube)
+                        (setq-local company-backends '((company-phpactor company-files company-yasnippet :with company-dabbrev-code)))))))
 
 (use-package org
   :bind (("C-c a" . org-agenda)
