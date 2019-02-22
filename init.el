@@ -98,10 +98,6 @@
   :custom
   (projectile-completion-system 'ivy))
 
-;; wdired
-(require 'wdired)
-(define-key dired-mode-map "r" 'wdired-change-to-wdired-mode)
-
 (use-package undo-tree
   :init
   (global-undo-tree-mode))
@@ -339,6 +335,27 @@
   (migemo-user-dictionary nil)
   (migemo-regex-dictionary nil))
 
+(use-package elec-pair
+  :custom
+  (electric-pair-mode t))
+
+(use-package dired
+  :ensure nil
+  :custom
+  (dired-dwim-target t)
+  (dired-listing-switches "-Ahl")
+  (dired-recursive-copies 'always)
+  (dired-use-ls-dired t))
+
+(use-package wdired
+  :bind (:map dired-mode-map
+              ("r" . wdired-change-to-wdired-mode)))
+
+(use-package recentf
+  :custom
+  (recentf-max-saved-items 200)
+  (recentf-mode t))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -348,17 +365,8 @@
  '(auto-save-default nil)
  '(auto-save-list-file-prefix nil)
  '(diff-switches "-u")
- '(dired-dwim-target t)
- '(dired-listing-switches "-Ahl")
- '(dired-recursive-copies (quote always))
- '(dired-use-ls-dired t)
  '(echo-keystrokes 0.1)
- '(electric-pair-inhibit-predicate (quote ignore))
- '(electric-pair-mode t)
- '(electric-pair-pairs (quote ((39 . 39) (34 . 34))))
- '(electric-pair-text-pairs (quote ((39 . 39) (34 . 34))))
  '(enable-recursive-minibuffers t)
- '(git-commit-fill-column 80)
  '(global-hl-line-mode t)
  '(imenu-auto-rescan t)
  '(indent-tabs-mode nil)
@@ -366,17 +374,11 @@
  '(inhibit-startup-screen t)
  '(kill-whole-line t)
  '(make-backup-files nil)
- '(max-mini-window-height 3)
  '(menu-bar-mode nil)
  '(network-security-level (quote high))
  '(package-selected-packages
    (quote
     (flycheck counsel-gtags company-lsp lsp-ui magit zenburn-theme yasnippet-snippets web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ flymake-diagnostic-at-point expand-region emmet-mode eglot editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
- '(recentf-exclude
-   (quote
-    (".recentf" ".ido.last" ".gitconfig" ".smex-items" ".todo-do" ".history" "COMMIT_EDITMSG" "autoloads.el")))
- '(recentf-max-saved-items 200)
- '(recentf-mode t)
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(show-paren-mode t)
