@@ -61,10 +61,11 @@
               ("C-c w" . web-mode))
   :custom
   (php-mode-lineup-cascaded-calls t)
-  (php-search-url "http://www.php.net/ja/"))
+  (php-search-url "http://www.php.net/ja/")
+  (php-mode-coding-style 'psr2))
 
 (use-package company
-  :hook ((php-mode web-mode css-mode js-mode) . company-mode)
+  :hook ((php-mode web-mode css-mode js-mode emacs-lisp-mode) . company-mode)
   :custom
   (company-dabbrev-code-everywhere t)
   (company-dabbrev-downcase nil)
@@ -218,8 +219,10 @@
 (use-package phpactor
   :hook (php-mode . (lambda ()
                       (unless (eq (projectile-project-type) 'eccube)
-                        (define-key php-mode-map (kbd "M-.") 'phpactor-goto-definition)
-                        (define-key php-mode-map (kbd "M-?") 'phpactor-find-references)))))
+                        (bind-keys :map php-mode-map
+                                   ("M-." . phpactor-goto-definition)
+                                   ("M-?" . phpactor-find-references)
+                                   ("M-/" . phpactor-import-class))))))
 
 (use-package company-phpactor
   :hook (php-mode . (lambda ()
