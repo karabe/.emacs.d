@@ -217,8 +217,7 @@
                       (unless (eq (projectile-project-type) 'eccube)
                         (bind-keys :map php-mode-map
                                    ("M-." . phpactor-goto-definition)
-                                   ("M-?" . phpactor-find-references)
-                                   ("M-/" . phpactor-import-class))))))
+                                   ("M-?" . phpactor-find-references))))))
 
 (use-package company-phpactor
   :hook (php-mode . (lambda ()
