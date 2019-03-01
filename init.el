@@ -221,7 +221,8 @@
 
 (use-package company-phpactor
   :hook (php-mode . (lambda ()
-                      (unless (eq (projectile-project-type) 'eccube)
+                      (if (eq (projectile-project-type) 'eccube)
+                          (bind-key "M-/" #'company-phpactor)
                         (setq-local company-backends '((company-phpactor company-files company-yasnippet :with company-dabbrev-code)))))))
 
 (use-package org
