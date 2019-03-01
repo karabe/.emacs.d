@@ -214,10 +214,39 @@
 
 (use-package phpactor
   :hook (php-mode . (lambda ()
+                      (phpactor-eldoc-setting)
                       (unless (eq (projectile-project-type) 'eccube)
                         (bind-keys :map php-mode-map
                                    ("M-." . phpactor-goto-definition)
-                                   ("M-?" . phpactor-find-references))))))
+                                   ("M-?" . phpactor-find-references)))))
+  :config
+  (defun phpactor-hover ()
+    "Execute Phpactor RPC hover command."
+    (interactive)
+    (let ((arguments (phpactor--command-argments :source :offset)))
+      (apply #'phpactor-action-dispatch (phpactor--rpc "hover" arguments))))
+  (defun phpactor-eldoc-setting ()
+    (defvar-local phpactor--eldoc-proc nil)
+    (defun phpactor--eldoc-documentation-function ()
+      (when phpactor--eldoc-proc
+        (delete-process phpactor--eldoc-proc)
+        (setq-local phpactor--eldoc-proc nil))
+      (setq-local phpactor--eldoc-proc
+                  (async-start
+                   `(lambda ()
+                      ,(async-inject-variables "load-path")
+                      (require 'phpactor)
+                      (fset 'phpactor-hover ,(symbol-function 'phpactor-hover))
+                      (with-temp-buffer
+                        (insert ,(buffer-substring-no-properties (point-min) (point-max)))
+                        (goto-char ,(point))
+                        (phpactor-hover)))
+                   (lambda (result)
+                     (eldoc-message result))))
+      nil)
+    (add-function :before-until (local 'eldoc-documentation-function)
+                  #'phpactor--eldoc-documentation-function)
+    (turn-on-eldoc-mode)))
 
 (use-package company-phpactor
   :hook (php-mode . (lambda ()
