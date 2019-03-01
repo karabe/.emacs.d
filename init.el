@@ -395,6 +395,7 @@
  '(auto-save-list-file-prefix nil)
  '(diff-switches "-u")
  '(echo-keystrokes 0.1)
+ '(eldoc-idle-delay 0.2)
  '(enable-recursive-minibuffers t)
  '(global-hl-line-mode t)
  '(imenu-auto-rescan t)
