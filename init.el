@@ -226,23 +226,22 @@
     (let ((arguments (phpactor--command-argments :source :offset)))
       (apply #'phpactor-action-dispatch (phpactor--rpc "hover" arguments))))
   (defun phpactor-eldoc-setting ()
-    (defvar-local phpactor--eldoc-proc nil)
     (defun phpactor--eldoc-documentation-function ()
-      (when phpactor--eldoc-proc
-        (delete-process phpactor--eldoc-proc)
-        (setq-local phpactor--eldoc-proc nil))
-      (setq-local phpactor--eldoc-proc
-                  (async-start
-                   `(lambda ()
-                      ,(async-inject-variables "load-path")
-                      (require 'phpactor)
-                      (fset 'phpactor-hover ,(symbol-function 'phpactor-hover))
-                      (with-temp-buffer
-                        (insert ,(buffer-substring-no-properties (point-min) (point-max)))
-                        (goto-char ,(point))
-                        (phpactor-hover)))
-                   (lambda (result)
-                     (eldoc-message result))))
+      (when (and (symbol-at-point)
+                 (not (php-in-string-or-comment-p)))
+        (async-start
+         `(lambda ()
+            ,(async-inject-variables "load-path")
+            (require 'phpactor)
+            (fset 'phpactor-hover ,(symbol-function 'phpactor-hover))
+            (with-temp-buffer
+              (insert ,(buffer-substring-no-properties (point-min) (point-max)))
+              (goto-char ,(point))
+              (phpactor-hover)))
+         (lambda (result)
+           (when (timer--triggered eldoc-timer)
+             (eldoc-message result)))))
+      ;; 非同期なので必ずnilを返す
       nil)
     (add-function :before-until (local 'eldoc-documentation-function)
                   #'phpactor--eldoc-documentation-function)
