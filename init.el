@@ -239,7 +239,7 @@
               (goto-char ,(point))
               (phpactor-hover)))
          (lambda (result)
-           (when (timer--triggered eldoc-timer)
+           (when (timer--triggered eldoc-timer) ;; カーソル移動中に止まらないように
              (eldoc-message result)))))
       ;; 非同期なので必ずnilを返す
       nil)
