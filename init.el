@@ -384,6 +384,10 @@
   (recentf-max-saved-items 200)
   (recentf-mode t))
 
+(use-package sql
+  :custom
+  (sql-product 'mysql))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
