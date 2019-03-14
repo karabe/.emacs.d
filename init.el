@@ -42,16 +42,6 @@
   :custom
   (mozc-candidate-style 'popup))
 
-(use-package web-mode
-  :mode ("\\.tpl\\'" "\\.html?\\'" "\\.blade\\.php?\\'" "\\.vue\\'")
-  :bind (:map web-mode-map
-             ("C-c C-r" . ivy-resume))
-  :custom
-  (web-mode-code-indent-offset 4)
-  (web-mode-enable-auto-indentation nil)
-  (web-mode-enable-current-element-highlight t)
-  (web-mode-markup-indent-offset 4))
-
 (use-package php-mode
   :mode "\\.php?\\'"
   :bind (:map php-mode-map
@@ -63,6 +53,16 @@
   (php-mode-lineup-cascaded-calls t)
   (php-search-url "http://www.php.net/ja/")
   (php-mode-coding-style 'psr2))
+
+(use-package web-mode
+  :mode ("\\.tpl\\'" "\\.html?\\'" "\\.blade\\.php?\\'" "\\.vue\\'")
+  :bind (:map web-mode-map
+             ("C-c C-r" . ivy-resume))
+  :custom
+  (web-mode-code-indent-offset 4)
+  (web-mode-enable-auto-indentation nil)
+  (web-mode-enable-current-element-highlight t)
+  (web-mode-markup-indent-offset 4))
 
 (use-package company
   :hook ((php-mode web-mode css-mode js-mode emacs-lisp-mode sql-mode) . company-mode)
