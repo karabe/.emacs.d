@@ -237,7 +237,9 @@
             (with-temp-buffer
               (insert ,(buffer-substring-no-properties (point-min) (point-max)))
               (goto-char ,(point))
-              (phpactor-hover)))
+              (condition-case err
+                  (phpactor-hover)
+                (error err))))
          (lambda (result)
            (when (timer--triggered eldoc-timer) ;; カーソル移動中に止まらないように
              (eldoc-message result)))))
