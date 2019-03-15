@@ -199,13 +199,8 @@
 
 (use-package counsel-gtags
   :hook (php-mode . (lambda ()
-                      (when (eq (projectile-project-type) 'eccube)
-                        (setq-local company-backends '((company-gtags company-files company-yasnippet company-css :with company-dabbrev-code)))
-                        (counsel-gtags-mode))))
-  :bind (:map counsel-gtags-mode-map
-              ("M-." . counsel-gtags-dwim)
-              ("M-?" . counsel-gtags-find-reference)
-              ("M-," . counsel-gtags-go-backward))
+                      (setq-local company-backends '((company-gtags company-files company-yasnippet company-css :with company-dabbrev-code)))
+                      (counsel-gtags-mode)))
   :custom
   (counsel-gtags-auto-update t))
 
@@ -215,10 +210,10 @@
 (use-package phpactor
   :hook (php-mode . (lambda ()
                       (phpactor-eldoc-setting)
-                      (unless (eq (projectile-project-type) 'eccube)
-                        (bind-keys :map php-mode-map
-                                   ("M-." . phpactor-goto-definition)
-                                   ("M-?" . phpactor-find-references)))))
+                      (bind-keys :map php-mode-map
+                                 ("M-." . phpactor-goto-definition-fallback)
+                                 ("M-?" . phpactor-find-references-fallback)
+                                 ("M-," . xref-pop-marker-stack))))
   :config
   (defun phpactor-hover ()
     "Execute Phpactor RPC hover command."
@@ -247,13 +242,24 @@
       nil)
     (add-function :before-until (local 'eldoc-documentation-function)
                   #'phpactor--eldoc-documentation-function)
-    (turn-on-eldoc-mode)))
+    (turn-on-eldoc-mode))
+  (advice-add 'counsel-gtags--push :after (lambda (direction)
+                                            (when (eq direction 'from)
+                                              (xref-push-marker-stack))))
+  (defun phpactor-goto-definition-fallback ()
+    (interactive)
+    (condition-case err
+        (phpactor-goto-definition)
+      (error (counsel-gtags-dwim))))
+  (defun phpactor-find-references-fallback ()
+    (interactive)
+    (condition-case err
+        (phpactor-find-references)
+      (error (counsel-gtags-find-reference)))))
 
 (use-package company-phpactor
   :hook (php-mode . (lambda ()
-                      (if (eq (projectile-project-type) 'eccube)
-                          (bind-key "M-/" #'company-phpactor)
-                        (setq-local company-backends '((company-phpactor company-files company-yasnippet :with company-dabbrev-code)))))))
+                      (bind-key "M-/" #'company-phpactor))))
 
 (use-package org
   :bind (("C-c a" . org-agenda)
