@@ -381,7 +381,8 @@
 
 (use-package elec-pair
   :custom
-  (electric-pair-mode t))
+  (electric-pair-mode t)
+  (show-paren-mode t))
 
 (use-package dired
   :ensure nil
@@ -498,10 +499,9 @@
  '(network-security-level (quote high))
  '(package-selected-packages
    (quote
-    (company-phpactor phpactor flycheck counsel-gtags company-lsp lsp-ui magit zenburn-theme yasnippet-snippets web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ flymake-diagnostic-at-point expand-region emmet-mode eglot editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
+    (yasnippet yasnippet-snippets company-phpactor phpactor flycheck counsel-gtags company-lsp lsp-ui magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ flymake-diagnostic-at-point expand-region emmet-mode eglot editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
- '(show-paren-mode t)
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(truncate-partial-width-windows nil)
