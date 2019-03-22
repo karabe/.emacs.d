@@ -145,6 +145,7 @@
   :bind ("C-c f" . counsel-projectile-find-file))
 
 (use-package eglot
+  :disabled
   :hook (((js-mode c-mode) . (lambda ()
                                (eglot-ensure)
                                (setq-local company-backends '((company-capf company-files company-yasnippet :with company-dabbrev-code))))))
@@ -173,18 +174,21 @@
                                 (dart-mode . ("dart_language_server")))))
 
 (use-package lsp-mode
-  :disabled
-  :hook ((js-mode c-mode) . (lambda ()
+  :hook ((js-mode c-mode php-mode) . (lambda ()
                                (require 'lsp-clients)
                                (lsp)))
+  :config
+  (defun lsp-auto-enable-imenu ()
+    (when (and lsp-mode (not (eq imenu-create-index-function #'lsp--imenu-create-index)))
+      (lsp-enable-imenu)))
+  (advice-add 'counsel-imenu :before #'lsp-auto-enable-imenu)
   :custom
   (lsp-auto-configure nil)
   (lsp-eldoc-render-all t)
   (lsp-enable-completion-at-point nil))
 
 (use-package lsp-ui
-  :hook ((lsp-mode . lsp-ui-mode)
-         (lsp-after-open . lsp-enable-imenu))
+  :hook (lsp-mode . lsp-ui-mode)
   :custom
   (lsp-ui-doc-enable nil)
   (lsp-ui-sideline-enable nil)
@@ -198,6 +202,7 @@
   :hook (flymake-mode . flymake-diagnostic-at-point-mode))
 
 (use-package counsel-gtags
+  :disabled
   :hook (php-mode . (lambda ()
                       (setq-local company-backends '((company-gtags company-files company-yasnippet company-css :with company-dabbrev-code)))
                       (counsel-gtags-mode)))
@@ -207,7 +212,10 @@
 (use-package flycheck
   :hook (counsel-gtags-mode . flycheck-mode))
 
+(use-package phpactor)
+
 (use-package phpactor
+  :disabled
   :hook (php-mode . (lambda ()
                       (phpactor-eldoc-setting)
                       (bind-keys :map php-mode-map
@@ -478,7 +486,6 @@
  '(auto-save-list-file-prefix nil)
  '(diff-switches "-u")
  '(echo-keystrokes 0.1)
- '(eldoc-idle-delay 0.2)
  '(enable-recursive-minibuffers t)
  '(global-hl-line-mode t)
  '(imenu-auto-rescan t)
