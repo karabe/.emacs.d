@@ -184,13 +184,13 @@
   (advice-add 'counsel-imenu :before #'lsp-auto-enable-imenu)
   :custom
   (lsp-auto-configure nil)
-  (lsp-eldoc-render-all t)
   (lsp-enable-completion-at-point nil))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
   :custom
-  (lsp-ui-doc-enable nil)
+  (lsp-ui-doc-position 'bottom)
+  (lsp-ui-flycheck-enable t)
   (lsp-ui-sideline-enable nil)
   (lsp-ui-imenu-enable nil))
 
