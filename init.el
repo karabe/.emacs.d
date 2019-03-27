@@ -379,6 +379,8 @@
   (migemo-user-dictionary nil)
   (migemo-regex-dictionary nil))
 
+(use-package csv-mode)
+
 (use-package elec-pair
   :custom
   (electric-pair-mode t)
