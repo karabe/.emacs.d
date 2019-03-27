@@ -186,10 +186,6 @@
 
 (use-package phpactor)
 
-(use-package company-phpactor
-  :hook (php-mode . (lambda ()
-                      (bind-key "M-/" #'company-phpactor))))
-
 (use-package org
   :bind (("C-c a" . org-agenda)
          ("C-c l" . org-store-link)
@@ -422,7 +418,7 @@
  '(network-security-level (quote high))
  '(package-selected-packages
    (quote
-    (csv-mode yasnippet yasnippet-snippets company-phpactor phpactor flycheck counsel-gtags company-lsp lsp-ui magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ flymake-diagnostic-at-point expand-region emmet-mode eglot editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
+    (csv-mode yasnippet yasnippet-snippets phpactor flycheck counsel-gtags company-lsp lsp-ui magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ flymake-diagnostic-at-point expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
