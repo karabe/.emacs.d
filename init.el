@@ -210,7 +210,8 @@
   (counsel-gtags-auto-update t))
 
 (use-package flycheck
-  :hook (counsel-gtags-mode . flycheck-mode))
+  :custom
+  (global-flycheck-mode t))
 
 (use-package phpactor)
 
