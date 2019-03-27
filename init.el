@@ -144,35 +144,6 @@
 (use-package counsel-projectile
   :bind ("C-c f" . counsel-projectile-find-file))
 
-(use-package eglot
-  :disabled
-  :hook (((js-mode c-mode) . (lambda ()
-                               (eglot-ensure)
-                               (setq-local company-backends '((company-capf company-files company-yasnippet :with company-dabbrev-code))))))
-  :config
-  (setq eglot-server-programs '((rust-mode . (eglot-rls "rls"))
-                                (python-mode . ("pyls"))
-                                ((js-mode
-                                  js2-mode
-                                  typescript-mode)
-                                 . ("typescript-language-server" "--stdio"))
-                                (sh-mode . ("bash-language-server" "start"))
-                                (php-mode . ("php" "/home/lubuntu/.composer/vendor/bin/php-language-server.php"))
-                                ((c++-mode c-mode) . ("clangd"))
-                                ((caml-mode tuareg-mode reason-mode)
-                                 . ("ocaml-language-server" "--stdio"))
-                                (ruby-mode
-                                 . ("solargraph" "socket" "--port"
-                                    :autoport))
-                                (haskell-mode . ("hie-wrapper"))
-                                (kotlin-mode . ("kotlin-language-server"))
-                                (go-mode . ("go-langserver" "-mode=stdio"
-                                            "-gocodecompletion"))
-                                ((R-mode ess-r-mode) . ("R" "--slave" "-e"
-                                                        "languageserver::run()"))
-                                (java-mode . eglot--eclipse-jdt-contact)
-                                (dart-mode . ("dart_language_server")))))
-
 (use-package lsp-mode
   :hook ((js-mode c-mode php-mode) . (lambda ()
                                (require 'lsp-clients)
