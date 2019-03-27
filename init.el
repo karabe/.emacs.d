@@ -186,57 +186,6 @@
 
 (use-package phpactor)
 
-(use-package phpactor
-  :disabled
-  :hook (php-mode . (lambda ()
-                      (phpactor-eldoc-setting)
-                      (bind-keys :map php-mode-map
-                                 ("M-." . phpactor-goto-definition-fallback)
-                                 ("M-?" . phpactor-find-references-fallback)
-                                 ("M-," . xref-pop-marker-stack))))
-  :config
-  (defun phpactor-hover ()
-    "Execute Phpactor RPC hover command."
-    (interactive)
-    (let ((arguments (phpactor--command-argments :source :offset)))
-      (apply #'phpactor-action-dispatch (phpactor--rpc "hover" arguments))))
-  (defun phpactor-eldoc-setting ()
-    (defun phpactor--eldoc-documentation-function ()
-      (when (and (symbol-at-point)
-                 (not (php-in-string-or-comment-p)))
-        (async-start
-         `(lambda ()
-            ,(async-inject-variables "load-path")
-            (require 'phpactor)
-            (fset 'phpactor-hover ,(symbol-function 'phpactor-hover))
-            (with-temp-buffer
-              (insert ,(buffer-substring-no-properties (point-min) (point-max)))
-              (goto-char ,(point))
-              (condition-case err
-                  (phpactor-hover)
-                (error err))))
-         (lambda (result)
-           (when (timer--triggered eldoc-timer) ;; カーソル移動中に止まらないように
-             (eldoc-message result)))))
-      ;; 非同期なので必ずnilを返す
-      nil)
-    (add-function :before-until (local 'eldoc-documentation-function)
-                  #'phpactor--eldoc-documentation-function)
-    (turn-on-eldoc-mode))
-  (advice-add 'counsel-gtags--push :after (lambda (direction)
-                                            (when (eq direction 'from)
-                                              (xref-push-marker-stack))))
-  (defun phpactor-goto-definition-fallback ()
-    (interactive)
-    (condition-case err
-        (phpactor-goto-definition)
-      (error (counsel-gtags-dwim))))
-  (defun phpactor-find-references-fallback ()
-    (interactive)
-    (condition-case err
-        (phpactor-find-references)
-      (error (counsel-gtags-find-reference)))))
-
 (use-package company-phpactor
   :hook (php-mode . (lambda ()
                       (bind-key "M-/" #'company-phpactor))))
@@ -473,7 +422,7 @@
  '(network-security-level (quote high))
  '(package-selected-packages
    (quote
-    (yasnippet yasnippet-snippets company-phpactor phpactor flycheck counsel-gtags company-lsp lsp-ui magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ flymake-diagnostic-at-point expand-region emmet-mode eglot editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
+    (csv-mode yasnippet yasnippet-snippets company-phpactor phpactor flycheck counsel-gtags company-lsp lsp-ui magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ flymake-diagnostic-at-point expand-region emmet-mode eglot editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
