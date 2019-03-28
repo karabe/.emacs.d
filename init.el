@@ -169,9 +169,6 @@
   :hook (lsp-mode . (lambda ()
                       (setq-local company-backends '((company-lsp company-files company-yasnippet :with company-dabbrev-code))))))
 
-(use-package flymake-diagnostic-at-point
-  :hook (flymake-mode . flymake-diagnostic-at-point-mode))
-
 (use-package counsel-gtags
   :disabled
   :hook (php-mode . (lambda ()
