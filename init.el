@@ -167,7 +167,9 @@
 
 (use-package company-lsp
   :hook (lsp-mode . (lambda ()
-                      (setq-local company-backends '((company-lsp company-files company-yasnippet :with company-dabbrev-code))))))
+                      (setq-local company-backends '((company-lsp company-yasnippet :with company-dabbrev-code)))))
+  :custom
+  (company-lsp-cache-candidates 'auto))
 
 (use-package counsel-gtags
   :disabled
