@@ -152,6 +152,9 @@
   :hook ((js-mode c-mode php-mode) . (lambda ()
                                (require 'lsp-clients)
                                (lsp)))
+  :bind (:map lsp-mode-map
+              ("M-." . lsp-find-definition)
+              ("M-?" . lsp-find-references))
   :config
   (defun lsp-auto-enable-imenu ()
     (when (and lsp-mode (not (eq imenu-create-index-function #'lsp--imenu-create-index)))
