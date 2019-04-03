@@ -64,6 +64,10 @@
   (web-mode-enable-current-element-highlight t)
   (web-mode-markup-indent-offset 4))
 
+(use-package js
+  :bind (:map js-mode-map
+              ("M-." . xref-find-definitions)))
+
 (use-package company
   :hook ((php-mode web-mode css-mode js-mode emacs-lisp-mode sql-mode) . company-mode)
   :custom
