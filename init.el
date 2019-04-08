@@ -68,6 +68,8 @@
   :bind (:map js-mode-map
               ("M-." . xref-find-definitions)))
 
+(use-package elixir-mode)
+
 (use-package company
   :hook ((php-mode web-mode css-mode js-mode emacs-lisp-mode sql-mode) . company-mode)
   :custom
@@ -149,7 +151,7 @@
   :bind ("C-c f" . counsel-projectile-find-file))
 
 (use-package lsp-mode
-  :hook ((js-mode c-mode php-mode) . (lambda ()
+  :hook ((js-mode c-mode php-mode elixir-mode) . (lambda ()
                                (require 'lsp-clients)
                                (lsp)))
   :bind (:map lsp-mode-map
@@ -424,7 +426,7 @@
  '(network-security-level (quote high))
  '(package-selected-packages
    (quote
-    (csv-mode yasnippet yasnippet-snippets phpactor flycheck counsel-gtags company-lsp lsp-ui magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ flymake-diagnostic-at-point expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
+    (elixir-mode csv-mode yasnippet yasnippet-snippets phpactor flycheck counsel-gtags company-lsp lsp-ui magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
