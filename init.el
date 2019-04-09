@@ -197,7 +197,9 @@
 (use-package org
   :bind (("C-c a" . org-agenda)
          ("C-c l" . org-store-link)
-         ("C-c c" . org-capture))
+         ("C-c c" . org-capture)
+         :map org-mode-map
+         ("C-c C-r" . ivy-resume))
   :custom
   (org-agenda-files '("~/org/memo.org" "~/org/todo.org"))
   (org-capture-templates
