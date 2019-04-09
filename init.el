@@ -327,8 +327,9 @@
 
 (use-package recentf
   :custom
+  (recentf-mode t)
   (recentf-max-saved-items 200)
-  (recentf-mode t))
+  (recentf-exclude '("bookmarks$" "autoload-\\.el$")))
 
 (use-package sql
   :hook (sql-mode . (lambda ()
