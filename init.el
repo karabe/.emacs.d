@@ -151,7 +151,7 @@
   :bind ("C-c f" . counsel-projectile-find-file))
 
 (use-package lsp-mode
-  :hook ((js-mode c-mode php-mode elixir-mode) . (lambda ()
+  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode) . (lambda ()
                                (require 'lsp-clients)
                                (lsp)))
   :bind (:map lsp-mode-map
