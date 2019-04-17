@@ -55,7 +55,7 @@
   (php-mode-coding-style 'psr2))
 
 (use-package web-mode
-  :mode ("\\.tpl\\'" "\\.html?\\'" "\\.blade\\.php?\\'" "\\.vue\\'" "\\.erb\\'")
+  :mode ("\\.tpl\\'" "\\.html?\\'" "\\.blade\\.php?\\'" "\\.vue\\'" "\\.erb\\'" "\\.twig\\'")
   :bind (:map web-mode-map
              ("C-c C-r" . ivy-resume))
   :custom
