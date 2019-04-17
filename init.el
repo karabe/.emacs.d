@@ -71,7 +71,7 @@
 (use-package elixir-mode)
 
 (use-package company
-  :hook ((php-mode web-mode css-mode js-mode emacs-lisp-mode sql-mode) . company-mode)
+  :hook ((web-mode css-mode emacs-lisp-mode sql-mode lsp-mode) . company-mode)
   :custom
   (company-dabbrev-code-everywhere t)
   (company-dabbrev-downcase nil)
@@ -151,9 +151,10 @@
   :bind ("C-c f" . counsel-projectile-find-file))
 
 (use-package lsp-mode
-  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode) . (lambda ()
-                               (require 'lsp-clients)
-                               (lsp)))
+  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode graphviz-dot-mode)
+         . (lambda ()
+             (require 'lsp-clients)
+             (lsp)))
   :bind (:map lsp-mode-map
               ("M-." . lsp-find-definition)
               ("M-?" . lsp-find-references))
@@ -406,6 +407,51 @@
     "MySQL Data Types")
   :custom
   (sql-product 'mysql))
+
+(use-package graphviz-dot-mode
+  :hook (graphviz-dot-mode
+         . (lambda ()
+             (setq-local show-trailing-whitespace t)
+             (add-hook 'before-save-hook 'delete-trailing-whitespace nil t)
+             (setq-local indent-line-function 'my-graphviz-dot-indent-line)))
+  :bind (:map graphviz-dot-mode-map
+              ("{" . self-insert-command)
+              ("}" . self-insert-command)
+              (";" . self-insert-command)
+              ("RET" . newline))
+  :config
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection '("dot-language-server" "--stdio"))
+                    :major-modes '(graphviz-dot-mode)
+                    :priority -1
+                    :server-id 'dot))
+  (defun my--calc-indent-column ()
+    (forward-line -1)
+    (cond
+     ((looking-at "^.*[{[]$")
+      (+ (current-indentation) graphviz-dot-indent-width))
+     ((looking-at "^[ \t]*$")
+      (my--calc-indent-column))
+     (t
+      (current-indentation))))
+  (defun my-graphviz-dot-indent-line ()
+    (indent-line-to (save-excursion
+                      (beginning-of-line)
+                      (cond
+                       ((bobp)
+                        ;; simple case, indent to 0
+                        0)
+                       ((looking-at "^[ \t]*\\(}\\|]\\);?$")
+                        ;; block closing, deindent relative to previous line
+                        (forward-line -1)
+                        (while (looking-at "^[ \t]*$")
+                          (forward-line -1))
+                        (if (looking-at "^.*[{\\[]$")
+                            (current-indentation)
+                          (max 0 (- (current-indentation) graphviz-dot-indent-width))))
+                       (t
+                        ;; other cases need to look at previous lines
+                        (my--calc-indent-column)))))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
