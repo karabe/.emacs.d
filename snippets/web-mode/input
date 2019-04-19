@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: input
-# key: input
-# --
-<input type="text"${1: value="$2"}>$0
