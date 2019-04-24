@@ -71,7 +71,8 @@
 (use-package elixir-mode)
 
 (use-package company
-  :hook ((web-mode css-mode emacs-lisp-mode sql-mode lsp-mode) . company-mode)
+  :hook ((web-mode css-mode emacs-lisp-mode sql-mode lsp-mode graphviz-dot-mode)
+         . company-mode)
   :custom
   (company-dabbrev-code-everywhere t)
   (company-dabbrev-downcase nil)
@@ -151,7 +152,7 @@
   :bind ("C-c f" . counsel-projectile-find-file))
 
 (use-package lsp-mode
-  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode graphviz-dot-mode)
+  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode)
          . (lambda ()
              (require 'lsp-clients)
              (lsp)))
