@@ -436,23 +436,27 @@
      (t
       (current-indentation))))
   (defun my-graphviz-dot-indent-line ()
-    (indent-line-to (save-excursion
-                      (beginning-of-line)
-                      (cond
-                       ((bobp)
-                        ;; simple case, indent to 0
-                        0)
-                       ((looking-at "^[ \t]*\\(}\\|]\\);?$")
-                        ;; block closing, deindent relative to previous line
-                        (forward-line -1)
-                        (while (looking-at "^[ \t]*$")
-                          (forward-line -1))
-                        (if (looking-at "^.*[{\\[]$")
-                            (current-indentation)
-                          (max 0 (- (current-indentation) graphviz-dot-indent-width))))
-                       (t
-                        ;; other cases need to look at previous lines
-                        (my--calc-indent-column)))))))
+    (let ((current-point (point))
+          (current-indent (current-indentation))
+          (new-indent (save-excursion
+                             (beginning-of-line)
+                             (cond
+                              ((bobp)
+                               ;; simple case, indent to 0
+                               0)
+                              ((looking-at "^[ \t]*\\(}\\|]\\);?$")
+                               ;; block closing, deindent relative to previous line
+                               (forward-line -1)
+                               (while (looking-at "^[ \t]*$")
+                                 (forward-line -1))
+                               (if (looking-at "^.*[{\\[]$")
+                                   (current-indentation)
+                                 (max 0 (- (current-indentation) graphviz-dot-indent-width))))
+                              (t
+                               ;; other cases need to look at previous lines
+                               (my--calc-indent-column))))))
+      (indent-line-to new-indent)
+      (goto-char (+ current-point (- new-indent current-indent))))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
