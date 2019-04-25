@@ -447,6 +447,7 @@
       (current-indentation))))
   (defun my-graphviz-dot-indent-line ()
     (let ((current-point (point))
+          (current-column (current-column))
           (current-indent (current-indentation))
           (new-indent (save-excursion
                              (beginning-of-line)
@@ -466,7 +467,8 @@
                                ;; other cases need to look at previous lines
                                (my--calc-indent-column))))))
       (indent-line-to new-indent)
-      (goto-char (+ current-point (- new-indent current-indent))))))
+      (when (> current-column current-indent)
+        (goto-char (+ current-point (- new-indent current-indent)))))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
