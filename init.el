@@ -21,6 +21,8 @@
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
+(require 'bind-key)
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (set-face-attribute 'default nil :family "Ricty")
@@ -83,6 +85,7 @@
   :hook (company-mode . company-statistics-mode))
 
 (use-package projectile
+  :commands projectile-mode projectile-register-project-type
   :init
   (projectile-mode)
   :bind-keymap
@@ -106,6 +109,7 @@
   (projectile-completion-system 'ivy))
 
 (use-package undo-tree
+  :commands global-undo-tree-mode
   :init
   (global-undo-tree-mode))
 
@@ -142,6 +146,7 @@
   (ivy-virtual-abbreviate 'full))
 
 (use-package ivy-xref
+  :commands ivy-xref-show-xrefs
   :config
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
@@ -152,6 +157,7 @@
   :bind ("C-c f" . counsel-projectile-find-file))
 
 (use-package lsp-mode
+  :commands lsp lsp--imenu-create-index lsp-enable-imenu lsp-register-client make-lsp-client lsp-stdio-connection
   :hook ((js-mode c-mode php-mode elixir-mode ruby-mode)
          . (lambda ()
              (require 'lsp-clients)
@@ -215,12 +221,14 @@
   (org-todo-keywords '((sequence "TODO(t)" "WIP(w)" "FIXED(f!)" "DONE"))))
 
 (use-package yasnippet
+  :commands yas-global-mode
   :init
   (yas-global-mode 1))
 
 (use-package yasnippet-snippets)
 
 (use-package rg
+  :commands rg-enable-default-bindings
   :init
   (rg-enable-default-bindings "\M-s")
   :custom
@@ -233,6 +241,7 @@
 (setq ediff-split-window-function 'split-window-horizontally)
 
 (use-package move-text
+  :commands move-text-default-bindings
   :init
   (move-text-default-bindings))
 
@@ -258,6 +267,7 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (use-package smart-mode-line
+  :commands sml/setup
   :init
   (sml/setup)
   :custom
