@@ -236,10 +236,6 @@
   (rg-show-columns t)
   (ripgrep-arguments '("-s")))
 
-;; ediff
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
-(setq ediff-split-window-function 'split-window-horizontally)
-
 (use-package move-text
   :commands move-text-default-bindings
   :init
@@ -342,6 +338,10 @@
   (recentf-mode t)
   (recentf-max-saved-items 200)
   (recentf-exclude '("bookmarks$" "-autoloads\\.el$")))
+
+(use-package ediff
+  :custom
+  (ediff-split-window-function 'split-window-horizontally))
 
 (use-package sql
   :hook (sql-mode . (lambda ()
