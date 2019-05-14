@@ -55,7 +55,7 @@
   (php-mode-coding-style 'psr2))
 
 (use-package web-mode
-  :mode ("\\.tpl\\'" "\\.html?\\'" "\\.blade\\.php?\\'" "\\.vue\\'" "\\.erb\\'" "\\.twig\\'")
+  :mode ("\\.tpl\\'" "\\.html?\\'" "\\.blade\\.php?\\'" "\\.erb\\'" "\\.twig\\'")
   :bind (:map web-mode-map
              ("C-c C-r" . ivy-resume))
   :custom
@@ -69,6 +69,9 @@
               ("M-." . xref-find-definitions)))
 
 (use-package elixir-mode)
+
+(use-package vue-mode
+  :mode ("\\.vue\\'"))
 
 (use-package company
   :hook ((web-mode css-mode emacs-lisp-mode sql-mode lsp-mode graphviz-dot-mode)
