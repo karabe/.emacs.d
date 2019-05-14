@@ -155,18 +155,23 @@
   :bind ("C-c f" . counsel-projectile-find-file))
 
 (use-package lsp-mode
-  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode)
+  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode vue-mode)
          . (lambda ()
-             (require 'lsp-clients)
              (lsp)))
   :bind (:map lsp-mode-map
               ("M-." . lsp-find-definition)
               ("M-?" . lsp-find-references))
+  :preface
+  (require 'lsp-clients)
   :config
   (defun lsp-auto-enable-imenu ()
     (when (and lsp-mode (not (eq imenu-create-index-function #'lsp--imenu-create-index)))
       (lsp-enable-imenu)))
   (advice-add 'counsel-imenu :before #'lsp-auto-enable-imenu)
+  (setf (lsp--client-initialization-options (gethash 'vls lsp-clients))
+        '(:vetur
+          (:completion
+           (:autoImport t))))
   :custom
   (lsp-auto-configure nil)
   (lsp-enable-completion-at-point nil))
