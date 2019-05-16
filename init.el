@@ -167,9 +167,6 @@
   :hook ((js-mode c-mode php-mode elixir-mode ruby-mode vue-mode typescript-mode)
          . (lambda ()
              (lsp)))
-  :bind (:map lsp-mode-map
-              ("M-." . lsp-find-definition)
-              ("M-?" . lsp-find-references))
   :preface
   (require 'lsp-clients)
   :config
@@ -188,6 +185,9 @@
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
+  :bind (:map lsp-ui-mode-map
+              ("M-." . lsp-ui-peek-find-definitions)
+              ("M-?" . lsp-ui-peek-find-references))
   :custom
   (lsp-ui-doc-position 'bottom)
   (lsp-ui-sideline-enable nil)
