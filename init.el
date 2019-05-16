@@ -155,7 +155,7 @@
   :bind ("C-c f" . counsel-projectile-find-file))
 
 (use-package lsp-mode
-  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode vue-mode)
+  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode vue-mode typescript-mode)
          . (lambda ()
              (lsp)))
   :bind (:map lsp-mode-map
@@ -305,6 +305,8 @@
 (use-package dockerfile-mode)
 
 (use-package docker-compose-mode)
+
+(use-package typescript-mode)
 
 (use-package phpunit)
 
