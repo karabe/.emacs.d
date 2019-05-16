@@ -173,6 +173,7 @@
           (:completion
            (:autoImport t))))
   :custom
+  (lsp-auto-guess-root t)
   (lsp-auto-configure nil)
   (lsp-enable-completion-at-point nil))
 
