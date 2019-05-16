@@ -323,8 +323,24 @@
 (use-package csv-mode)
 
 (use-package elec-pair
+  :hook (emacs-lisp-mode
+         . (lambda ()
+             (setq-local electric-pair-pairs
+                         `((?\" . ?\")
+                           (,(nth 0 electric-quote-chars) . ,(nth 1 electric-quote-chars))
+                           (,(nth 2 electric-quote-chars) . ,(nth 3 electric-quote-chars))))))
   :custom
-  (electric-pair-mode t)
+  (electric-pair-pairs
+   `((?\" . ?\")
+     (?\' . ?\')
+     (,(nth 0 electric-quote-chars) . ,(nth 1 electric-quote-chars))
+     (,(nth 2 electric-quote-chars) . ,(nth 3 electric-quote-chars))))
+  (electric-pair-mode t))
+
+(use-package paren
+  :custom
+  (show-paren-style 'mixed)
+  (show-paren-when-point-inside-paren t)
   (show-paren-mode t))
 
 (use-package dired
