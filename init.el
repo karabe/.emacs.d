@@ -498,7 +498,7 @@
  '(network-security-level (quote high))
  '(package-selected-packages
    (quote
-    (elixir-mode csv-mode yasnippet yasnippet-snippets phpactor flycheck counsel-gtags company-lsp lsp-ui magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
+    (flymake-diagnostic-at-point typescript-mode company-lsp lsp-mode lsp-ui vue-mode graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
