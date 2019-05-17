@@ -340,7 +340,6 @@
 (use-package paren
   :custom
   (show-paren-style 'mixed)
-  (show-paren-when-point-inside-paren t)
   (show-paren-mode t))
 
 (use-package dired
