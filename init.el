@@ -154,15 +154,6 @@
 (use-package counsel-projectile
   :bind ("C-c f" . counsel-projectile-find-file))
 
-(use-package flymake
-  :hook ((lsp-mode emacs-lisp-mode)
-         . (lambda ()
-             (lsp--flymake-setup)
-             (flymake-mode))))
-
-(use-package flymake-diagnostic-at-point
-  :hook (flymake-mode . flymake-diagnostic-at-point-mode))
-
 (use-package lsp-mode
   :hook ((js-mode c-mode php-mode elixir-mode ruby-mode vue-mode typescript-mode)
          . (lambda ()
@@ -190,6 +181,7 @@
               ("M-?" . lsp-ui-peek-find-references))
   :custom
   (lsp-ui-doc-position 'bottom)
+  (lsp-ui-flycheck-enable t)
   (lsp-ui-sideline-enable nil)
   (lsp-ui-imenu-enable nil))
 
@@ -208,6 +200,10 @@
                       (counsel-gtags-mode)))
   :custom
   (counsel-gtags-auto-update t))
+
+(use-package flycheck
+  :custom
+  (global-flycheck-mode t))
 
 (use-package phpactor)
 
