@@ -197,7 +197,8 @@
   :hook (lsp-mode . (lambda ()
                       (setq-local company-backends '((company-lsp company-yasnippet :with company-dabbrev-code)))))
   :custom
-  (company-lsp-cache-candidates 'auto)
+  (company-lsp-cache-candidates t)
+  (company-lsp-enable-recompletion nil)
   (company-lsp-match-candidate-predicate 'company-lsp-match-candidate-prefix))
 
 (use-package counsel-gtags
