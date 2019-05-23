@@ -80,6 +80,7 @@
   (company-dabbrev-code-everywhere t)
   (company-dabbrev-downcase nil)
   (company-idle-delay 0)
+  (company-minimum-prefix-length 1)
   (company-transformers '(company-sort-by-statistics company-sort-by-backend-importance)))
 
 (use-package company-statistics
@@ -172,7 +173,10 @@
   :custom
   (lsp-auto-guess-root t)
   (lsp-auto-configure nil)
-  (lsp-enable-completion-at-point nil))
+  (lsp-enable-completion-at-point nil)
+  (lsp-enable-file-watchers nil)
+  (lsp-debounce-full-sync-notifications-interval 0)
+  (lsp-vetur-completion-use-scaffold-snippets nil))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -511,10 +515,9 @@
  '(kill-whole-line t)
  '(make-backup-files nil)
  '(menu-bar-mode nil)
- '(network-security-level (quote high))
+ '(network-security-level 'high)
  '(package-selected-packages
-   (quote
-    (flycheck-popup-tip flycheck lsp-ui typescript-mode company-lsp lsp-mode vue-mode graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
+   '(flycheck-popup-tip flycheck lsp-ui typescript-mode company-lsp lsp-mode vue-mode graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
