@@ -157,8 +157,7 @@
 
 (use-package lsp-mode
   :hook ((js-mode c-mode php-mode elixir-mode ruby-mode vue-mode typescript-mode)
-         . (lambda ()
-             (lsp)))
+         . lsp)
   :preface
   (require 'lsp-clients)
   :config
@@ -166,10 +165,6 @@
     (when (and lsp-mode (not (eq imenu-create-index-function #'lsp--imenu-create-index)))
       (lsp-enable-imenu)))
   (advice-add 'counsel-imenu :before #'lsp-auto-enable-imenu)
-  (setf (lsp--client-initialization-options (gethash 'vls lsp-clients))
-        '(:vetur
-          (:completion
-           (:autoImport t))))
   :custom
   (lsp-auto-guess-root t)
   (lsp-auto-configure nil)
