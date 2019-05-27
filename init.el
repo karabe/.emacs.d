@@ -57,12 +57,18 @@
 (use-package web-mode
   :mode ("\\.tpl\\'" "\\.html?\\'" "\\.blade\\.php?\\'" "\\.erb\\'" "\\.twig\\'")
   :bind (:map web-mode-map
-             ("C-c C-r" . ivy-resume))
+              ("C-c C-r" . ivy-resume))
+  :hook (web-mode
+         . (lambda ()
+             (setq-local
+              electric-pair-pairs
+              (append electric-pair-pairs '((?% . ?%))))))
   :custom
   (web-mode-code-indent-offset 4)
   (web-mode-enable-auto-indentation nil)
   (web-mode-enable-current-element-highlight t)
-  (web-mode-markup-indent-offset 4))
+  (web-mode-markup-indent-offset 4)
+  (web-mode-enable-auto-pairing nil))
 
 (use-package js
   :bind (:map js-mode-map
