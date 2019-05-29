@@ -148,7 +148,6 @@
   :custom
   (ivy-mode t)
   (counsel-yank-pop-separator "\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
-  (ivy-extra-directories nil)
   (ivy-use-virtual-buffers t)
   (ivy-virtual-abbreviate 'full))
 
