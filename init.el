@@ -79,6 +79,8 @@
 (use-package vue-mode
   :mode ("\\.vue\\'"))
 
+(use-package rust-mode)
+
 (use-package company
   :hook ((web-mode css-mode emacs-lisp-mode sql-mode lsp-mode graphviz-dot-mode)
          . company-mode)
@@ -162,7 +164,7 @@
   :bind ("C-c f" . counsel-projectile-find-file))
 
 (use-package lsp-mode
-  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode vue-mode typescript-mode)
+  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode vue-mode typescript-mode rust-mode)
          . lsp)
   :preface
   (require 'lsp-clients)
@@ -518,7 +520,7 @@
  '(menu-bar-mode nil)
  '(network-security-level 'high)
  '(package-selected-packages
-   '(flycheck-popup-tip flycheck lsp-ui typescript-mode company-lsp lsp-mode vue-mode graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
+   '(rust-mode lsp-mode company-lsp lsp-ui flycheck-popup-tip flycheck typescript-mode vue-mode graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
