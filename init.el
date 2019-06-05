@@ -331,7 +331,7 @@
 (use-package csv-mode)
 
 (use-package elec-pair
-  :hook (emacs-lisp-mode
+  :hook ((emacs-lisp-mode rust-mode)
          . (lambda ()
              (setq-local electric-pair-pairs
                          `((?\" . ?\")
