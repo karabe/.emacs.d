@@ -79,7 +79,10 @@
 (use-package vue-mode
   :mode ("\\.vue\\'"))
 
-(use-package rust-mode)
+(use-package rust-mode
+  :bind (:map rust-mode-map
+              ("C-c C-t" . rust-test)
+              ("C-c C-c" . rust-compile)))
 
 (use-package company
   :hook ((web-mode css-mode emacs-lisp-mode sql-mode lsp-mode graphviz-dot-mode)
