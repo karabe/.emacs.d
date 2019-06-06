@@ -224,7 +224,6 @@
          ("C-c l" . org-store-link)
          ("C-c c" . org-capture)
          :map org-mode-map
-         ("C-<tab>" . other-window)
          ("C-c C-r" . ivy-resume))
   :custom
   (org-agenda-files '("~/org/memo.org" "~/org/todo.org"))
@@ -272,7 +271,7 @@
 
 ;; key-mapping
 (global-set-key (kbd "<f12>") 'remember)
-(global-set-key (kbd "C-<tab>") 'other-window)
+(global-set-key (kbd "C-c d") 'other-window)
 (global-set-key (kbd "C-x C-p") 'find-file-at-point)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
