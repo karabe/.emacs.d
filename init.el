@@ -42,6 +42,12 @@
   :custom
   (mozc-candidate-style 'popup))
 
+(use-package avy
+  :bind ("C-:" . avy-goto-word-1))
+
+(use-package avy-zap
+  :bind ("M-z" . avy-zap-to-char-dwim))
+
 (use-package php-mode
   :mode "\\.php?\\'"
   :bind (:map php-mode-map
@@ -522,7 +528,7 @@
  '(menu-bar-mode nil)
  '(network-security-level 'high)
  '(package-selected-packages
-   '(rust-mode lsp-mode company-lsp lsp-ui flycheck-popup-tip flycheck typescript-mode vue-mode graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
+   '(avy avy-zap rust-mode lsp-mode company-lsp lsp-ui flycheck-popup-tip flycheck typescript-mode vue-mode graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
