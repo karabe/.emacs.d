@@ -148,7 +148,7 @@
          ("C-x C-f" . counsel-find-file)
          ("C-c i" . counsel-imenu)
          ("C-c y" . counsel-yank-pop)
-         ("C-z" . ivy-switch-buffer))
+         ("C-c z" . ivy-switch-buffer))
   :custom
   (ivy-mode t)
   (counsel-yank-pop-separator "\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
@@ -271,7 +271,7 @@
 
 ;; key-mapping
 (global-set-key (kbd "<f12>") 'remember)
-(global-set-key (kbd "C-c d") 'other-window)
+(global-set-key (kbd "C-z") 'other-window)
 (global-set-key (kbd "C-x C-p") 'find-file-at-point)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
