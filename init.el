@@ -84,10 +84,7 @@
 (use-package vue-mode
   :mode ("\\.vue\\'"))
 
-(use-package rust-mode
-  :bind (:map rust-mode-map
-              ("C-c C-t" . rust-test)
-              ("C-c C-c" . rust-compile)))
+(use-package rustic)
 
 (use-package company
   :hook ((web-mode css-mode emacs-lisp-mode sql-mode lsp-mode graphviz-dot-mode)
@@ -526,9 +523,10 @@
  '(kill-whole-line t)
  '(make-backup-files nil)
  '(menu-bar-mode nil)
- '(network-security-level 'high)
+ '(network-security-level (quote high))
  '(package-selected-packages
-   '(avy avy-zap rust-mode lsp-mode company-lsp lsp-ui flycheck-popup-tip flycheck typescript-mode vue-mode graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags magit zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit php-mode mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
+   (quote
+    (rustic magit php-mode avy avy-zap lsp-mode company-lsp lsp-ui flycheck-popup-tip flycheck typescript-mode vue-mode graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
