@@ -184,6 +184,7 @@
   (lsp-enable-completion-at-point nil)
   (lsp-enable-file-watchers nil)
   (lsp-debounce-full-sync-notifications-interval 0)
+  (lsp-rust-clippy-preference "on")
   (lsp-vetur-completion-use-scaffold-snippets nil))
 
 (use-package lsp-ui
