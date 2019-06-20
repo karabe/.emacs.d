@@ -85,6 +85,10 @@
   :mode ("\\.vue\\'"))
 
 (use-package rustic
+  :bind (:map rustic-mode-map
+              ("C-c C-t" . rustic-cargo-test)
+              ("C-c C-b" . rustic-cargo-build)
+              ("C-c C-l" . rustic-cargo-clippy))
   :custom
   (rustic-flycheck-setup-mode-line-p nil))
 
