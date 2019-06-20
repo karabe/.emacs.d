@@ -84,7 +84,9 @@
 (use-package vue-mode
   :mode ("\\.vue\\'"))
 
-(use-package rustic)
+(use-package rustic
+  :custom
+  (rustic-flycheck-setup-mode-line-p nil))
 
 (use-package company
   :hook ((web-mode css-mode emacs-lisp-mode sql-mode lsp-mode graphviz-dot-mode)
@@ -337,7 +339,7 @@
 (use-package csv-mode)
 
 (use-package elec-pair
-  :hook ((emacs-lisp-mode rust-mode)
+  :hook ((emacs-lisp-mode rustic-mode)
          . (lambda ()
              (setq-local electric-pair-pairs
                          `((?\" . ?\")
