@@ -90,8 +90,8 @@
               ("C-c C-b" . rustic-cargo-build)
               ("C-c C-l" . rustic-cargo-clippy))
   :custom
-  (rustic-flycheck-setup-mode-line-p nil)
-  (rustic-lsp-server 'rust-analyzer))
+  ;; (rustic-lsp-server 'rust-analyzer)
+  (rustic-flycheck-setup-mode-line-p nil))
 
 (use-package company
   :hook ((web-mode css-mode emacs-lisp-mode sql-mode lsp-mode graphviz-dot-mode)
