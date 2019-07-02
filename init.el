@@ -157,6 +157,7 @@
          ("M-x" . counsel-M-x)
          ("C-x C-f" . counsel-find-file)
          ("C-c i" . counsel-imenu)
+         ("C-c e" . counsel-register)
          ("C-c y" . counsel-yank-pop)
          ("C-c z" . ivy-switch-buffer))
   :custom
@@ -534,7 +535,7 @@
  '(network-security-level (quote high))
  '(package-selected-packages
    (quote
-    (rustic magit php-mode avy avy-zap lsp-mode company-lsp lsp-ui flycheck-popup-tip flycheck typescript-mode vue-mode graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
+    (php-mode rustic magit avy avy-zap lsp-mode company-lsp lsp-ui flycheck-popup-tip flycheck typescript-mode vue-mode graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
