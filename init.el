@@ -82,7 +82,10 @@
 (use-package elixir-mode)
 
 (use-package vue-mode
-  :mode ("\\.vue\\'"))
+  :hook (vue-html-mode
+         . (lambda ()
+             (require 'web-mode)
+             (setq-local indent-line-function #'web-mode-indent-line))))
 
 (use-package rustic
   :bind (:map rustic-mode-map
