@@ -196,6 +196,7 @@
   (lsp-enable-file-watchers nil)
   (lsp-debounce-full-sync-notifications-interval 0)
   (lsp-rust-clippy-preference "on")
+  (lsp-vetur-format-options-tab-size 4)
   (lsp-vetur-completion-use-scaffold-snippets nil))
 
 (use-package lsp-ui
@@ -538,7 +539,7 @@
  '(network-security-level (quote high))
  '(package-selected-packages
    (quote
-    (php-mode rustic magit avy avy-zap lsp-mode company-lsp lsp-ui flycheck-popup-tip flycheck typescript-mode vue-mode graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
+    (vue-mode typescript-mode php-mode rustic magit avy avy-zap lsp-mode company-lsp lsp-ui flycheck-popup-tip flycheck graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
