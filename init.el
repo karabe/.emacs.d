@@ -60,7 +60,7 @@
   (php-mode-coding-style 'psr2))
 
 (use-package web-mode
-  :mode ("\\.tpl\\'" "\\.html?\\'" "\\.blade\\.php?\\'" "\\.erb\\'" "\\.twig\\'")
+  :mode ("\\.tpl\\'" "\\.html?\\'" "\\.blade\\.php?\\'" "\\.erb\\'" "\\.twig\\'" "\\.vue\\'")
   :bind (:map web-mode-map
               ("C-c C-r" . ivy-resume))
   :hook (web-mode
@@ -80,12 +80,6 @@
               ("M-." . xref-find-definitions)))
 
 (use-package elixir-mode)
-
-(use-package vue-mode
-  :hook (vue-html-mode
-         . (lambda ()
-             (require 'web-mode)
-             (setq-local indent-line-function #'web-mode-indent-line))))
 
 (use-package rustic
   :bind (:map rustic-mode-map
@@ -180,7 +174,7 @@
   :bind ("C-c f" . counsel-projectile-find-file))
 
 (use-package lsp-mode
-  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode vue-mode typescript-mode rust-mode)
+  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode web-mode typescript-mode rust-mode)
          . lsp)
   :preface
   (require 'lsp-clients)
@@ -539,7 +533,7 @@
  '(network-security-level (quote high))
  '(package-selected-packages
    (quote
-    (vue-mode typescript-mode php-mode rustic magit avy avy-zap lsp-mode company-lsp lsp-ui flycheck-popup-tip flycheck graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags zenburn-theme web-mode volatile-highlights use-package undo-tree smart-mode-line rg phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
+    (web-mode typescript-mode php-mode rustic magit avy avy-zap lsp-mode company-lsp lsp-ui flycheck-popup-tip flycheck graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags zenburn-theme volatile-highlights use-package undo-tree smart-mode-line rg phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
