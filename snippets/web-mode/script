@@ -1,0 +1,11 @@
+# key: script lang=ts
+# name: script
+# --
+<script lang="ts">
+    import { Component, Vue, Prop } from "vue-property-decorator"
+
+    @Component
+    export default class $1 extends Vue {
+        $0
+    }
+</script>
