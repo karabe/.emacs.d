@@ -519,6 +519,7 @@
  '(ange-ftp-try-passive-mode t)
  '(auto-save-default nil)
  '(auto-save-list-file-prefix nil)
+ '(compilation-scroll-output 'first-error)
  '(diff-switches "-u")
  '(echo-keystrokes 0.1)
  '(enable-recursive-minibuffers t)
@@ -530,10 +531,9 @@
  '(kill-whole-line t)
  '(make-backup-files nil)
  '(menu-bar-mode nil)
- '(network-security-level (quote high))
+ '(network-security-level 'high)
  '(package-selected-packages
-   (quote
-    (web-mode typescript-mode php-mode rustic magit avy avy-zap lsp-mode company-lsp lsp-ui flycheck-popup-tip flycheck graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags zenburn-theme volatile-highlights use-package undo-tree smart-mode-line rg phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path)))
+   '(web-mode typescript-mode php-mode rustic magit avy avy-zap lsp-mode company-lsp lsp-ui flycheck-popup-tip flycheck graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags zenburn-theme volatile-highlights use-package undo-tree smart-mode-line rg phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
