@@ -88,6 +88,7 @@
               ("C-c C-l" . rustic-cargo-clippy))
   :custom
   ;; (rustic-lsp-server 'rust-analyzer)
+  (rustic-format-trigger 'on-save)
   (rustic-flycheck-setup-mode-line-p nil))
 
 (use-package company
