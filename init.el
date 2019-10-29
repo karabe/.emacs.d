@@ -87,7 +87,8 @@
               ("C-c C-b" . rustic-cargo-build)
               ("C-c C-l" . rustic-cargo-clippy))
   :custom
-  ;; (rustic-lsp-server 'rust-analyzer)
+  (lsp-rust-server 'rust-analyzer)
+  (rustic-lsp-server 'rust-analyzer)
   (rustic-format-trigger 'on-save)
   (rustic-flycheck-setup-mode-line-p nil))
 
@@ -175,7 +176,7 @@
   :bind ("C-c f" . counsel-projectile-find-file))
 
 (use-package lsp-mode
-  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode web-mode typescript-mode rust-mode)
+  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode web-mode typescript-mode)
          . lsp)
   :preface
   (require 'lsp-clients)
@@ -534,7 +535,7 @@
  '(menu-bar-mode nil)
  '(network-security-level 'high)
  '(package-selected-packages
-   '(web-mode typescript-mode php-mode rustic magit avy avy-zap lsp-mode company-lsp lsp-ui flycheck-popup-tip flycheck graphviz-dot-mode elixir-mode csv-mode yasnippet yasnippet-snippets phpactor counsel-gtags zenburn-theme volatile-highlights use-package undo-tree smart-mode-line rg phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode editorconfig dockerfile-mode docker-compose-mode counsel-projectile company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
+   '(avy-zap company-lsp flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
