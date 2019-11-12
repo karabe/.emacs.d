@@ -93,7 +93,7 @@
   (rustic-flycheck-setup-mode-line-p nil))
 
 (use-package company
-  :hook ((web-mode css-mode emacs-lisp-mode sql-mode lsp-mode graphviz-dot-mode)
+  :hook ((web-mode css-mode emacs-lisp-mode sql-mode lsp-mode graphviz-dot-mode ruby-mode)
          . company-mode)
   :custom
   (company-dabbrev-code-everywhere t)
@@ -176,7 +176,7 @@
   :bind ("C-c f" . counsel-projectile-find-file))
 
 (use-package lsp-mode
-  :hook ((js-mode c-mode php-mode elixir-mode ruby-mode web-mode typescript-mode)
+  :hook ((js-mode c-mode php-mode elixir-mode web-mode typescript-mode)
          . lsp)
   :preface
   (require 'lsp-clients)
@@ -210,7 +210,7 @@
   :hook (lsp-mode . (lambda ()
                       (setq-local company-backends '((company-lsp company-yasnippet :with company-dabbrev-code)))))
   :custom
-  (company-lsp-cache-candidates t)
+  (company-lsp-cache-candidates 'auto)
   (company-lsp-enable-recompletion nil)
   (company-lsp-match-candidate-predicate 'company-lsp-match-candidate-prefix))
 
@@ -535,7 +535,7 @@
  '(menu-bar-mode nil)
  '(network-security-level 'high)
  '(package-selected-packages
-   '(avy-zap company-lsp flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
+   '(company flycheck ivy lsp-mode php-mode web-mode zenburn-theme magit rustic counsel counsel-projectile lsp-ui yasnippet-snippets yasnippet rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap company-lsp flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
