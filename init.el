@@ -60,7 +60,7 @@
   (php-mode-coding-style 'psr2))
 
 (use-package web-mode
-  :mode ("\\.tpl\\'" "\\.html?\\'" "\\.blade\\.php?\\'" "\\.erb\\'" "\\.twig\\'" "\\.vue\\'")
+  :mode ("\\.tpl\\'" "\\.html?\\'" "\\.blade\\.php?\\'" "\\.erb\\'" "\\.twig\\'" "\\.vue\\'" "\\.aspx\\'")
   :bind (:map web-mode-map
               ("C-c C-r" . ivy-resume))
   :hook (web-mode
@@ -93,7 +93,7 @@
   (rustic-flycheck-setup-mode-line-p nil))
 
 (use-package company
-  :hook ((web-mode css-mode emacs-lisp-mode sql-mode lsp-mode graphviz-dot-mode ruby-mode)
+  :hook ((web-mode css-mode emacs-lisp-mode sql-mode lsp-mode graphviz-dot-mode ruby-mode csharp-mode)
          . company-mode)
   :custom
   (company-dabbrev-code-everywhere t)
@@ -344,6 +344,8 @@
 
 (use-package csv-mode)
 
+(use-package csharp-mode)
+
 (use-package elec-pair
   :hook ((emacs-lisp-mode rustic-mode)
          . (lambda ()
@@ -535,7 +537,7 @@
  '(menu-bar-mode nil)
  '(network-security-level 'high)
  '(package-selected-packages
-   '(company flycheck ivy lsp-mode php-mode web-mode zenburn-theme magit rustic counsel counsel-projectile lsp-ui yasnippet-snippets yasnippet rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap company-lsp flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
+   '(csharp-mode company flycheck ivy lsp-mode php-mode web-mode zenburn-theme magit rustic counsel counsel-projectile lsp-ui yasnippet-snippets yasnippet rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap company-lsp flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
