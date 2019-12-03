@@ -260,7 +260,6 @@
   (rg-enable-default-bindings "\M-s")
   :custom
   (rg-custom-type-aliases '(("ctp" . "*.ctp") ("vue" . "*.js *.ts *.vue")))
-  (rg-show-columns t)
   (ripgrep-arguments '("-s")))
 
 (use-package move-text
