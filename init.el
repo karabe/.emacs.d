@@ -129,8 +129,8 @@
   (projectile-completion-system 'ivy))
 
 (use-package undo-tree
-  :init
-  (global-undo-tree-mode))
+ :init
+ (global-undo-tree-mode))
 
 (use-package magit
   :bind (("C-c m" . magit-status)
@@ -536,7 +536,7 @@
  '(menu-bar-mode nil)
  '(network-security-level 'high)
  '(package-selected-packages
-   '(csharp-mode company flycheck ivy lsp-mode php-mode web-mode zenburn-theme magit rustic counsel counsel-projectile lsp-ui yasnippet-snippets yasnippet rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap company-lsp flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
+   '(yasnippet yasnippet-snippets zenburn-theme csharp-mode company flycheck ivy lsp-mode php-mode web-mode magit rustic counsel counsel-projectile lsp-ui rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap company-lsp flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
