@@ -89,7 +89,7 @@
   :custom
   (lsp-rust-server 'rust-analyzer)
   (rustic-lsp-server 'rust-analyzer)
-  (rustic-format-trigger 'on-save)
+  (rustic-format-trigger 'on-compile)
   (rustic-flycheck-setup-mode-line-p nil))
 
 (use-package company
