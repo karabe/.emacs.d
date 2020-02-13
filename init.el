@@ -184,7 +184,12 @@
   (defun lsp-auto-enable-imenu ()
     (when (and lsp-mode (not (eq imenu-create-index-function #'lsp--imenu-create-index)))
       (lsp-enable-imenu)))
-  (advice-add 'counsel-imenu :before #'lsp-auto-enable-imenu)
+  ;; (advice-add 'counsel-imenu :before #'lsp-auto-enable-imenu)
+  (defun lsp-auto-enable-symbol-highlighting ()
+    (when (and lsp-enable-symbol-highlighting
+               (lsp-feature? "textDocument/documentHighlight"))
+      (add-hook 'lsp-on-idle-hook #'lsp--document-highlight nil t)))
+  (add-hook 'lsp-after-open-hook #'lsp-auto-enable-symbol-highlighting)
   :custom
   (lsp-auto-guess-root t)
   (lsp-auto-configure nil)
