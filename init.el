@@ -204,7 +204,8 @@
   :hook (lsp-mode . lsp-ui-mode)
   :bind (:map lsp-ui-mode-map
               ("M-." . lsp-ui-peek-find-definitions)
-              ("M-?" . lsp-ui-peek-find-references))
+              ("M-?" . lsp-ui-peek-find-references)
+              ("C-c C-v" . lsp-ui-doc-focus-frame))
   :custom
   (lsp-ui-doc-position 'bottom)
   (lsp-ui-flycheck-enable t)
