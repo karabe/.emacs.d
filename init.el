@@ -190,6 +190,8 @@
                (lsp-feature? "textDocument/documentHighlight"))
       (add-hook 'lsp-on-idle-hook #'lsp--document-highlight nil t)))
   (add-hook 'lsp-after-open-hook #'lsp-auto-enable-symbol-highlighting)
+  (setq gc-cons-threshold 100000000)
+  (setq read-process-output-max (* 1024 1024))
   :custom
   (lsp-auto-guess-root t)
   (lsp-auto-configure nil)
