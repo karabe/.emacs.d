@@ -66,11 +66,6 @@
   :mode ("\\.tpl\\'" "\\.html?\\'" "\\.blade\\.php?\\'" "\\.erb\\'" "\\.twig\\'" "\\.vue\\'" "\\.aspx\\'")
   :bind (:map web-mode-map
               ("C-c C-r" . ivy-resume))
-  :hook (web-mode
-         . (lambda ()
-             (setq-local
-              electric-pair-pairs
-              (append electric-pair-pairs '((?% . ?%))))))
   :custom
   (web-mode-code-indent-offset 4)
   (web-mode-enable-auto-indentation nil)
@@ -348,25 +343,19 @@
 
 (use-package csharp-mode)
 
-(use-package elec-pair
-  :hook ((emacs-lisp-mode rustic-mode)
-         . (lambda ()
-             (setq-local electric-pair-pairs
-                         `((?\" . ?\")
-                           (,(nth 0 electric-quote-chars) . ,(nth 1 electric-quote-chars))
-                           (,(nth 2 electric-quote-chars) . ,(nth 3 electric-quote-chars))))))
+(use-package smartparens
+  :config
+  (require 'smartparens-config)
+  :config
+  (sp-with-modes 'web-mode
+    (sp-local-pair "{{" "}}")
+    (sp-local-pair "{!!" "!!}")
+    (sp-local-pair "@if" "@endif" :when '(("SPC" "RET" "<evil-ret>")))
+    (sp-local-pair "@foreach" "@endforeach" :when '(("SPC" "RET" "<evil-ret>")))
+    (sp-local-pair "@section" "@endsection" :when '(("SPC" "RET" "<evil-ret>"))))
   :custom
-  (electric-pair-pairs
-   `((?\" . ?\")
-     (?\' . ?\')
-     (,(nth 0 electric-quote-chars) . ,(nth 1 electric-quote-chars))
-     (,(nth 2 electric-quote-chars) . ,(nth 3 electric-quote-chars))))
-  (electric-pair-mode t))
-
-(use-package paren
-  :custom
-  (show-paren-style 'mixed)
-  (show-paren-mode t))
+  (smartparens-global-mode t)
+  (show-smartparens-global-mode t))
 
 (use-package dired
   :ensure nil
