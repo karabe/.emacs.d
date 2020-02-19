@@ -54,6 +54,9 @@
               ("C-c t" . phpunit-current-class)
               ("C-c C-r" . ivy-resume)
               ("C-c w" . web-mode))
+  :hook (php-mode
+         . (lambda ()
+             (setq-local lsp-enable-imenu nil)))
   :custom
   (php-mode-lineup-cascaded-calls t)
   (php-search-url "http://www.php.net/ja/")
@@ -181,19 +184,13 @@
   :preface
   (require 'lsp-clients)
   :config
-  (defun lsp-auto-enable-imenu ()
-    (when (and lsp-mode (not (eq imenu-create-index-function #'lsp--imenu-create-index)))
-      (lsp-enable-imenu)))
-  ;; (advice-add 'counsel-imenu :before #'lsp-auto-enable-imenu)
-  (defun lsp-auto-enable-symbol-highlighting ()
-    (when (and lsp-enable-symbol-highlighting
-               (lsp-feature? "textDocument/documentHighlight"))
-      (add-hook 'lsp-on-idle-hook #'lsp--document-highlight nil t)))
-  (add-hook 'lsp-after-open-hook #'lsp-auto-enable-symbol-highlighting)
   (setq gc-cons-threshold 100000000)
   (setq read-process-output-max (* 1024 1024))
+  (advice-add
+   'lsp--auto-configure
+   :after (lambda ()
+             (setq-local company-backends '((company-lsp company-yasnippet :with company-dabbrev-code)))))
   :custom
-  (lsp-auto-configure nil)
   (lsp-enable-completion-at-point nil)
   (lsp-enable-file-watchers nil)
   (lsp-debounce-full-sync-notifications-interval 0.5)
@@ -214,8 +211,6 @@
   (lsp-ui-imenu-enable nil))
 
 (use-package company-lsp
-  :hook (lsp-mode . (lambda ()
-                      (setq-local company-backends '((company-lsp company-yasnippet :with company-dabbrev-code)))))
   :custom
   (company-lsp-cache-candidates 'auto)
   (company-lsp-enable-recompletion nil)
