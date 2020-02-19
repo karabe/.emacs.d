@@ -191,6 +191,7 @@
    :after (lambda ()
              (setq-local company-backends '((company-lsp company-yasnippet :with company-dabbrev-code)))))
   :custom
+  (lsp-enable-text-document-color nil)
   (lsp-enable-completion-at-point nil)
   (lsp-enable-file-watchers nil)
   (lsp-debounce-full-sync-notifications-interval 0.5)
