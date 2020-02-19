@@ -347,7 +347,7 @@
   :config
   (require 'smartparens-config)
   :config
-  (defun web-mode-laravel-post-handler (id action context)
+  (defun multi-line-pair-post-handler (id action context)
     (when (equal action 'insert)
       (save-excursion
         (insert "x")
@@ -359,13 +359,14 @@
     (sp-local-pair "{!!" "!!}")
     (sp-local-pair "@if" "@endif"
                    :when '(("SPC" "RET" "<evil-ret>"))
-                   :post-handlers '(web-mode-laravel-post-handler))
+                   :post-handlers '(multi-line-pair-post-handler))
     (sp-local-pair "@foreach" "@endforeach"
                    :when '(("SPC" "RET" "<evil-ret>"))
-                   :post-handlers '(web-mode-laravel-post-handler))
+                   :post-handlers '(multi-line-pair-post-handler))
     (sp-local-pair "@section" "@endsection"
                    :when '(("SPC" "RET" "<evil-ret>"))
-                   :post-handlers '(web-mode-laravel-post-handler)))
+                   :post-handlers '(multi-line-pair-post-handler))
+    (sp-local-pair "<!--{" "}-->"))
   :custom
   (smartparens-global-mode t)
   (show-smartparens-global-mode t))
