@@ -350,13 +350,13 @@
   (defun multi-line-pair-post-handler (id action context)
     (when (equal action 'insert)
       (save-excursion
-        (insert "x")
         (newline)
-        (indent-according-to-mode))
-      (delete-char 1)))
+        (indent-according-to-mode))))
   (sp-with-modes 'web-mode
-    (sp-local-pair "{{" "}}")
-    (sp-local-pair "{!!" "!!}")
+    (sp-local-pair "{{" "}}"
+                   :post-handlers '((:add " | ")))
+    (sp-local-pair "{!!" "!!}"
+                   :post-handlers '((:add " | ")))
     (sp-local-pair "@if" "@endif"
                    :when '(("SPC" "RET" "<evil-ret>"))
                    :post-handlers '(multi-line-pair-post-handler))
@@ -366,7 +366,11 @@
     (sp-local-pair "@section" "@endsection"
                    :when '(("SPC" "RET" "<evil-ret>"))
                    :post-handlers '(multi-line-pair-post-handler))
-    (sp-local-pair "<!--{" "}-->"))
+    (sp-local-pair "<!--{" "}-->"
+                   :post-handlers '((:add " | "))))
+  (sp-pair "{" nil
+           :when '(("SPC" "RET" "<evil-ret>"))
+           :post-handlers '(multi-line-pair-post-handler))
   :custom
   (smartparens-global-mode t)
   (show-smartparens-global-mode t))
