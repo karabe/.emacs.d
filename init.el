@@ -370,9 +370,6 @@
     (sp-local-pair "@foreach" "@endforeach"
                    :when '(("SPC" "RET" "<evil-ret>"))
                    :post-handlers '(multi-line-pair-post-handler))
-    (sp-local-pair "@section" "@endsection"
-                   :when '(("SPC" "RET" "<evil-ret>"))
-                   :post-handlers '(multi-line-pair-post-handler))
     (sp-local-pair "<!--{" "}-->"
                    :post-handlers '((:add " | "))))
   (sp-pair "{" nil
