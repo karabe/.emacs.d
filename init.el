@@ -97,11 +97,7 @@
   (company-dabbrev-code-everywhere t)
   (company-dabbrev-downcase nil)
   (company-idle-delay 0)
-  (company-minimum-prefix-length 2)
-  (company-transformers '(company-sort-by-statistics company-sort-by-backend-importance)))
-
-(use-package company-statistics
-  :hook (company-mode . company-statistics-mode))
+  (company-minimum-prefix-length 2))
 
 (use-package projectile
   :init
@@ -167,11 +163,23 @@
   :config
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
-(use-package ivy-historian
-  :hook (ivy-mode . ivy-historian-mode))
-
 (use-package counsel-projectile
   :bind ("C-c f" . counsel-projectile-find-file))
+
+(use-package prescient
+  :after counsel
+  :custom
+  (prescient-persist-mode t))
+
+(use-package company-prescient
+  :after prescient
+  :custom
+  (company-prescient-mode t))
+
+(use-package ivy-prescient
+  :after prescient
+  :custom
+  (ivy-prescient-mode t))
 
 (use-package lsp-mode
   :hook ((js-mode c-mode php-mode elixir-mode web-mode typescript-mode)
@@ -346,7 +354,6 @@
 (use-package smartparens
   :config
   (require 'smartparens-config)
-  :config
   (defun multi-line-pair-post-handler (id action context)
     (when (equal action 'insert)
       (save-excursion
@@ -547,7 +554,7 @@
  '(menu-bar-mode nil)
  '(network-security-level 'high)
  '(package-selected-packages
-   '(yasnippet yasnippet-snippets zenburn-theme csharp-mode company flycheck ivy lsp-mode php-mode web-mode magit rustic counsel counsel-projectile lsp-ui rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap company-lsp flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref ivy-historian gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode company-statistics comment-dwim-2 apache-mode anzu add-node-modules-path))
+   '(company-prescient ivy-prescient prescient yasnippet yasnippet-snippets zenburn-theme csharp-mode company flycheck ivy lsp-mode php-mode web-mode magit rustic counsel counsel-projectile lsp-ui rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap company-lsp flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode comment-dwim-2 apache-mode anzu add-node-modules-path))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
