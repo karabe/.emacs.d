@@ -179,7 +179,8 @@
 (use-package ivy-prescient
   :after prescient
   :custom
-  (ivy-prescient-mode t))
+  (ivy-prescient-mode t)
+  (ivy-prescient-retain-classic-highlighting t))
 
 (use-package lsp-mode
   :hook ((js-mode c-mode php-mode elixir-mode web-mode typescript-mode)
@@ -537,6 +538,7 @@
  '(ange-ftp-try-passive-mode t)
  '(auto-save-default nil)
  '(auto-save-list-file-prefix nil)
+ '(compilation-auto-jump-to-first-error t)
  '(compilation-scroll-output 'first-error)
  '(diff-switches "-u")
  '(echo-keystrokes 0.1)
