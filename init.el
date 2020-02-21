@@ -538,7 +538,6 @@
  '(ange-ftp-try-passive-mode t)
  '(auto-save-default nil)
  '(auto-save-list-file-prefix nil)
- '(compilation-auto-jump-to-first-error t)
  '(compilation-scroll-output 'first-error)
  '(diff-switches "-u")
  '(echo-keystrokes 0.1)
