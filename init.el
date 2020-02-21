@@ -553,7 +553,7 @@
  '(minibuffer-depth-indicate-mode t)
  '(network-security-level 'high)
  '(package-selected-packages
-   '(company-prescient ivy-prescient prescient yasnippet yasnippet-snippets zenburn-theme csharp-mode company flycheck ivy lsp-mode php-mode web-mode magit rustic counsel counsel-projectile lsp-ui rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap company-lsp flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode comment-dwim-2 apache-mode anzu add-node-modules-path))
+   '(smartparens company-prescient ivy-prescient prescient yasnippet yasnippet-snippets zenburn-theme csharp-mode company flycheck ivy lsp-mode php-mode web-mode magit rustic counsel counsel-projectile lsp-ui rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap company-lsp flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode comment-dwim-2 apache-mode anzu add-node-modules-path))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
