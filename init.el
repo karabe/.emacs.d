@@ -373,9 +373,8 @@
                    :post-handlers '(multi-line-pair-post-handler))
     (sp-local-pair "<!--{" "}-->"
                    :post-handlers '((:add " | "))))
-  (sp-pair "{" nil
-           :when '(("SPC" "RET" "<evil-ret>"))
-           :post-handlers '(multi-line-pair-post-handler))
+  (sp-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
+  (sp-pair "[" nil :post-handlers '(("||\n[i]" "RET")))
   :custom
   (smartparens-global-mode t)
   (show-smartparens-global-mode t))
