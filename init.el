@@ -210,7 +210,6 @@
               ("M-?" . lsp-ui-peek-find-references)
               ("C-c C-v" . lsp-ui-doc-focus-frame))
   :custom
-  (lsp-ui-doc-position 'bottom)
   (lsp-ui-flycheck-enable t)
   (lsp-ui-sideline-enable nil)
   (lsp-ui-imenu-enable nil))
