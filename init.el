@@ -211,7 +211,8 @@
               ("C-c C-v" . lsp-ui-doc-focus-frame))
   :custom
   (lsp-ui-flycheck-enable t)
-  (lsp-ui-sideline-enable nil)
+  (lsp-ui-sideline-show-diagnostics nil)
+  (lsp-ui-sideline-show-symbol nil)
   (lsp-ui-imenu-enable nil))
 
 (use-package company-lsp
