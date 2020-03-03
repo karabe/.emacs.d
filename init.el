@@ -355,22 +355,15 @@
 (use-package smartparens
   :config
   (require 'smartparens-config)
-  (defun multi-line-pair-post-handler (id action context)
-    (when (equal action 'insert)
-      (save-excursion
-        (newline)
-        (indent-according-to-mode))))
   (sp-with-modes 'web-mode
     (sp-local-pair "{{" "}}"
                    :post-handlers '((:add " | ")))
     (sp-local-pair "{!!" "!!}"
                    :post-handlers '((:add " | ")))
     (sp-local-pair "@if" "@endif"
-                   :when '(("SPC" "RET" "<evil-ret>"))
-                   :post-handlers '(multi-line-pair-post-handler))
+                   :post-handlers '(("(|)\n\n[i]" "SPC")))
     (sp-local-pair "@foreach" "@endforeach"
-                   :when '(("SPC" "RET" "<evil-ret>"))
-                   :post-handlers '(multi-line-pair-post-handler))
+                   :post-handlers '(("(|)\n\n[i]" "SPC")))
     (sp-local-pair "<!--{" "}-->"
                    :post-handlers '((:add " | "))))
   (sp-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
