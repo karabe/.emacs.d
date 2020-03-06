@@ -195,6 +195,7 @@
    :after (lambda ()
              (setq-local company-backends '((company-lsp company-yasnippet :with company-dabbrev-code)))))
   :custom
+  (lsp-signature-render-documentation nil)
   (lsp-enable-text-document-color nil)
   (lsp-enable-completion-at-point nil)
   (lsp-enable-file-watchers nil)
