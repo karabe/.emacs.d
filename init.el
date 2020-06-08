@@ -97,7 +97,8 @@
   (company-dabbrev-code-everywhere t)
   (company-dabbrev-downcase nil)
   (company-idle-delay 0)
-  (company-minimum-prefix-length 2))
+  (company-minimum-prefix-length 2)
+  (company-transformers '(company-sort-by-backend-importance)))
 
 (use-package projectile
   :init
@@ -174,7 +175,8 @@
 (use-package company-prescient
   :after prescient
   :custom
-  (company-prescient-mode t))
+  (company-prescient-mode t)
+  (company-prescient-sort-length-enable nil))
 
 (use-package ivy-prescient
   :after prescient
