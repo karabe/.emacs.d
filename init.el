@@ -185,7 +185,7 @@
   (ivy-prescient-retain-classic-highlighting t))
 
 (use-package lsp-mode
-  :hook ((js-mode c-mode php-mode elixir-mode web-mode typescript-mode)
+  :hook ((js-mode c-mode php-mode elixir-mode typescript-mode)
          . lsp)
   :preface
   (require 'lsp-clients)
@@ -195,11 +195,10 @@
   (advice-add
    'lsp--auto-configure
    :after (lambda ()
-             (setq-local company-backends '((company-lsp company-yasnippet :with company-dabbrev-code)))))
+             (setq-local company-backends '((company-capf company-yasnippet :with company-dabbrev-code)))))
   :custom
   (lsp-signature-render-documentation nil)
   (lsp-enable-text-document-color nil)
-  (lsp-enable-completion-at-point nil)
   (lsp-enable-file-watchers nil)
   (lsp-debounce-full-sync-notifications-interval 0.5)
   (lsp-rust-clippy-preference "on")
@@ -217,12 +216,6 @@
   (lsp-ui-sideline-show-diagnostics nil)
   (lsp-ui-sideline-show-symbol nil)
   (lsp-ui-imenu-enable nil))
-
-(use-package company-lsp
-  :custom
-  (company-lsp-cache-candidates 'auto)
-  (company-lsp-enable-recompletion nil)
-  (company-lsp-match-candidate-predicate 'company-lsp-match-candidate-prefix))
 
 (use-package counsel-gtags
   :disabled
@@ -548,7 +541,7 @@
  '(minibuffer-depth-indicate-mode t)
  '(network-security-level 'high)
  '(package-selected-packages
-   '(smartparens company-prescient ivy-prescient prescient yasnippet yasnippet-snippets zenburn-theme csharp-mode company flycheck ivy lsp-mode php-mode web-mode magit rustic counsel counsel-projectile lsp-ui rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap company-lsp flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode comment-dwim-2 apache-mode anzu add-node-modules-path))
+   '(smartparens company-prescient ivy-prescient prescient yasnippet yasnippet-snippets zenburn-theme csharp-mode company flycheck ivy lsp-mode php-mode web-mode magit rustic counsel counsel-projectile lsp-ui rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode comment-dwim-2 apache-mode anzu add-node-modules-path))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
