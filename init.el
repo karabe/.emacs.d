@@ -24,8 +24,8 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (set-face-attribute 'default nil :family "Ricty")
-(set-fontset-font nil 'ascii (font-spec :family "Ricty" :size 16))
-(set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty" :size 16))
+(set-fontset-font nil 'ascii (font-spec :family "Ricty" :size 15))
+(set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty" :size 15))
 
 (use-package zenburn-theme
   :init
