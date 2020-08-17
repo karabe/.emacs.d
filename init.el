@@ -187,6 +187,7 @@
 (use-package lsp-mode
   :hook ((js-mode c-mode php-mode elixir-mode typescript-mode)
          . lsp)
+  :mode ("\\.tsx\\'" . (lambda () (web-mode) (lsp)))
   :preface
   (require 'lsp-clients)
   :config
