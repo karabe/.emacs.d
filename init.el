@@ -188,8 +188,6 @@
   :hook ((js-mode c-mode php-mode elixir-mode typescript-mode)
          . lsp)
   :mode ("\\.tsx\\'" . (lambda () (web-mode) (lsp)))
-  :preface
-  (require 'lsp-clients)
   :config
   (setq gc-cons-threshold 100000000)
   (setq read-process-output-max (* 1024 1024))
@@ -541,8 +539,9 @@
  '(menu-bar-mode nil)
  '(minibuffer-depth-indicate-mode t)
  '(network-security-level 'high)
+ '(org-agenda-files '("~/org/todo.org"))
  '(package-selected-packages
-   '(smartparens company-prescient ivy-prescient prescient yasnippet yasnippet-snippets zenburn-theme csharp-mode company flycheck ivy lsp-mode php-mode web-mode magit rustic counsel counsel-projectile lsp-ui rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode comment-dwim-2 apache-mode anzu add-node-modules-path))
+   '(openapi-yaml-mode ansi package-build shut-up epl git commander f dash s smartparens company-prescient ivy-prescient prescient yasnippet yasnippet-snippets zenburn-theme csharp-mode company flycheck ivy lsp-mode php-mode web-mode magit rustic counsel counsel-projectile lsp-ui rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode comment-dwim-2 apache-mode anzu add-node-modules-path))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
