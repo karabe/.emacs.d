@@ -187,7 +187,10 @@
 (use-package lsp-mode
   :hook ((js-mode c-mode php-mode elixir-mode typescript-mode)
          . lsp)
-  :mode ("\\.tsx\\'" . (lambda () (web-mode) (lsp)))
+  :mode ("\\.tsx\\'" . (lambda ()
+                         (web-mode)
+                         (setq-local web-mode-enable-auto-quoting nil)
+                         (lsp)))
   :config
   (setq gc-cons-threshold 100000000)
   (setq read-process-output-max (* 1024 1024))
