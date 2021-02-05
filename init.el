@@ -213,8 +213,6 @@
               ("M-." . lsp-ui-peek-find-definitions)
               ("M-?" . lsp-ui-peek-find-references)
               ("C-c C-v" . lsp-ui-doc-focus-frame))
-  :config
-  (add-to-list 'lsp-ui-doc-frame-parameters '(no-accept-focus . t))
   :custom
   (lsp-ui-doc-position 'at-point)
   (lsp-ui-flycheck-enable t)
