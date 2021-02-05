@@ -230,9 +230,8 @@
 (use-package flycheck
   :hook ((lsp-mode emacs-lisp-mode) . flycheck-mode))
 
-(use-package flycheck-popup-tip
-  :after flycheck
-  :hook (flycheck-mode . flycheck-popup-tip-mode))
+(use-package flycheck-pos-tip
+  :hook (flycheck-mode . flycheck-pos-tip-mode))
 
 (use-package phpactor)
 
@@ -544,7 +543,7 @@
  '(network-security-level 'high)
  '(org-agenda-files '("~/org/todo.org"))
  '(package-selected-packages
-   '(openapi-yaml-mode ansi package-build shut-up epl git commander f dash s smartparens company-prescient ivy-prescient prescient yasnippet yasnippet-snippets zenburn-theme csharp-mode company flycheck ivy lsp-mode php-mode web-mode magit rustic counsel counsel-projectile lsp-ui rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode comment-dwim-2 apache-mode anzu add-node-modules-path))
+   '(flycheck-pos-tip lsp-ui lsp-mode basic-mode openapi-yaml-mode ansi package-build shut-up epl git commander f dash s smartparens company-prescient ivy-prescient prescient yasnippet yasnippet-snippets zenburn-theme csharp-mode company flycheck ivy php-mode web-mode magit rustic counsel counsel-projectile rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode comment-dwim-2 apache-mode anzu add-node-modules-path))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
