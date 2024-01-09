@@ -1,22 +1,10 @@
-;;; package --- Summary
-;;; Commentary:
-;;; init.el --- Where all the magic begins
-;;; Code:
-
-;; パッケージ設定
 (setq package-archives
       '(
         ("gnu"          . "https://elpa.gnu.org/packages/")
         ;; ("org"          . "https://orgmode.org/elpa/")
-        ;; ("melpa-stable" . "https://stable.melpa.org/packages/")
-        ("melpa"        . "https://melpa.org/packages/")
-    ))
-(package-initialize)
-(unless package-archive-contents (package-refresh-contents))
-
-(dolist (package '(use-package))
-  (unless (package-installed-p package)
-    (package-install package)))
+        ("melpa-stable" . "https://stable.melpa.org/packages/")
+        ;; ("melpa"        . "https://melpa.org/packages/")
+        ))
 
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
@@ -36,96 +24,107 @@
   (set-language-environment "Japanese")
   (prefer-coding-system 'utf-8) ; エンコーディングの優先順位の一番をutf-8にする
   (global-set-key (kbd "<zenkaku-hankaku>") 'toggle-input-method)
-  (setq default-input-method "japanese-mozc"))
-
-(use-package mozc-popup
+  (setq default-input-method "japanese-mozc")
   :custom
-  (mozc-candidate-style 'popup))
+  (mozc-candidate-style 'echo-area))
 
-(use-package avy
-  :bind ("C-:" . avy-goto-word-1))
+;; (use-package mozc-popup
+;;   :custom
+;;   (mozc-candidate-style 'popup))
 
-(use-package avy-zap
-  :bind ("M-z" . avy-zap-to-char-dwim))
-
-(use-package php-mode
-  :mode "\\.php?\\'"
-  :bind (:map php-mode-map
-              ("C-c t" . phpunit-current-class)
-              ("C-c C-r" . ivy-resume)
-              ("C-c w" . web-mode))
-  :hook (php-mode
-         . (lambda ()
-             (setq-local lsp-enable-imenu nil)))
-  :custom
-  (php-mode-lineup-cascaded-calls t)
-  (php-search-url "http://www.php.net/ja/")
-  (php-mode-coding-style 'psr2))
-
-(use-package web-mode
-  :mode ("\\.tpl\\'" "\\.html?\\'" "\\.blade\\.php?\\'" "\\.erb\\'" "\\.twig\\'" "\\.vue\\'" "\\.aspx\\'")
-  :bind (:map web-mode-map
-              ("C-c C-r" . ivy-resume))
-  :custom
-  (web-mode-code-indent-offset 4)
-  (web-mode-enable-auto-indentation nil)
-  (web-mode-enable-current-element-highlight t)
-  (web-mode-markup-indent-offset 4)
-  (web-mode-enable-auto-pairing nil))
-
-(use-package js
-  :bind (:map js-mode-map
-              ("M-." . xref-find-definitions)))
-
-(use-package elixir-mode)
-
-(use-package rustic
-  :bind (:map rustic-mode-map
-              ("C-c C-t" . rustic-cargo-test)
-              ("C-c C-b" . rustic-cargo-build)
-              ("C-c C-l" . rustic-cargo-clippy))
-  :custom
-  (lsp-rust-server 'rust-analyzer)
-  (rustic-lsp-server 'rust-analyzer)
-  (rustic-format-trigger 'on-compile)
-  (rustic-flycheck-setup-mode-line-p nil))
-
-(use-package company
-  :hook ((web-mode css-mode emacs-lisp-mode sql-mode lsp-mode graphviz-dot-mode ruby-mode csharp-mode)
-         . company-mode)
-  :custom
-  (company-dabbrev-code-everywhere t)
-  (company-dabbrev-downcase nil)
-  (company-idle-delay 0)
-  (company-minimum-prefix-length 2)
-  (company-transformers '(company-sort-by-backend-importance)))
-
-(use-package projectile
+(use-package vertico
   :init
-  (projectile-mode)
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
-  :config
-  (projectile-register-project-type 'laravel
-                                    '("composer.json" "app" "bootstrap" "config" "database" "public" "resources" "storage" "tests" "vendor")
-                                    :test "phpunit"
-                                    :test-suffix "Test")
-  (projectile-register-project-type 'webextention
-                                    '("addon" "src" "test" "package.json")
-                                    :compile "yarn run prod"
-                                    :run "yarn start"
-                                    :src-dir "src"
-                                    :test-dir "test"
-                                    :test "yarn run jest"
-                                    :test-suffix ".test")
-  (projectile-register-project-type 'eccube
-                                    '("data" "html"))
-  :custom
-  (projectile-completion-system 'ivy))
+  (vertico-mode)
+  :bind (:map vertico-map
+              ("C-^" . vertico-directory-up)))
 
-(use-package undo-tree
- :init
- (global-undo-tree-mode))
+(use-package savehist
+  :init
+  (savehist-mode))
+
+(use-package consult
+  ;; Replace bindings. Lazily loaded due by `use-package'.
+  :bind (;; C-c bindings in `mode-specific-map'
+         ("C-c M-x" . consult-mode-command)
+         ("C-c h" . consult-history)
+         ("C-c k" . consult-kmacro)
+         ("C-c m" . consult-man)
+         ("C-c i" . consult-info)
+         ([remap Info-search] . consult-info)
+         ("C-c f" .  project-find-file)
+         ;; C-x bindings in `ctl-x-map'
+         ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
+         ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
+         ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
+         ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
+         ("C-x t b" . consult-buffer-other-tab)    ;; orig. switch-to-buffer-other-tab
+         ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
+         ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
+         ;; Custom M-# bindings for fast register access
+         ("M-#" . consult-register-load)
+         ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
+         ("C-M-#" . consult-register)
+         ;; Other custom bindings
+         ("M-y" . consult-yank-pop)                ;; orig. yank-pop
+         ;; M-g bindings in `goto-map'
+         ("M-g e" . consult-compile-error)
+         ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
+         ("M-g g" . consult-goto-line)             ;; orig. goto-line
+         ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
+         ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
+         ("M-g m" . consult-mark)
+         ("M-g k" . consult-global-mark)
+         ("M-g i" . consult-imenu)
+         ("M-g I" . consult-imenu-multi)
+         ;; M-s bindings in `search-map'
+         ("M-s d" . consult-find)                  ;; Alternative: consult-fd
+         ("M-s c" . consult-locate)
+         ("M-s g" . consult-grep)
+         ("M-s G" . consult-git-grep)
+         ("M-s r" . consult-ripgrep)
+         ("M-s l" . consult-line)
+         ("M-s L" . consult-line-multi)
+         ("M-s k" . consult-keep-lines)
+         ("M-s u" . consult-focus-lines)
+         ;; Isearch integration
+         ("M-s e" . consult-isearch-history)
+         :map isearch-mode-map
+         ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
+         ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
+         ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
+         ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
+         ;; Minibuffer history
+         :map minibuffer-local-map
+         ("M-s" . consult-history)                 ;; orig. next-matching-history-element
+         ("M-r" . consult-history))                ;; orig. previous-matching-history-element
+  :config
+  (consult-customize
+   consult-ripgrep consult-git-grep consult-grep
+   consult-bookmark consult-recent-file consult-xref
+   consult--source-bookmark consult--source-file-register
+   consult--source-recent-file consult--source-project-recent-file
+   :preview-key "M-.")
+ )
+
+(use-package embark
+  :bind
+  (("C-." . embark-act)         ;; pick some comfortable binding
+   ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+  )
+
+(use-package embark-consult
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+(use-package marginalia
+  :init
+  (marginalia-mode))
+
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package magit
   :bind (("C-c m" . magit-status)
@@ -144,97 +143,26 @@
   (git-gutter+-lighter "")
   (global-git-gutter+-mode t))
 
-(use-package counsel
-  :bind (("C-c s" . swiper)
-         ("C-c C-r" . ivy-resume)
-         ("<f6>" . ivy-resume)
-         ("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)
-         ("C-c i" . counsel-imenu)
-         ("C-c e" . counsel-register)
-         ("C-c y" . counsel-yank-pop)
-         ("C-c z" . ivy-switch-buffer))
+(use-package recentf
   :custom
-  (ivy-mode t)
-  (counsel-yank-pop-separator "\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
-  (ivy-use-virtual-buffers t)
-  (ivy-virtual-abbreviate 'full))
+  (recentf-mode t)
+  (recentf-max-saved-items 200)
+  (recentf-exclude '("bookmarks$" "-autoloads\\.el$")))
 
-(use-package ivy-xref
-  :config
-  (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
-
-(use-package counsel-projectile
-  :bind ("C-c f" . counsel-projectile-find-file))
-
-(use-package prescient
-  :after counsel
+(use-package dired
+  :ensure nil
   :custom
-  (prescient-persist-mode t))
+  (dired-dwim-target t)
+  (dired-listing-switches "-Ahl")
+  (dired-recursive-copies 'always))
 
-(use-package company-prescient
-  :after prescient
+(use-package wdired
+  :bind (:map dired-mode-map
+              ("r" . wdired-change-to-wdired-mode)))
+
+(use-package ediff
   :custom
-  (company-prescient-mode t)
-  (company-prescient-sort-length-enable nil))
-
-(use-package ivy-prescient
-  :after prescient
-  :custom
-  (ivy-prescient-mode t)
-  (ivy-prescient-retain-classic-highlighting t))
-
-(use-package lsp-mode
-  :hook ((js-mode c-mode php-mode elixir-mode typescript-mode)
-         . lsp)
-  :mode ("\\.tsx\\'" . (lambda ()
-                         (web-mode)
-                         (setq-local web-mode-enable-auto-quoting nil)
-                         (lsp)))
-  :config
-  (setq gc-cons-threshold 100000000)
-  (setq read-process-output-max (* 1024 1024))
-  (advice-add
-   'lsp--auto-configure
-   :after (lambda ()
-             (setq-local company-backends '((company-capf company-yasnippet :with company-dabbrev-code)))))
-  :custom
-  (lsp-signature-render-documentation nil)
-  (lsp-enable-text-document-color nil)
-  (lsp-enable-file-watchers nil)
-  (lsp-debounce-full-sync-notifications-interval 0.5)
-  (lsp-rust-clippy-preference "on")
-  (lsp-vetur-format-options-tab-size 4)
-  (lsp-vetur-completion-use-scaffold-snippets nil))
-
-(use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode)
-  :bind (:map lsp-ui-mode-map
-              ("M-." . lsp-ui-peek-find-definitions)
-              ("M-?" . lsp-ui-peek-find-references)
-              ("C-c C-v" . lsp-ui-doc-focus-frame))
-  :custom
-  (lsp-ui-doc-position 'at-point)
-  (lsp-ui-flycheck-enable t)
-  (lsp-ui-sideline-show-diagnostics nil)
-  (lsp-ui-sideline-show-symbol nil)
-  (lsp-ui-imenu-enable nil))
-
-(use-package counsel-gtags
-  :disabled
-  :hook (php-mode . (lambda ()
-                      (setq-local company-backends '((company-gtags company-files company-yasnippet company-css :with company-dabbrev-code)))
-                      (counsel-gtags-mode)))
-  :custom
-  (counsel-gtags-auto-update t))
-
-(use-package flycheck
-  :hook ((lsp-mode emacs-lisp-mode) . flycheck-mode))
-
-(use-package flycheck-pos-tip
-  :hook (flycheck-mode . flycheck-pos-tip-mode))
-
-(use-package phpactor)
+  (ediff-split-window-function 'split-window-horizontally))
 
 (use-package org
   :bind (("C-c a" . org-agenda)
@@ -258,8 +186,6 @@
   :init
   (yas-global-mode 1))
 
-(use-package yasnippet-snippets)
-
 (use-package rg
   :init
   (rg-enable-default-bindings "\M-s")
@@ -267,16 +193,19 @@
   (rg-custom-type-aliases '(("ctp" . "*.ctp") ("vue" . "*.js *.ts *.vue")))
   (ripgrep-arguments '("-s")))
 
-(use-package move-text
-  :init
-  (move-text-default-bindings))
+(use-package undo-tree
+ :init
+ (global-undo-tree-mode))
 
-(use-package anzu
-  :bind ("M-%" . anzu-query-replace)
+(use-package editorconfig
   :custom
-  (anzu-minimum-input-length 2)
-  (anzu-mode-lighter "")
-  (anzu-search-threshold 1000))
+  (editorconfig-mode t))
+
+(use-package migemo
+  :custom
+  (migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict")
+  (migemo-user-dictionary nil)
+  (migemo-regex-dictionary nil))
 
 (use-package comment-dwim-2
   :bind ("M-;" . comment-dwim-2))
@@ -285,52 +214,45 @@
   :bind (("C-@" . er/expand-region)
          ("C-M-@" . er/contract-region)))
 
-;; key-mapping
-(global-set-key (kbd "<f12>") 'remember)
-(global-set-key (kbd "C-z") 'other-window)
-(global-set-key (kbd "C-x C-p") 'find-file-at-point)
-(global-set-key (kbd "C-c r") 'revert-buffer)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-
-(use-package smart-mode-line
-  :init
-  (sml/setup)
-  :custom
-  (sml/no-confirm-load-theme t)
-  (rm-blacklist
-   (format "^ \\(%s\\)$"
-           (mapconcat #'identity
-                      '("EditorConfig" "ARev" "Undo-Tree" "VHl" "yas" "ivy"
-                        "Abbrev" "ElDoc" "company" "Projectile.*" "CounselGtags"
-                        "MMM")
-                      "\\|"))))
-
-(use-package japanese-holidays
-  :hook ((calendar-today-visible . japanese-holiday-mark-weekend)
-         (calendar-today-invisible . japanese-holiday-mark-weekend))
+(use-package smartparens
   :config
-  (setq calendar-holidays (append japanese-holidays))
+  (require 'smartparens-config)
+  ;; (sp-with-modes 'web-mode
+  ;;   (sp-local-pair "{{" "}}"
+  ;;                  :post-handlers '((:add " | ")))
+  ;;   (sp-local-pair "{!!" "!!}"
+  ;;                  :post-handlers '((:add " | ")))
+  ;;   (sp-local-pair "@if" "@endif"
+  ;;                  :post-handlers '(("(|)\n\n[i]" "SPC")))
+  ;;   (sp-local-pair "@foreach" "@endforeach"
+  ;;                  :post-handlers '(("(|)\n\n[i]" "SPC")))
+  ;;   (sp-local-pair "<!--{" "}-->"
+  ;;                  :post-handlers '((:add " | "))))
+  ;; (sp-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
+  ;; (sp-pair "[" nil :post-handlers '(("||\n[i]" "RET")))
   :custom
-  (calendar-mark-holidays-flag t)
-  (japanese-holiday-weekend-marker '(holiday nil nil nil nil nil holiday)))
+  (smartparens-global-mode t)
+  (show-smartparens-global-mode t))
 
-(use-package add-node-modules-path
-  :hook js-mode)
-
-(use-package emmet-mode
-  :hook web-mode)
-
-(use-package editorconfig
+(use-package php-mode
+  :mode "\\.php?\\'"
+  :bind (:map php-mode-map
+              ("C-c t" . phpunit-current-class)
+              ("C-c w" . web-mode))
   :custom
-  (editorconfig-mode t))
+  (php-mode-lineup-cascaded-calls t)
+  (php-search-url "http://www.php.net/ja/")
+  (php-mode-coding-style 'psr2))
 
-(use-package volatile-highlights
+(use-package web-mode
+  :mode ("\\.tpl\\'" "\\.html?\\'" "\\.blade\\.php?\\'" "\\.erb\\'" "\\.twig\\'" "\\.vue\\'" "\\.aspx\\'")
   :custom
-  (volatile-highlights-mode t))
-
-(use-package apache-mode)
-
-(use-package gitignore-mode)
+  ;; (web-mode-enable-auto-pairing nil)    
+  (web-mode-code-indent-offset 4)
+  (web-mode-enable-auto-indentation nil)
+  (web-mode-enable-current-element-highlight t)
+  (web-mode-markup-indent-offset 4)
+  (web-mode-enable-auto-pairing nil))
 
 (use-package dockerfile-mode)
 
@@ -338,193 +260,25 @@
 
 (use-package typescript-mode)
 
-(use-package phpunit)
+(use-package markdown-mode)
 
-(use-package migemo
-  :custom
-  (migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict")
-  (migemo-user-dictionary nil)
-  (migemo-regex-dictionary nil))
+(add-to-list 'load-path "~/.emacs.d/lsp-bridge")
+(require 'lsp-bridge)
+(global-lsp-bridge-mode)
+(global-set-key (kbd "M-.") 'lsp-bridge-find-def)
+(global-set-key (kbd "M-,") 'lsp-bridge-find-def-return)
+(global-set-key (kbd "M-?") 'lsp-bridge-find-references)
 
-(use-package csv-mode)
-
-(use-package csharp-mode)
-
-(use-package smartparens
-  :config
-  (require 'smartparens-config)
-  (sp-with-modes 'web-mode
-    (sp-local-pair "{{" "}}"
-                   :post-handlers '((:add " | ")))
-    (sp-local-pair "{!!" "!!}"
-                   :post-handlers '((:add " | ")))
-    (sp-local-pair "@if" "@endif"
-                   :post-handlers '(("(|)\n\n[i]" "SPC")))
-    (sp-local-pair "@foreach" "@endforeach"
-                   :post-handlers '(("(|)\n\n[i]" "SPC")))
-    (sp-local-pair "<!--{" "}-->"
-                   :post-handlers '((:add " | "))))
-  (sp-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
-  (sp-pair "[" nil :post-handlers '(("||\n[i]" "RET")))
-  :custom
-  (smartparens-global-mode t)
-  (show-smartparens-global-mode t))
-
-(use-package dired
-  :ensure nil
-  :custom
-  (dired-dwim-target t)
-  (dired-listing-switches "-Ahl")
-  (dired-recursive-copies 'always)
-  (dired-use-ls-dired t))
-
-(use-package wdired
-  :bind (:map dired-mode-map
-              ("r" . wdired-change-to-wdired-mode)))
-
-(use-package recentf
-  :custom
-  (recentf-mode t)
-  (recentf-max-saved-items 200)
-  (recentf-exclude '("bookmarks$" "-autoloads\\.el$")))
-
-(use-package ediff
-  :custom
-  (ediff-split-window-function 'split-window-horizontally)
-  (ediff-window-setup-function 'ediff-setup-windows-plain))
-
-(use-package sql
-  :hook (sql-mode . (lambda ()
-                      (push `(sql-mode .
-                                       ,(apply 'company-keywords-upper-lower
-                                               (append
-                                                sql-mysql-functions
-                                                sql-mysql-keywords
-                                                sql-mysql-data-types)))
-                            company-keywords-alist)
-                      (setq-local company-backends '((company-keywords :with company-dabbrev-code)))))
-  :config
-  (defvar sql-mysql-functions
-    '("ascii" "avg" "bdmpolyfromtext" "bdmpolyfromwkb" "bdpolyfromtext"
-      "bdpolyfromwkb" "benchmark" "bin" "bit_and" "bit_length" "bit_or"
-      "bit_xor" "both" "cast" "char_length" "character_length" "coalesce"
-      "concat" "concat_ws" "connection_id" "conv" "convert" "count"
-      "curdate" "current_date" "current_time" "current_timestamp" "curtime"
-      "elt" "encrypt" "export_set" "field" "find_in_set" "found_rows" "from"
-      "geomcollfromtext" "geomcollfromwkb" "geometrycollectionfromtext"
-      "geometrycollectionfromwkb" "geometryfromtext" "geometryfromwkb"
-      "geomfromtext" "geomfromwkb" "get_lock" "group_concat" "hex" "ifnull"
-      "instr" "interval" "isnull" "last_insert_id" "lcase" "leading"
-      "length" "linefromtext" "linefromwkb" "linestringfromtext"
-      "linestringfromwkb" "load_file" "locate" "lower" "lpad" "ltrim"
-      "make_set" "master_pos_wait" "max" "mid" "min" "mlinefromtext"
-      "mlinefromwkb" "mpointfromtext" "mpointfromwkb" "mpolyfromtext"
-      "mpolyfromwkb" "multilinestringfromtext" "multilinestringfromwkb"
-      "multipointfromtext" "multipointfromwkb" "multipolygonfromtext"
-      "multipolygonfromwkb" "now" "nullif" "oct" "octet_length" "ord"
-      "pointfromtext" "pointfromwkb" "polyfromtext" "polyfromwkb"
-      "polygonfromtext" "polygonfromwkb" "position" "quote" "rand"
-      "release_lock" "repeat" "replace" "reverse" "rpad" "rtrim" "soundex"
-      "space" "std" "stddev" "substring" "substring_index" "sum" "sysdate"
-      "trailing" "trim" "ucase" "unix_timestamp" "upper" "user" "variance")
-    "MySQL Functions")
-  (defvar sql-mysql-keywords
-    '("action" "add" "after" "against" "all" "alter" "and" "as" "asc"
-      "auto_increment" "avg_row_length" "bdb" "between" "by" "cascade"
-      "case" "change" "character" "check" "checksum" "close" "collate"
-      "collation" "column" "columns" "comment" "committed" "concurrent"
-      "constraint" "create" "cross" "data" "database" "default"
-      "delay_key_write" "delayed" "delete" "desc" "directory" "disable"
-      "distinct" "distinctrow" "do" "drop" "dumpfile" "duplicate" "else" "elseif"
-      "enable" "enclosed" "end" "escaped" "exists" "fields" "first" "for"
-      "force" "foreign" "from" "full" "fulltext" "global" "group" "handler"
-      "having" "heap" "high_priority" "if" "ignore" "in" "index" "infile"
-      "inner" "insert" "insert_method" "into" "is" "isam" "isolation" "join"
-      "key" "keys" "last" "left" "level" "like" "limit" "lines" "load"
-      "local" "lock" "low_priority" "match" "max_rows" "merge" "min_rows"
-      "mode" "modify" "mrg_myisam" "myisam" "natural" "next" "no" "not"
-      "null" "offset" "oj" "on" "open" "optionally" "or" "order" "outer"
-      "outfile" "pack_keys" "partial" "password" "prev" "primary"
-      "procedure" "quick" "raid0" "raid_type" "read" "references" "rename"
-      "repeatable" "restrict" "right" "rollback" "rollup" "row_format"
-      "savepoint" "select" "separator" "serializable" "session" "set"
-      "share" "show" "sql_big_result" "sql_buffer_result" "sql_cache"
-      "sql_calc_found_rows" "sql_no_cache" "sql_small_result" "starting"
-      "straight_join" "striped" "table" "tables" "temporary" "terminated"
-      "then" "to" "transaction" "truncate" "type" "uncommitted" "union"
-      "unique" "unlock" "update" "use" "using" "values" "when" "where"
-      "with" "write" "xor")
-    "MySQL Keywords")
-  (defvar sql-mysql-data-types
-    '("bigint" "binary" "bit" "blob" "bool" "boolean" "char" "curve" "date"
-      "datetime" "dec" "decimal" "double" "enum" "fixed" "float" "geometry"
-      "geometrycollection" "int" "integer" "line" "linearring" "linestring"
-      "longblob" "longtext" "mediumblob" "mediumint" "mediumtext"
-      "multicurve" "multilinestring" "multipoint" "multipolygon"
-      "multisurface" "national" "numeric" "point" "polygon" "precision"
-      "real" "smallint" "surface" "text" "time" "timestamp" "tinyblob"
-      "tinyint" "tinytext" "unsigned" "varchar" "year" "year2" "year4"
-      "zerofill")
-    "MySQL Data Types")
-  :custom
-  (sql-product 'mysql))
-
-(use-package graphviz-dot-mode
-  :hook (graphviz-dot-mode
-         . (lambda ()
-             (setq-local show-trailing-whitespace t)
-             (add-hook 'before-save-hook 'delete-trailing-whitespace nil t)
-             (setq-local indent-line-function 'my-graphviz-dot-indent-line)))
-  :bind (:map graphviz-dot-mode-map
-              ("{" . self-insert-command)
-              ("}" . self-insert-command)
-              (";" . self-insert-command)
-              ("RET" . newline))
-  :config
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-stdio-connection '("dot-language-server" "--stdio"))
-                    :major-modes '(graphviz-dot-mode)
-                    :priority -1
-                    :server-id 'dot))
-  (defun my--calc-indent-column ()
-    (forward-line -1)
-    (cond
-     ((looking-at "^.*[{[]$")
-      (+ (current-indentation) graphviz-dot-indent-width))
-     ((looking-at "^[ \t]*$")
-      (my--calc-indent-column))
-     (t
-      (current-indentation))))
-  (defun my-graphviz-dot-indent-line ()
-    (let ((current-point (point))
-          (current-column (current-column))
-          (current-indent (current-indentation))
-          (new-indent (save-excursion
-                             (beginning-of-line)
-                             (cond
-                              ((bobp)
-                               ;; simple case, indent to 0
-                               0)
-                              ((looking-at "^[ \t]*\\(}\\|]\\);?$")
-                               ;; block closing, deindent relative to previous line
-                               (forward-line -1)
-                               (while (looking-at "^[ \t]*$")
-                                 (forward-line -1))
-                               (if (looking-at "^.*[{\\[]$")
-                                   (current-indentation)
-                                 (max 0 (- (current-indentation) graphviz-dot-indent-width))))
-                              (t
-                               ;; other cases need to look at previous lines
-                               (my--calc-indent-column))))))
-      (indent-line-to new-indent)
-      (when (> current-column current-indent)
-        (goto-char (+ current-point (- new-indent current-indent)))))))
+;; key-mapping
+(global-set-key (kbd "<f12>") 'remember)
+(global-set-key (kbd "C-z") 'other-window)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(acm-enable-tabnine nil)
  '(ange-ftp-try-passive-mode t)
  '(auto-save-default nil)
  '(auto-save-list-file-prefix nil)
@@ -544,12 +298,13 @@
  '(network-security-level 'high)
  '(org-agenda-files '("~/org/todo.org"))
  '(package-selected-packages
-   '(flycheck-pos-tip lsp-ui lsp-mode basic-mode openapi-yaml-mode ansi package-build shut-up epl git commander f dash s smartparens company-prescient ivy-prescient prescient yasnippet yasnippet-snippets zenburn-theme csharp-mode company flycheck ivy php-mode web-mode magit rustic counsel counsel-projectile rg editorconfig csv-mode typescript-mode graphviz-dot-mode avy-zap flycheck-popup-tip elixir-mode phpactor counsel-gtags volatile-highlights use-package undo-tree smart-mode-line phpunit mozc-popup move-text migemo markdown-mode japanese-holidays ivy-xref gitignore-mode git-gutter+ expand-region emmet-mode dockerfile-mode docker-compose-mode comment-dwim-2 apache-mode anzu add-node-modules-path))
+   '(smartparens zenburn-theme yasnippet web-mode vertico undo-tree typescript-mode rg php-mode orderless mozc markdown-mode marginalia magit git-gutter+ expand-region embark-consult editorconfig dockerfile-mode docker-compose-mode))
  '(scroll-bar-mode nil)
  '(shift-select-mode nil)
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(truncate-partial-width-windows nil)
+ '(undo-tree-auto-save-history nil)
  '(use-package-always-defer t)
  '(use-package-enable-imenu-support t)
  '(vc-display-status nil)
